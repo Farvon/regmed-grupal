@@ -6,7 +6,7 @@ import HeaderHome from './HeaderHome';
 const Home = () => {
   return (
     <HomeContainer>
-      <HeaderHome />
+      <HeaderHome/>
       <BackgroundImg
         src="http://todosn.com/fondo.jpg"
         alt="RegMed Background"
