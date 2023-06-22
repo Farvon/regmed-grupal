@@ -25,3 +25,5 @@ RegMed is an application that allows doctors to carry out the clinical history o
 4. Go to frontend folder (cd frontend)
 5. Run `npm install`
 6. Run the client: `npm run dev`
+
+luxhy
