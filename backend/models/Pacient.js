@@ -1,6 +1,14 @@
 const { Schema, model } = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+// Creamos el esquema del log
+const logSchema = new Schema({
+  fecha_log: String,
+  medico_log: String,
+  accion_log: String,
+  contenido_log: String,
+});
+
 // Creamos el esquema de los comentarios
 const historialSchema = new Schema({
   fecha_hist: String,
@@ -33,6 +41,7 @@ const pacientSchema = new Schema({
   fact_sang: String,
   alergias: { type: Array },
   hist_diagnosticos: [diagnosticoSchema],
+  hist_log: [logSchema],
 });
 
 // Añadimos el plugin para verificar que sea unico al esquema
