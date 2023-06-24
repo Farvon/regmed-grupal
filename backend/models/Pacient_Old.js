@@ -5,19 +5,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 const historialSchema = new Schema({
   fecha_hist: String,
   medico_hist: String,
+  rama_hist: String,
   comentario_hist: String,
-  archivo_hist: String,
-});
-
-// Creamos el esquema de los diagnósticos
-const diagnosticoSchema = new Schema({
-  fecha_diag: String,
-  medico_diag: String,
-  rama_diag: String,
-  comentario_diag: String,
-  estado_diag: Boolean,
-  motivo_cierre: String,
-  historial: [historialSchema],
 });
 
 // Creamos el esquema del paciente
@@ -31,8 +20,7 @@ const pacientSchema = new Schema({
   num_socio: String,
   grup_sang: String,
   fact_sang: String,
-  alergias: { type: Array },
-  hist_diagnosticos: [diagnosticoSchema],
+  historial: [historialSchema],
 });
 
 // Añadimos el plugin para verificar que sea unico al esquema
