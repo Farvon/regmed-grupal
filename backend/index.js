@@ -10,6 +10,7 @@ const cors = require('cors');
 
 const notFound = require('./middleware/notFound');
 const handleErrors = require('./middleware/handleErrors');
+const diagnosisRouter = require('./controllers/diagnosis');
 const pacientsRouter = require('./controllers/pacients');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
@@ -23,6 +24,7 @@ app.get('/', (request, response) => {
 
 //Indicamos las distintas direcciones donde la app va a buscar
 //la información (controladores)
+app.use('/api/diagnosis', diagnosisRouter);
 app.use('/api/pacients', pacientsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
