@@ -48,6 +48,7 @@ pacientsRouter.post('/', userExtractor, (request, response) => {
     grup_sang: pacient.grup_sang,
     fact_sang: pacient.fact_sang,
     historial: pacient.historial,
+    alergias: pacient.alergias,
   });
 
   //Lo guardo en la Base de Datos
