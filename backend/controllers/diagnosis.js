@@ -17,11 +17,11 @@ diagnosisRouter.get('/', (request, response) => {
     .catch((err) => next(err));
 }); */
 
-//Agrego un paciente
+//Agrego un Diagnostico
 diagnosisRouter.post('/', async (request, response) => {
   const diagnosis = request.body;
 
-  //Creo una nueva instancia del modelo de Paciente con la info
+  //Creo una nueva instancia del modelo de Diagnostico con la info
   const newDiagnosis = new Diagnosis({
     cod: diagnosis.cod,
     description: diagnosis.description,

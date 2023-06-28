@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
+import SelectorDiagnosis from './SelectorDiagnosis';
 
 //Componente para la barra lateral
 const SideBar = ({ setDni, user }) => {
@@ -39,6 +40,8 @@ const SideBar = ({ setDni, user }) => {
             </StyledButton>
           </StyledLink>
         )}
+
+        <SelectorDiagnosis />
       </Box>
     </SideContainer>
   );
