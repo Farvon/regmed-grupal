@@ -39,7 +39,7 @@ const ModalTemplate = ({ onCloseIconClick, title, content }) => {
           </ModalForm>
         </ModalContainer>
       </Backdrop>
-    </>
+    </> 
   );
 };
 
