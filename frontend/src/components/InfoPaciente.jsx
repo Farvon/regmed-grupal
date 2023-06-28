@@ -9,6 +9,7 @@ import ViewComment from './ViewComment';
 import AddComment from './AddComment';
 import ButtonLink from './ButtonLink';
 import SideBar from './SideBar';
+import Qr from './Qr';
 
 //Recibe el DNI buscado
 const InfoPaciente = ({ dni, setDni, user }) => {
@@ -58,7 +59,10 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                   </ButtonLink>
                 )}
               </PersonalInfoHeader>
+
               <PersonalInfoBody>
+                <PersonaInfoSeparadorLeft>  
+                    
                 <PersonalInfoGroup>
                   <PersonalInfoType>Nombre y Apellido</PersonalInfoType>
                   <PersonalInfoData>
@@ -90,6 +94,11 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     {paciente.fact_sang}
                   </PersonalInfoData>
                 </PersonalInfoGroup>
+              </PersonaInfoSeparadorLeft>
+                <PersonaInfoSeparadorRight>
+                 <Qr paciente={paciente}/>
+                </PersonaInfoSeparadorRight>
+               
               </PersonalInfoBody>
             </PersonalInfoContainer>
 
@@ -216,14 +225,29 @@ const PersonalInfoTitle = styled.span`
 
 const PersonalInfoBody = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   background-color: white;
   padding: 8px;
+`;
+
+const PersonaInfoSeparadorLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  width:70%;
+`;
+
+const PersonaInfoSeparadorRight = styled.div`
+display: flex;
+width:30%;
+align-item: center;
 `;
 
 const PersonalInfoGroup = styled.div`
   display: flex;
 `;
+
+
 
 const PersonalInfoType = styled.label`
   display: flex;

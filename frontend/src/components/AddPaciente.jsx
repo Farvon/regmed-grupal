@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { TagsInput } from "react-tag-input-component";
 import styled from 'styled-components';
 import useAlert from '../hooks/useAlert';
 
 import { postNewPacient } from '../services/pacients';
+
 
 const AddPaciente = () => {
   const [nombre, setNombre] = useState('');
@@ -14,6 +16,7 @@ const AddPaciente = () => {
   const [numSocio, setNumSocio] = useState('');
   const [grupSang, setGrupSang] = useState('');
   const [factSang, setFactSang] = useState('');
+  const [alergias, setAlergias] = useState([]);
 
   const { alertSuccess, alertError } = useAlert();
 
@@ -27,10 +30,12 @@ const AddPaciente = () => {
     setNumSocio('');
     setGrupSang('');
     setFactSang('');
+    setAlergias([]);
   };
 
   const handleNewPacient = (event) => {
     event.preventDefault();
+
     const newPacient = {
       nombre: nombre,
       apellido: apellido,
@@ -41,6 +46,8 @@ const AddPaciente = () => {
       num_socio: numSocio,
       grup_sang: grupSang,
       fact_sang: factSang,
+      //agregar las alergias
+      alergias: alergias,
     };
 
     postNewPacient(newPacient)
@@ -63,6 +70,7 @@ const AddPaciente = () => {
             <PersonalInfoType>Nombre</PersonalInfoType>
             <ModalInput
               value={nombre}
+              
               onChange={(e) => setNombre(e.target.value)}
             />
           </PersonalInfoGroup>
@@ -119,6 +127,16 @@ const AddPaciente = () => {
               onChange={(e) => setFactSang(e.target.value)}
             />
           </PersonalInfoGroup>
+
+          <PersonalInfoGroup>
+            <PersonalInfoType>Alergias</PersonalInfoType>
+            <TagsInput
+            value={alergias}
+            onChange = {(e) => setAlergias(e)}
+            placeHolder="..."
+          />
+          </PersonalInfoGroup>
+
           <AddButton disabled={!nombre || !apellido || !dni}>
             Agregar Paciente
           </AddButton>
