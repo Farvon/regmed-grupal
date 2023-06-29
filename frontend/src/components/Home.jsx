@@ -8,7 +8,7 @@ const Home = () => {
     <HomeContainer>
       <HeaderHome/>
       <BackgroundImg
-        src="http://todosn.com/fondo.jpg"
+        src="../../doctor.jpeg"
         alt="RegMed Background"
       />
       <SiteDescriptionContainer>
@@ -29,6 +29,8 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.div`
+  font-size:20px;
+  font-weight:bold;
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -57,7 +59,7 @@ const SiteDescriptionContainer = styled.div`
 
 const DescriptionSubtitle = styled.span`
   display: flex;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   font-family: sans-serif;
   line-height: 1.2;
@@ -79,7 +81,7 @@ const DescriptionTitle = styled.span`
 `;
 
 const DescriptionText = styled.span`
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 300;
   font-family: sans-serif;
   line-height: 1.2;

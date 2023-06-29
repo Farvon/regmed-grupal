@@ -49,11 +49,11 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 32px;
+  width: 70px;
 `;
 
 const SpanLogo = styled.span`
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 600;
   margin-left: 4px;
 `;
