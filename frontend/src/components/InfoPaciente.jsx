@@ -14,6 +14,7 @@ import AddComment from './AddComment';
 import ButtonLink from './ButtonLink';
 import SideBar from './SideBar';
 import Qr from './Qr';
+import PDF from './PDF';
 
 //Recibe el DNI buscado
 const InfoPaciente = ({ dni, setDni, user }) => {
@@ -45,33 +46,6 @@ const InfoPaciente = ({ dni, setDni, user }) => {
   // Callback to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  //Descargo PDF
-  const pdfRef = useRef();
-
-  const DownloadPDF = () => {
-    const input = pdfRef.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL('image/jpg');
-      const pdf = new jsPDF('p', 'mm', 'a4', true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
-      pdf.addImage(
-        imgData,
-        'JPG',
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
-      pdf.save('resumen.pdf');
-    });
-  };
-
   return (
     <PageContainer>
       <SideBar setDni={setDni} user={user} />
@@ -79,7 +53,7 @@ const InfoPaciente = ({ dni, setDni, user }) => {
         {/* Si el paciente existe, muestra su información */}
         {paciente && paciente.length !== 0 ? (
           <>
-            <PersonalInfoContainer ref={pdfRef}>
+            <PersonalInfoContainer>
               <PersonalInfoHeader>
                 <PersonalInfoTitle>Información Personal</PersonalInfoTitle>
                 {user && user.username !== 'guest' && (
@@ -197,9 +171,15 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     Agregar Comentario
                   </AddCommentButton>
                 )}
-                <ButtonLink fontSize="12px" onClick={DownloadPDF}>
-                  Descargar PDF
-                </ButtonLink>
+
+                <AddCommentButton
+                  onClick={() => {
+                    setShowModal(true);
+                    setModalContent(<PDF paciente={paciente} />);
+                  }}
+                >
+                  Descargar
+                </AddCommentButton>
               </CommentBodyContainer>
             </PersonalInfoContainer>
             {showModal ? (
