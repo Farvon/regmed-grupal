@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import SelectorDiagnosis from './SelectorDiagnosis';
 
+
 //Componente para la barra lateral
 const SideBar = ({ setDni, user }) => {
   const [userInput, setUserInput] = useState('');
@@ -42,6 +43,8 @@ const SideBar = ({ setDni, user }) => {
         )}
 
         <SelectorDiagnosis />
+        
+
       </Box>
     </SideContainer>
   );

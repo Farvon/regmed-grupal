@@ -11,6 +11,7 @@ const logSchema = new Schema({
 
 // Creamos el esquema de los comentarios
 const historialSchema = new Schema({
+  //
   fecha_hist: String,
   medico_hist: String,
   comentario_hist: String,
@@ -19,12 +20,19 @@ const historialSchema = new Schema({
 
 // Creamos el esquema de los diagnósticos
 const diagnosticoSchema = new Schema({
+  //automatico
   fecha_diag: String,
+  //automatico
   medico_diag: String,
+  //yo
   rama_diag: String,
+  //yo
   comentario_diag: String,
+  //automatico (por defecto abierto)
   estado_diag: Boolean,
+  //automatico (por defecto vacio)
   motivo_cierre: String,
+  //comentarios yo
   historial: [historialSchema],
 });
 
@@ -39,7 +47,7 @@ const pacientSchema = new Schema({
   num_socio: String,
   grup_sang: String,
   fact_sang: String,
-  alergias: { type: String },
+  alergias: { type: Array },
   hist_diagnosticos: [diagnosticoSchema],
   hist_log: [logSchema],
 });
