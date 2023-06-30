@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getPacientByDni } from '../services/pacients';
@@ -12,6 +13,7 @@ import SideBar from './SideBar';
 
 //Recibe el DNI buscado
 const InfoPaciente = ({ dni, setDni, user }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(2);
@@ -21,7 +23,11 @@ const InfoPaciente = ({ dni, setDni, user }) => {
 
   //Busca el paciente en la base de datos
   useEffect(() => {
-    getPacientByDni(dni).then((paciente) => setPaciente(paciente));
+    const queryDni = searchParams.get('dni');
+    setDni(queryDni);
+    getPacientByDni(queryDni ? queryDni : dni).then((paciente) =>
+      setPaciente(paciente)
+    );
   }, [dni, showModal]);
 
   // Get current comments

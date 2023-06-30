@@ -39,7 +39,7 @@ const pacientSchema = new Schema({
   num_socio: String,
   grup_sang: String,
   fact_sang: String,
-  alergias: { type: Array },
+  alergias: { type: String },
   hist_diagnosticos: [diagnosticoSchema],
   hist_log: [logSchema],
 });

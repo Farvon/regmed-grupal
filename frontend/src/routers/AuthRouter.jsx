@@ -75,6 +75,12 @@ const AuthRouter = () => {
           }
           exact
         />
+        <Route
+          path="*"
+          name="default"
+          element={<WelcomePage setDni={setDni} user={user} />}
+          exact
+        />
       </Routes>
     </LayoutAuth>
   );

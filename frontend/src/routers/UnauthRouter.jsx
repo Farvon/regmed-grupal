@@ -19,6 +19,12 @@ const UnauthRouter = ({ setUser }) => {
         exact
       />
       <Route path="/login/sign-up" name="signup" element={<SignUp />} exact />
+      <Route
+        path="*"
+        name="default"
+        element={<Login setUser={setUser} />}
+        exact
+      />
     </Routes>
   );
 };
