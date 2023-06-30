@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 import { getPacientByDni } from '../services/pacients';
 import Pagination from './Pagination';
@@ -42,6 +45,33 @@ const InfoPaciente = ({ dni, setDni, user }) => {
   // Callback to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  //Descargo PDF
+  const pdfRef = useRef();
+
+  const DownloadPDF = () => {
+    const input = pdfRef.current;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL('image/jpg');
+      const pdf = new jsPDF('p', 'mm', 'a4', true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 30;
+      pdf.addImage(
+        imgData,
+        'JPG',
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save('resumen.pdf');
+    });
+  };
+
   return (
     <PageContainer>
       <SideBar setDni={setDni} user={user} />
@@ -49,7 +79,7 @@ const InfoPaciente = ({ dni, setDni, user }) => {
         {/* Si el paciente existe, muestra su información */}
         {paciente && paciente.length !== 0 ? (
           <>
-            <PersonalInfoContainer>
+            <PersonalInfoContainer ref={pdfRef}>
               <PersonalInfoHeader>
                 <PersonalInfoTitle>Información Personal</PersonalInfoTitle>
                 {user && user.username !== 'guest' && (
@@ -67,44 +97,42 @@ const InfoPaciente = ({ dni, setDni, user }) => {
               </PersonalInfoHeader>
 
               <PersonalInfoBody>
-                <PersonaInfoSeparadorLeft>  
-                    
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Nombre y Apellido</PersonalInfoType>
-                  <PersonalInfoData>
-                    {paciente.nombre}, {paciente.apellido}
-                  </PersonalInfoData>
-                </PersonalInfoGroup>
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Dni</PersonalInfoType>
-                  <PersonalInfoData>{paciente.dni}</PersonalInfoData>
-                </PersonalInfoGroup>
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Teléfono</PersonalInfoType>
-                  <PersonalInfoData>{paciente.telefono}</PersonalInfoData>
-                </PersonalInfoGroup>
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Dirección</PersonalInfoType>
-                  <PersonalInfoData>{paciente.direccion}</PersonalInfoData>
-                </PersonalInfoGroup>
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Mutual y N°</PersonalInfoType>
-                  <PersonalInfoData>
-                    {paciente.mutual} - {paciente.num_socio}
-                  </PersonalInfoData>
-                </PersonalInfoGroup>
-                <PersonalInfoGroup>
-                  <PersonalInfoType>Grupo y Factor Sang.</PersonalInfoType>
-                  <PersonalInfoData>
-                    {paciente.grup_sang}
-                    {paciente.fact_sang}
-                  </PersonalInfoData>
-                </PersonalInfoGroup>
-              </PersonaInfoSeparadorLeft>
+                <PersonaInfoSeparadorLeft>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Nombre y Apellido</PersonalInfoType>
+                    <PersonalInfoData>
+                      {paciente.nombre}, {paciente.apellido}
+                    </PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Dni</PersonalInfoType>
+                    <PersonalInfoData>{paciente.dni}</PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Teléfono</PersonalInfoType>
+                    <PersonalInfoData>{paciente.telefono}</PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Dirección</PersonalInfoType>
+                    <PersonalInfoData>{paciente.direccion}</PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Mutual y N°</PersonalInfoType>
+                    <PersonalInfoData>
+                      {paciente.mutual} - {paciente.num_socio}
+                    </PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Grupo y Factor Sang.</PersonalInfoType>
+                    <PersonalInfoData>
+                      {paciente.grup_sang}
+                      {paciente.fact_sang}
+                    </PersonalInfoData>
+                  </PersonalInfoGroup>
+                </PersonaInfoSeparadorLeft>
                 <PersonaInfoSeparadorRight>
-                 <Qr paciente={paciente}/>
+                  <Qr paciente={paciente} />
                 </PersonaInfoSeparadorRight>
-               
               </PersonalInfoBody>
             </PersonalInfoContainer>
 
@@ -169,6 +197,9 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     Agregar Comentario
                   </AddCommentButton>
                 )}
+                <ButtonLink fontSize="12px" onClick={DownloadPDF}>
+                  Descargar PDF
+                </ButtonLink>
               </CommentBodyContainer>
             </PersonalInfoContainer>
             {showModal ? (
@@ -190,6 +221,7 @@ const InfoPaciente = ({ dni, setDni, user }) => {
         ) : (
           <InfoTitle>Ups, parece que no hay nadie con ese DNI.</InfoTitle>
         )}
+        ;
       </InfoContainer>
     </PageContainer>
   );
@@ -240,20 +272,18 @@ const PersonalInfoBody = styled.div`
 const PersonaInfoSeparadorLeft = styled.div`
   display: flex;
   flex-direction: column;
-  width:70%;
+  width: 70%;
 `;
 
 const PersonaInfoSeparadorRight = styled.div`
-display: flex;
-width:30%;
-align-item: center;
+  display: flex;
+  width: 30%;
+  align-item: center;
 `;
 
 const PersonalInfoGroup = styled.div`
   display: flex;
 `;
-
-
 
 const PersonalInfoType = styled.label`
   display: flex;
