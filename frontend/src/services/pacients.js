@@ -48,6 +48,19 @@ const putPacientComment = (dni, comment) => {
   return request.then((response) => response.data);
 };
 
+//Agrega Log a paciente
+const putPacientLog = (dni, log) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const request = axios.put(`${baseUrl}/add-new-log/${dni}`, log, config);
+
+  return request.then((response) => response.data);
+};
+
 //Crea nuevo Paciente
 const postNewPacient = (newPacient) => {
   const config = {
@@ -82,4 +95,5 @@ export {
   putPacientDiagnosis,
   postNewPacient,
   editPacientInfo,
+  putPacientLog,
 };

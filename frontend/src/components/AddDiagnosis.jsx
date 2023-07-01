@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import useAlert from '../hooks/useAlert';
-import { putPacientDiagnosis } from '../services/pacients';
+import { putPacientDiagnosis, putPacientLog } from '../services/pacients';
 import { getAllDiagnosis } from '../services/diagnosis';
 
 const AddDiagnosis = ({ dni, name, setShowModal }) => {
@@ -24,6 +24,13 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
       comentario_diag: medicalComment,
     };
 
+    const newLog = {
+      fecha_log: new Date().toDateString(),
+      medico_log: medicalName,
+      accion_log: 'Creacion de Diagnóstico',
+      contenido_log: medicalDiagnosis + '-' + medicalComment,
+    };
+
     putPacientDiagnosis(dni, newDiagnosis)
       .then(() => {
         alertSuccess('Diagnóstico guardado correctamente');
@@ -31,6 +38,15 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
         setMedicalBranch('');
         setMedicalDiagnosis('');
         setShowModal(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        alertError('Ha ocurrido un error. Intente nuevamente');
+      });
+
+    putPacientLog(dni, newLog)
+      .then(() => {
+        console.log('Log guardado correctamente');
       })
       .catch((err) => {
         console.error(err);
