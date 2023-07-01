@@ -2,15 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-
 import { getPacientByDni } from '../services/pacients';
 import Pagination from './Pagination';
 import ModalTemplate from './ModalTemplate';
 import EditInfo from './EditInfo';
-import ViewComment from './ViewComment';
-import AddComment from './AddComment';
+import AddDiagnosis from './AddDiagnosis';
 import ButtonLink from './ButtonLink';
 import SideBar from './SideBar';
 import Qr from './Qr';
@@ -36,16 +32,16 @@ const InfoPaciente = ({ dni, setDni, user }) => {
   }, [dni, showModal]);
 
   // Get current comments
-  const indexOfLastComment = currentPage * commentsPerPage;
+  /* const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments =
     paciente &&
     paciente.length !== 0 &&
-    paciente.historial.slice(indexOfFirstComment, indexOfLastComment);
+    paciente.historial.slice(indexOfFirstComment, indexOfLastComment); */
 
   // Callback to change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  /*   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+   */
   return (
     <PageContainer>
       <SideBar setDni={setDni} user={user} />
@@ -115,7 +111,7 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                 <PersonalInfoTitle>Historial</PersonalInfoTitle>
               </PersonalInfoHeader>
               <CommentBodyContainer>
-                {currentComments.map((item, idx) => (
+                {/*  {currentComments.map((item, idx) => (
                   <CommentContainer key={idx}>
                     <CommentHeader>
                       <CommentGroup>
@@ -151,35 +147,35 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     </ViewCommentBottonContainer>
                   </CommentContainer>
                 ))}
-
+ */}
                 {/* Si el usuario no es "Guest" puede agregar
                 comentarios */}
                 {user && user.username !== 'guest' && (
-                  <AddCommentButton
+                  <AddDiagnosisButton
                     onClick={() => {
                       setShowModal(true);
                       setModalContent(
-                        <AddComment
-                          dni={dni}
+                        <AddDiagnosis
+                          dni={paciente.dni}
                           setShowModal={setShowModal}
                           name={user.name}
                         />
                       );
-                      setModalTitle('Agregar Comentario');
+                      setModalTitle('Agregar Diagnóstico');
                     }}
                   >
-                    Agregar Comentario
-                  </AddCommentButton>
+                    Nuevo Diagnóstico
+                  </AddDiagnosisButton>
                 )}
 
-                <AddCommentButton
+                <DownloadButton
                   onClick={() => {
                     setShowModal(true);
                     setModalContent(<PDF paciente={paciente} />);
                   }}
                 >
                   Descargar
-                </AddCommentButton>
+                </DownloadButton>
               </CommentBodyContainer>
             </PersonalInfoContainer>
             {showModal ? (
@@ -189,14 +185,14 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                 content={modalContent}
               />
             ) : null}
-            <PaginationContainer>
+            {/*  <PaginationContainer>
               <Pagination
                 commentsPerPage={commentsPerPage}
                 currentPage={currentPage}
                 totalComments={paciente.historial.length}
                 paginate={paginate}
               />
-            </PaginationContainer>
+            </PaginationContainer> */}
           </>
         ) : (
           <InfoTitle>Ups, parece que no hay nadie con ese DNI.</InfoTitle>
@@ -332,7 +328,7 @@ const ViewCommentBottonContainer = styled.div`
   width: 150px;
 `;
 
-const AddCommentButton = styled.button`
+const AddDiagnosisButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,6 +337,33 @@ const AddCommentButton = styled.button`
   color: white;
   padding: 12px 24px 12px 24px;
   font-size: 18px;
+  border-radius: 8px;
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+
+  :hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  }
+
+  :active {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+`;
+
+const DownloadButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  margin: 16px auto;
+  color: white;
+  padding: 12px 24px 12px 24px;
+  font-size: 14px;
   border-radius: 8px;
   background: #3498db;
   background-image: linear-gradient(to bottom, #3498db, #2980b9);

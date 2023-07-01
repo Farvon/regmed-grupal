@@ -26,6 +26,9 @@ const diagnosticoSchema = new Schema({
   medico_diag: String,
   //yo
   rama_diag: String,
+
+  init_diag: String,
+
   //yo
   comentario_diag: String,
   //automatico (por defecto abierto)
