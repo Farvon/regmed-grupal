@@ -74,6 +74,40 @@ pacientsRouter.delete('/:dni', userExtractor, (request, response, next) => {
     .catch((err) => next(err));
 });
 
+//Añade diagnostico a paciente segun DNI
+pacientsRouter.put(
+  '/add-new-diagnosis/:dni',
+  userExtractor,
+  (request, response) => {
+    const { dni } = request.params;
+    const diagnosis = request.body;
+
+    const newDiagnosis = {
+      fecha_diag: diagnosis.fecha_diag,
+      medico_diag: diagnosis.medico_diag,
+      rama_diag: diagnosis.rama_diag,
+      init_diag: diagnosis.init_diag,
+      comentario_diag: diagnosis.comentario_diag,
+      estado_diag: true,
+      motivo_cierre: '',
+      historial: [],
+    };
+
+    Pacient.findOneAndUpdate(
+      { dni },
+      { $push: { hist_diagnosticos: newDiagnosis } },
+      { new: true }
+    )
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.status(400).end();
+      });
+  }
+);
+
 //Añade comentario a paciente segun DNI
 pacientsRouter.put(
   '/add-new-comment/:dni',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { getAllDiagnosis } from '../services/diagnosis';
 
 const SelectorDiagnosis = (data) => {

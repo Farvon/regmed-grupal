@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { TagsInput } from "react-tag-input-component";
+import { TagsInput } from 'react-tag-input-component';
 import styled from 'styled-components';
 import useAlert from '../hooks/useAlert';
 
 import { postNewPacient } from '../services/pacients';
-
 
 const AddPaciente = () => {
   const [nombre, setNombre] = useState('');
@@ -70,7 +69,6 @@ const AddPaciente = () => {
             <PersonalInfoType>Nombre</PersonalInfoType>
             <ModalInput
               value={nombre}
-              
               onChange={(e) => setNombre(e.target.value)}
             />
           </PersonalInfoGroup>
@@ -129,12 +127,12 @@ const AddPaciente = () => {
           </PersonalInfoGroup>
 
           <PersonalInfoGroup>
-            <PersonalInfoType>Alergias</PersonalInfoType>
+            <PersonalInfoTypeA>Alergias</PersonalInfoTypeA>
             <TagsInput
-            value={alergias}
-            onChange = {(e) => setAlergias(e)}
-            placeHolder="..."
-          />
+              value={alergias}
+              onChange={(e) => setAlergias(e)}
+              placeHolder="..."
+            />
           </PersonalInfoGroup>
 
           <AddButton disabled={!nombre || !apellido || !dni}>
@@ -172,6 +170,7 @@ const FormContainer = styled.form`
 
 const ModalInput = styled.input`
   font-size: 16px;
+  width: 210px;
   padding: 8px;
   margin: 8px;
   border: 2px solid lightgray;
@@ -196,6 +195,17 @@ const PersonalInfoType = styled.label`
   width: 40%;
   font-size: 16px;
 
+  color: gray;
+`;
+
+const PersonalInfoTypeA = styled.label`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40%;
+  font-size: 16px;
+  margin-left: -18px;
+  margin-right: 17px;
   color: gray;
 `;
 

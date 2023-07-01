@@ -90,7 +90,6 @@ const PersonalInfoBody = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: white;
   padding: 8px;
   width: 60vw;
 `;

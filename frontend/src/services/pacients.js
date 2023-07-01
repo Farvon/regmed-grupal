@@ -15,7 +15,23 @@ const getPacientByDni = (dni) => {
   return request.then((response) => response.data[0]);
 };
 
-//Edita un paciente
+//Agrega Diagnóstico a paciente
+const putPacientDiagnosis = (dni, diagnosis) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  console.log('llego', dni, diagnosis);
+  const request = axios.put(
+    `${baseUrl}/add-new-diagnosis/${dni}`,
+    diagnosis,
+    config
+  );
+  return request.then((response) => response.data);
+};
+
+//Agrega Comentario un paciente
 const putPacientComment = (dni, comment) => {
   const config = {
     headers: {
@@ -63,6 +79,7 @@ export {
   getAllPacients,
   getPacientByDni,
   putPacientComment,
+  putPacientDiagnosis,
   postNewPacient,
   editPacientInfo,
 };
