@@ -36,7 +36,7 @@ const HeaderComponent = () => {
               <ILogoContainer>
                 <ILogo />
               </ILogoContainer>
-              <Span>RegMed</Span>
+              <Span>REGMED</Span>
             </Box>
           </Anchor>
 
