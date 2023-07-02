@@ -11,7 +11,7 @@ const HeaderHome = () => {
         <Logo>
           <ILogo />
         </Logo>
-        <SpanLogo>RegMed</SpanLogo>
+        <SpanLogo>REGMED</SpanLogo>
       </LogoContainer>
       <NavBarContainer>
         <a href="http://todosn.com/documentacion.php" target="_blank">
@@ -53,16 +53,17 @@ const Logo = styled.div`
 `;
 
 const SpanLogo = styled.span`
-  font-size: 40px;
-  font-weight: 600;
+  font-family: "cooper-bold";
+  font-size: 30px;
   margin-left: 4px;
 `;
 
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: center;
-
+  
   a {
+    font-family: "cooper-medium";
     all: unset;
     cursor: pointer;
     font-weight: 500;
