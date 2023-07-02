@@ -14,12 +14,16 @@ const HeaderHome = () => {
         <SpanLogo>REGMED</SpanLogo>
       </LogoContainer>
       <NavBarContainer>
+        <a href="http://todosn.com/about.php" target="_blank">
+          Sobre nosotros
+        </a>
         <a href="http://todosn.com/documentacion.php" target="_blank">
           Documentación
         </a>
         <a href="http://todosn.com/about.php" target="_blank">
-          Sobre nosotros
+          Trabajos
         </a>
+        
       </NavBarContainer>
       <LoginContainer>
         <Link to="/login">
@@ -54,20 +58,26 @@ const Logo = styled.div`
 
 const SpanLogo = styled.span`
   font-family: "cooper-bold";
+  color: #49526E;
   font-size: 30px;
-  margin-left: 4px;
+  margin-left: 15px;
 `;
 
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: center;
-  
+  font-size:20px;
+  color:#767B88;
+  font-weight: 600;
+  font-family: "cooper-bold";
+  letter-spacing: 1.5px;
   a {
-    font-family: "cooper-medium";
+    
+    
     all: unset;
     cursor: pointer;
-    font-weight: 500;
-    margin: 0 8px;
+    
+    margin: 0 25px 0 45px;
   }
 
   a:hover {
