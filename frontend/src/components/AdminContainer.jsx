@@ -8,6 +8,8 @@ import { getUsers, enableUser } from '../services/users';
 const AdminContainer = () => {
   const [users, setUsers] = useState();
   const { alertSuccess, alertError } = useAlert();
+  const [showHabilitar, setShowHabilitar] = useState(true);
+  const [showLogs, setShowLogs] = useState(false);
 
   useEffect(() => {
     getUsers().then((res) => setUsers(res.filter((user) => !user.enabled)));
@@ -21,30 +23,76 @@ const AdminContainer = () => {
 
   return (
     <PageContainer>
-      <h1>Habilitar Nuevos Usuarios</h1>
-      <Table>
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Nombre</th>
-            <th>Habilitar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users.map((user, idx) => (
-              <tr>
-                <td>{user.username}</td>
-                <td>{user.name}</td>
-                <td>
-                  <EnableButton onClick={() => handleEnableUser(user.username)}>
-                    Habilitar
-                  </EnableButton>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+      <AdminHeader>
+        <HeaderButton
+          onClick={() => (setShowHabilitar(true), setShowLogs(false))}
+        >
+          Habilitar Usuarios
+        </HeaderButton>
+        <HeaderButton
+          onClick={() => (setShowHabilitar(false), setShowLogs(true))}
+        >
+          Ver Logs
+        </HeaderButton>
+      </AdminHeader>
+      <AdminBody>
+        {showHabilitar && (
+          <>
+            <HabilitaContainer>
+              <h1>Habilitar Nuevos Usuarios</h1>
+            </HabilitaContainer>
+            <Table>
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Nombre</th>
+                  <th>Habilitar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users &&
+                  users.map((user, idx) => (
+                    <tr>
+                      <td>{user.username}</td>
+                      <td>{user.name}</td>
+                      <td>
+                        <EnableButton
+                          onClick={() => handleEnableUser(user.username)}
+                        >
+                          Habilitar
+                        </EnableButton>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+          </>
+        )}
+        {showLogs && (
+          <>
+            <FiltroLogContainer>
+              <Filtros>
+                <label>Buscar por DNI</label>
+                <input placeholder="DNI"></input>
+              </Filtros>
+              <Filtros>
+                <label>Buscar por Médico</label>
+                <input placeholder="nombre"></input>
+              </Filtros>
+              <Filtros>
+                <label>Buscar por fecha</label>
+                <div>
+                  Desde
+                  <input type="date" placeholder="Desde"></input>
+                  Hasta
+                  <input type="date" placeholder="Desde"></input>
+                </div>
+              </Filtros>
+              <FilterButton>Buscar</FilterButton>
+            </FiltroLogContainer>
+          </>
+        )}
+      </AdminBody>
     </PageContainer>
   );
 };
@@ -55,17 +103,112 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const AdminHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0%;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+`;
+
+const HeaderButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  margin: 10px 4px;
+  color: white;
+  padding: 8px 14px 8px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+
+  :hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  }
+
+  :active {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+`;
+
+const FiltroLogContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(237, 237, 237, 0.4);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+  align-items: center;
+`;
+
+const Filtros = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+`;
+
+const FilterButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  transition: all 0.3s ease;
+
+  :hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  }
+
+  :active {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+`;
+
+const AdminBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   height: calc(100vh - 64px);
+`;
+
+const HabilitaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgba(237, 237, 237, 0.4);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
   h1 {
-    padding: 16px;
+    padding-bot: 16px;
+    padding-left: 16px;
   }
 `;
 
 const Table = styled.table`
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 2px;
   tbody {
     text-align: center;
   }
