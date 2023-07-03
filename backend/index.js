@@ -14,6 +14,7 @@ const diagnosisRouter = require('./controllers/diagnosis');
 const pacientsRouter = require('./controllers/pacients');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
+const medicos_matriculadosRouter = require('./controllers/medicos_matriculados');
 
 app.use(cors());
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use('/api/diagnosis', diagnosisRouter);
 app.use('/api/pacients', pacientsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/medicosmatriculados', medicos_matriculadosRouter);
 
 app.use(notFound);
 app.use(handleErrors);

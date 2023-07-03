@@ -1,0 +1,282 @@
+[
+    {
+        "nombre": "Facundo",
+        "apellido": "Gardella",
+        "DNI": 35008159,
+        "matricula": 17943,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Luciana",
+        "apellido": "Manetta",
+        "DNI": 34970167,
+        "matricula": 17943,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Amador Juan",
+        "apellido": "Hervas",
+        "DNI": 23538211,
+        "matricula": 17943,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Amador Juan",
+        "apellido": "Hervas",
+        "DNI": 23538211,
+        "matricula": 17943,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Maria Azucena",
+        "apellido": "Souto",
+        "DNI": 36081759,
+        "matricula": 95015,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Moussa Florentino",
+        "apellido": "Camino",
+        "DNI": 39772475,
+        "matricula": 58944,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Fatiha",
+        "apellido": "Roca",
+        "DNI": 22357776,
+        "matricula": 94197,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Ismail",
+        "apellido": "Verdugo",
+        "DNI": 26231236,
+        "matricula": 27530,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Alexis",
+        "apellido": "Lafuente",
+        "DNI": 37577533,
+        "matricula": 17943,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Rafael",
+        "apellido": "Sales",
+        "DNI": 22522111,
+        "matricula": 41449,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Simona",
+        "apellido": "Alcalde",
+        "DNI": 33241928,
+        "matricula": 12130,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Xenia",
+        "apellido": "Alegre",
+        "DNI": 29065682,
+        "matricula": 39995,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Samuel",
+        "apellido": "Castellano",
+        "DNI": 37805254,
+        "matricula": 74228,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Feliciana",
+        "apellido": "Abad",
+        "DNI": 39081642,
+        "matricula": 74643,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Beatriz",
+        "apellido": "Delrio",
+        "DNI": 36943405,
+        "matricula": 27628,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Alfonsa",
+        "apellido": "Patiño",
+        "DNI": 41549157,
+        "matricula": 28361,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Matias",
+        "apellido": "Herranz",
+        "DNI": 41046834,
+        "matricula": 37301,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Catalina",
+        "apellido": "Hermoso",
+        "DNI": 20246672,
+        "matricula": 61747,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Jose Andres",
+        "apellido": "Guevara",
+        "DNI": 30733701,
+        "matricula": 56071,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Igor",
+        "apellido": "Tena",
+        "DNI": 33592220,
+        "matricula": 90749,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Moises",
+        "apellido": "Palomino",
+        "DNI": 33777788,
+        "matricula": 33732,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Rafael",
+        "apellido": "Palma",
+        "DNI": 25171065,
+        "matricula": 17943,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Raul",
+        "apellido": "Candela",
+        "DNI": 29902487,
+        "matricula": 73323,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Ricard",
+        "apellido": "Baez",
+        "DNI": 22463316,
+        "matricula": 10261,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Victoria",
+        "apellido": "Oliver",
+        "DNI": 26742858,
+        "matricula": 57158,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Melania",
+        "apellido": "Pérez",
+        "DNI": 38042933,
+        "matricula": 70881,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Ofelia",
+        "apellido": "Diaz",
+        "DNI": 34000087,
+        "matricula": 39968,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Roman",
+        "apellido": "Marti",
+        "DNI": 21379566,
+        "matricula": 33390,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Matias",
+        "apellido": "Jover",
+        "DNI": 21667150,
+        "matricula": 81309,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Gines",
+        "apellido": "Barrio",
+        "DNI": 39358252,
+        "matricula": 49440,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Avelina",
+        "apellido": "Carrascosa",
+        "DNI": 27203916,
+        "matricula": 25759,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Guillermo",
+        "apellido": "Leal",
+        "DNI": 37552869,
+        "matricula": 14317,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Yasmina",
+        "apellido": "Tamayo",
+        "DNI": 34959880,
+        "matricula": 96091,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Carmen",
+        "apellido": "Encinas",
+        "DNI": 41258540,
+        "matricula": 76935,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Armando",
+        "apellido": "Llopis",
+        "DNI": 21950709,
+        "matricula": 80709,
+        "habilitacion": false
+    },
+    {
+        "nombre": "Jacinto",
+        "apellido": "Buendia",
+        "DNI": 24705576,
+        "matricula": 90787,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Brenda",
+        "apellido": "Ortuño",
+        "DNI": 20355546,
+        "matricula": 76046,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Almudena",
+        "apellido": "Soriano",
+        "DNI": 41018939,
+        "matricula": 56506,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Zoe",
+        "apellido": "Costas",
+        "DNI": 38403154,
+        "matricula": 24139,
+        "habilitacion": true
+    },
+    {
+        "nombre": "Francisco Jose",
+        "apellido": "Asensio",
+        "DNI": 36481946,
+        "matricula": 62381,
+        "habilitacion": false
+    }
+]
