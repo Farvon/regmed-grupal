@@ -25,10 +25,11 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
     };
 
     const newLog = {
-      fecha_log: new Date().toDateString(),
-      medico_log: medicalName,
-      accion_log: 'Creacion de Diagnóstico',
-      contenido_log: medicalDiagnosis + '-' + medicalComment,
+      fecha: new Date().toDateString(),
+      dni: dni,
+      medico: medicalName,
+      accion: 'Creacion de Diagnóstico',
+      contenido: medicalDiagnosis + '-' + medicalComment,
     };
 
     putPacientDiagnosis(dni, newDiagnosis)

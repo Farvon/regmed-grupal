@@ -3,13 +3,15 @@ import styled from 'styled-components';
 
 import useAlert from '../hooks/useAlert';
 import { getUsers, enableUser } from '../services/users';
-
+import { getLogByDni } from '../services/logs';
 //Página del usuario Admin donde se habilitan los nuevos usuarios.
 const AdminContainer = () => {
   const [users, setUsers] = useState();
   const { alertSuccess, alertError } = useAlert();
   const [showHabilitar, setShowHabilitar] = useState(true);
   const [showLogs, setShowLogs] = useState(false);
+  const [filterDni, setFilterDni] = useState('');
+  const [logs, setLogs] = useState();
 
   useEffect(() => {
     getUsers().then((res) => setUsers(res.filter((user) => !user.enabled)));
@@ -19,6 +21,12 @@ const AdminContainer = () => {
     enableUser(username)
       .then((res) => alertSuccess('Usuario habilitado correctamente'))
       .catch((err) => console.error(err));
+  };
+
+  const handleFilterSearch = (dni) => {
+    getLogByDni(dni).then((res) => {
+      setLogs(res), console.log(res);
+    });
   };
 
   return (
@@ -73,7 +81,13 @@ const AdminContainer = () => {
             <FiltroLogContainer>
               <Filtros>
                 <label>Buscar por DNI</label>
-                <input placeholder="DNI"></input>
+                <input
+                  value={filterDni}
+                  onChange={(e) => {
+                    setFilterDni(e.target.value);
+                  }}
+                  placeholder="DNI"
+                ></input>
               </Filtros>
               <Filtros>
                 <label>Buscar por Médico</label>
@@ -83,13 +97,21 @@ const AdminContainer = () => {
                 <label>Buscar por fecha</label>
                 <div>
                   Desde
-                  <input type="date" placeholder="Desde"></input>
+                  <input type="date"></input>
                   Hasta
-                  <input type="date" placeholder="Desde"></input>
+                  <input type="date"></input>
                 </div>
               </Filtros>
-              <FilterButton>Buscar</FilterButton>
+              <FilterButton onClick={() => handleFilterSearch(filterDni)}>
+                Buscar
+              </FilterButton>
             </FiltroLogContainer>
+            <div>
+              {logs &&
+                logs.map((item, index) => {
+                  return <div key={index}>{item.contenido}</div>;
+                })}
+            </div>
           </>
         )}
       </AdminBody>

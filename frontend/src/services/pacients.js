@@ -1,5 +1,6 @@
 import axios from 'axios';
 const baseUrl = 'http://localhost:3001/api/pacients';
+const baseUrlLogs = 'http://localhost:3001/api/logs';
 
 const user = JSON.parse(localStorage.getItem('loggedRegMedUser'));
 const token = user && user.token && `Bearer ${user.token}`;
@@ -13,6 +14,12 @@ const getAllPacients = () => {
 const getPacientByDni = (dni) => {
   const request = axios.get(`${baseUrl}/${dni}`);
   return request.then((response) => response.data[0]);
+};
+
+//obtener Logs de paciente por DNI
+const getPacientLogByDni = (dni) => {
+  const request = axios.get(`${baseUrl}/log/${dni}`);
+  return request.then((response) => response.data);
 };
 
 //Agrega Diagnóstico a paciente
@@ -56,7 +63,7 @@ const putPacientLog = (dni, log) => {
     },
   };
 
-  const request = axios.put(`${baseUrl}/add-new-log/${dni}`, log, config);
+  const request = axios.put(`${baseUrlLogs}/`, log, config);
 
   return request.then((response) => response.data);
 };
@@ -96,4 +103,5 @@ export {
   postNewPacient,
   editPacientInfo,
   putPacientLog,
+  getPacientLogByDni,
 };

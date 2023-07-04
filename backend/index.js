@@ -15,6 +15,7 @@ const pacientsRouter = require('./controllers/pacients');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const medicos_matriculadosRouter = require('./controllers/medicos_matriculados');
+const logsRouter = require('./controllers/logs');
 
 app.use(cors());
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/pacients', pacientsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/medicosmatriculados', medicos_matriculadosRouter);
+app.use('/api/logs', logsRouter);
 
 app.use(notFound);
 app.use(handleErrors);

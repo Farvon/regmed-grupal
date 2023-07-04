@@ -26,6 +26,24 @@ pacientsRouter.get('/:dni', (request, response, next) => {
     });
 });
 
+//Veo el LOG del paciente según el DNI
+pacientsRouter.get('/log/:dni', (request, response, next) => {
+  const { dni } = request.params;
+
+  Pacient.find({ dni })
+    .then((pacient) => {
+      if (pacient && pacient.length) {
+        const pacientLog = pacient[0].hist_log;
+        return response.json(pacientLog);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 //Agrego un paciente
 pacientsRouter.post('/', userExtractor, (request, response) => {
   const pacient = request.body;
@@ -137,32 +155,6 @@ pacientsRouter.put(
       });
   }
 );
-
-//Añade Log a paciente segun DNI
-pacientsRouter.put('/add-new-log/:dni', userExtractor, (request, response) => {
-  const { dni } = request.params;
-  const log = request.body;
-
-  const newLog = {
-    fecha_log: log.fecha_log,
-    medico_log: log.medico_log,
-    accion_log: log.accion_log,
-    contenido_log: log.contenido_log,
-  };
-
-  Pacient.findOneAndUpdate(
-    { dni },
-    { $push: { hist_log: newLog } },
-    { new: true }
-  )
-    .then((result) => {
-      response.json(result);
-    })
-    .catch((err) => {
-      console.log(err);
-      response.status(400).end();
-    });
-});
 
 //Edita info del paciente segun DNI
 pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {
