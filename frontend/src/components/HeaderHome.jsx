@@ -20,6 +20,9 @@ const HeaderHome = () => {
         <a href="http://todosn.com/about.php" target="_blank">
           Sobre nosotros
         </a>
+        <a href="http://todosn.com/about.php" target="_blank">
+          Trabajos
+        </a>
       </NavBarContainer>
       <LoginContainer>
         <Link to="/login">
@@ -50,17 +53,20 @@ const LogoContainer = styled.div`
 
 const Logo = styled.div`
   width: 70px;
+  margin-left: 8px;
 `;
 
 const SpanLogo = styled.span`
   font-family: "cooper-bold";
   font-size: 30px;
-  margin-left: 4px;
+  margin-left: 20px;
+  color:#4b4d5b;
 `;
 
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: center;
+  color:#767a83;
   
   a {
     font-family: "cooper-medium";
