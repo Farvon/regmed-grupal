@@ -12,14 +12,13 @@ const Home = () => {
         alt="RegMed Background"
       />
       <SiteDescriptionContainer>
-        <DescriptionSubtitle>- App para médicos -</DescriptionSubtitle>
         <DescriptionTitle>
           Tu registro de
           <span>Historias Clínicas</span>
         </DescriptionTitle>
         <DescriptionText>
-          Toda la información de la atención de pacientes en un solo lugar. De
-          manera fácil, práctica y segura
+          Nuestra aplicación médica ofrece acceso fácil y seguro a toda la información de atención de pacientes en un solo lugar. 
+          Permite a los médicos gestionar historias clínicas, realizar diagnósticos precisos y comunicarse eficientemente con otros profesionales de la salud
         </DescriptionText>
       </SiteDescriptionContainer>
     </HomeContainer>
@@ -41,13 +40,13 @@ const BackgroundImg = styled.img`
   top: 0;
   right: 0;
   z-index: -1;
-  width: 40%;
+  width: 50%;
   min-width: 400px;
 `;
 
 const SiteDescriptionContainer = styled.div`
-  height: calc(100vh - 96px);
-  width: 30vw;
+  height: calc(100vh - 250px);
+  width: 45vw;
   min-width: 300px;
   margin-left: 5vw;
   display: flex;
@@ -57,33 +56,24 @@ const SiteDescriptionContainer = styled.div`
   padding: 0 64px 164px;
 `;
 
-const DescriptionSubtitle = styled.span`
-  display: flex;
-  font-size: 20px;
-  font-weight: 600;
-  font-family: sans-serif;
-  line-height: 1.2;
-  color: #475067;
-`;
-
 const DescriptionTitle = styled.span`
   font-size: calc(1.375rem + 1.5vw);
-  font-weight: 500;
-  margin: 16px 0;
-  font-family: sans-serif;
+  margin: 35px 0;
+  font-family: "cooper-bold";
   line-height: 1.2;
-  color: #475067;
+  color:#4b4d5b;
 
   span:first-child {
-    margin-left: 14px;
-    color: #3dadc5;
+  margin-left: 14px;
+    color: #2c86c2;
   }
 `;
 
 const DescriptionText = styled.span`
   font-size: 19px;
-  font-weight: 300;
-  font-family: sans-serif;
-  line-height: 1.2;
+  font-weight: 500;
+  font-family: "cooper-medium";
+  line-height: 2.1;
   color: #475067;
+  width:30vw;
 `;
