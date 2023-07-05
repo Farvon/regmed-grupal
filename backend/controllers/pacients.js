@@ -141,6 +141,42 @@ pacientsRouter.put(
       comentario_hist: comment.comentario_hist,
     };
 
+    /*
+    
+    //---- MODIFICADO
+    this.findOneAndUpdate(
+  { 
+    _id: new mongoose.Types.ObjectId(orderID), 
+    "hist_diagnosis._id": new mongoose.Types.ObjectId(pacient.hist_diagnosis_id)
+  },
+  {
+    $set: { "hist_diagnosis.$.historial.$[v]": newComment }
+  },
+  {
+    arrayFilters: [{ "v._id": newComment._id }],
+    upsert: true,
+    new: true
+  }
+
+
+
+  //---- ORIGINAL
+  this.findOneAndUpdate(
+  { 
+    _id: new mongoose.Types.ObjectId(orderID), 
+    "services._id": new mongoose.Types.ObjectId(videoDetail.service_id)
+  },
+  {
+    $set: { "services.$.videos.$[v].status": videoDetail.status }
+  },
+  {
+    arrayFilters: [{ "v.lv_guid_id": videoDetail.lv_guid_id }],
+    upsert: true,
+    new: true
+  }
+)
+) */
+
     Pacient.findOneAndUpdate(
       { dni },
       { $push: { historial: newComment } },

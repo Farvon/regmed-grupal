@@ -70,7 +70,7 @@ const AuthRouter = () => {
           name="add-pacient"
           element={
             <>
-              <AddPaciente />
+              <AddPaciente user={user} />
             </>
           }
           exact
