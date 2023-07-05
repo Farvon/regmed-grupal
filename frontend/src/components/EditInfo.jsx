@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import useAlert from '../hooks/useAlert';
 
 import { editPacientInfo } from '../services/pacients';
+import { putPacientLog } from '../services/logs';
 
-const EditInfo = ({ paciente }) => {
+const EditInfo = ({ paciente, user }) => {
   const [pacienteEdited, setPacienteEdited] = useState({
     nombre: paciente.nombre,
     apellido: paciente.apellido,
@@ -24,6 +25,41 @@ const EditInfo = ({ paciente }) => {
     editPacientInfo(pacienteEdited.dni, pacienteEdited)
       .then(() => {
         alertSuccess('Informacion actualizada correctamente');
+      })
+      .catch((err) => {
+        console.error(err);
+        alertError('Ha ocurrido un error. Intente nuevamente');
+      });
+
+    const newLog = {
+      fecha: new Date().toDateString(),
+      dni: pacienteEdited.dni,
+      medico: user.name,
+      accion: 'Se edita Paciente',
+      contenido:
+        'Nueva información: ' +
+        pacienteEdited.nombre +
+        ', ' +
+        pacienteEdited.apellido +
+        ', ' +
+        pacienteEdited.dni +
+        ', ' +
+        pacienteEdited.telefono +
+        ', ' +
+        pacienteEdited.direccion +
+        ', ' +
+        pacienteEdited.mutual +
+        ', ' +
+        pacienteEdited.num_socio +
+        ', ' +
+        pacienteEdited.grup_sang +
+        ', ' +
+        pacienteEdited.fact_sang,
+    };
+
+    putPacientLog(newLog)
+      .then(() => {
+        console.log('Log guardado correctamente');
       })
       .catch((err) => {
         console.error(err);

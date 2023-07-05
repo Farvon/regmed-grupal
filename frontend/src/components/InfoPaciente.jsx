@@ -57,7 +57,9 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     fontSize="16px"
                     onClick={() => {
                       setShowModal(true);
-                      setModalContent(<EditInfo paciente={paciente} />);
+                      setModalContent(
+                        <EditInfo paciente={paciente} user={user} />
+                      );
                       setModalTitle('Editar Información Personal');
                     }}
                   >

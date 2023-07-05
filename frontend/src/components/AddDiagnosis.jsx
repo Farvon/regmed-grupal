@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import useAlert from '../hooks/useAlert';
-import { putPacientDiagnosis, putPacientLog } from '../services/pacients';
+import { putPacientDiagnosis } from '../services/pacients';
 import { getAllDiagnosis } from '../services/diagnosis';
+import { putPacientLog } from '../services/logs';
 
 const AddDiagnosis = ({ dni, name, setShowModal }) => {
   const [medicalName, setMedicalName] = useState(name);

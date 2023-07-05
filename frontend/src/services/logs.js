@@ -16,14 +16,14 @@ const getLogByDni = (dni) => {
 };
 
 //Agrega Log a paciente
-const putPacientLog = (dni, log) => {
+const putPacientLog = (log) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
 
-  const request = axios.put(`${baseUrlLogs}/`, log, config);
+  const request = axios.put(`${baseUrl}`, log, config);
 
   return request.then((response) => response.data);
 };
