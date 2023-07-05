@@ -119,7 +119,7 @@ const TableBody = styled.tbody`
 `;
 
 const Th = styled.th`
-  width: 200px;
+  /* width: 200px; */
   padding: 8px;
   background-color: white;
   font-weight: bold;

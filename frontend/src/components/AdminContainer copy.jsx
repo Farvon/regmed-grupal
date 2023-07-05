@@ -8,8 +8,8 @@ import { getLogByDni } from '../services/logs';
 const AdminContainer = () => {
   const [users, setUsers] = useState();
   const { alertSuccess, alertError } = useAlert();
-  const [showHabilitar, setShowHabilitar] = useState(true);/*  */
-  const [showLogs, setShowLogs] = useState(false);/*  */
+  const [showHabilitar, setShowHabilitar] = useState(true);
+  const [showLogs, setShowLogs] = useState(false);
   const [filterDni, setFilterDni] = useState('');
   const [logs, setLogs] = useState();
 
@@ -39,13 +39,13 @@ const AdminContainer = () => {
         </HeaderButton>
         <HeaderButton
           onClick={() => (setShowHabilitar(false), setShowLogs(true))}
-        >{/* Logs: http://localhost:3001/api/logs */}
+        >
           Ver Logs
         </HeaderButton>
       </AdminHeader>
       <AdminBody>
         {showHabilitar && (
-          <>{/* If. Si showHabilitar está en true: */}
+          <>
             <HabilitaContainer>
               <h1>Habilitar Nuevos Usuarios</h1>
             </HabilitaContainer>
