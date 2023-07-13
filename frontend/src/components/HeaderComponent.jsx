@@ -81,8 +81,8 @@ export default HeaderComponent;
 
 const AppBar = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
 `;
 
