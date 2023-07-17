@@ -6,6 +6,7 @@ import AdminContainer from '../components/AdminContainer';
 import SearchResult from '../components/SearchResult';
 import LayoutAuth from '../layout/LayoutAuth';
 import InfoPaciente from '../components/InfoPaciente';
+import DiagnosticoPaciente from '../components/DiagnosticoPaciente';
 import AddPaciente from '../components/AddPaciente';
 
 //Componente para usuarios ya logueados
@@ -13,6 +14,7 @@ import AddPaciente from '../components/AddPaciente';
 const AuthRouter = () => {
   const [user, setUser] = useState();
   const [dni, setDni] = useState();
+  const [diagnosticId, setDiagnosticId] = useState();
 
   useEffect(() => {
     const loggedUserJSON = localStorage.getItem('loggedRegMedUser');
@@ -60,7 +62,29 @@ const AuthRouter = () => {
           name="info"
           element={
             <>
-              <InfoPaciente dni={dni} setDni={setDni} user={user} />
+              <InfoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+                setDiagnosticId={setDiagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
+          path="/diagnostic"
+          name="disgnostic"
+          element={
+            <>
+              <DiagnosticoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+                setDiagnosticId={setDiagnosticId}
+              />
             </>
           }
           exact

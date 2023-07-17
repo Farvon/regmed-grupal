@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Pagination = ({
-  commentsPerPage,
+  diagnosticPerPage,
   currentPage,
-  totalComments,
+  totalDiagnostics,
   paginate,
 }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalComments / commentsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalDiagnostics / diagnosticPerPage); i++) {
     pageNumbers.push(i);
   }
 

@@ -1,23 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getPacientByDni } from '../services/pacients';
 import Pagination from './Pagination';
 import ModalTemplate from './ModalTemplate';
 import EditInfo from './EditInfo';
-import AddDiagnosis from './AddDiagnosis';
 import ButtonLink from './ButtonLink';
 import SideBar from './SideBar';
 import Qr from './Qr';
 import PDF from './PDF';
+import ViewComment from './ViewComment';
+import AddComment from './AddComment';
 
 //Recibe el DNI buscado
-const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
+const DiagnosticoPaciente = ({
+  dni,
+  setDni,
+  user,
+  diagnosticId,
+  setDiagnosticId,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [diagnosticPerPage, setDiagnosticPerPage] = useState(2);
+  const [commentsPerPage] = useState(3);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
@@ -29,21 +36,25 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
     getPacientByDni(queryDni ? queryDni : dni).then((paciente) =>
       setPaciente(paciente)
     );
+    setDiagnosticId(diagnosticId);
+
+    // const indices = Object.keys(paciente.hist_diagnosticos);
+    // console.log(indices);
   }, [dni, showModal]);
 
   // Get current comments
-  const indexOfLastDiagnostic = currentPage * diagnosticPerPage;
-  const indexOfFirstDiagnostic = indexOfLastDiagnostic - diagnosticPerPage;
-  const currentDiagnostic =
-    paciente &&
-    paciente.length !== 0 &&
-    paciente.hist_diagnosticos.slice(
-      indexOfFirstDiagnostic,
-      indexOfLastDiagnostic
-    );
+  // const indexOfLastComment = currentPage * commentsPerPage;
+  // const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  // const currentComments =
+  //   paciente &&
+  //   paciente.length !== 0 &&
+  //   paciente.hist_diagnosticos.historial.slice(
+  //     indexOfFirstComment,
+  //     indexOfLastComment
+  //   );
 
-  // Callback to change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // // Callback to change page
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <PageContainer>
@@ -60,9 +71,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                     fontSize="16px"
                     onClick={() => {
                       setShowModal(true);
-                      setModalContent(
-                        <EditInfo paciente={paciente} user={user} />
-                      );
+                      setModalContent(<EditInfo paciente={paciente} />);
                       setModalTitle('Editar Información Personal');
                     }}
                   >
@@ -110,45 +119,82 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                 </PersonaInfoSeparadorRight>
               </PersonalInfoBody>
             </PersonalInfoContainer>
-            <PersonalInfoContainer>
+
+            <PersonalInfoContainer className="comments">
               <PersonalInfoHeader>
-                <PersonalInfoTitle>Diagnósticos</PersonalInfoTitle>
+                <PersonalInfoTitle>Comentarios</PersonalInfoTitle>
               </PersonalInfoHeader>
               <CommentBodyContainer>
-                {currentDiagnostic.map((item, idx) => (
+                <CommentContainer>
+                  <CommentHeader>
+                    <CommentGroup>
+                      <CommentType>Fecha:</CommentType>
+                      <CommentData>Fecha del comentario</CommentData>
+                    </CommentGroup>
+                    <CommentGroup>
+                      <CommentType>Médico:</CommentType>
+                      <CommentData>Medico del comentario</CommentData>
+                    </CommentGroup>
+                    <CommentGroup>
+                      <CommentType>Especialidad:</CommentType>
+                      <CommentData>Rama del comentario</CommentData>
+                    </CommentGroup>
+                  </CommentHeader>
+                  <CommentBody>
+                    <CommentGroup>
+                      <CommentType>Comentario:</CommentType>
+                      <CommentData>Comentario del comentario</CommentData>
+                    </CommentGroup>
+                  </CommentBody>
+                  <ViewCommentBottonContainer>
+                    <ButtonLink
+                      fontSize="14px"
+                      onClick={() => {
+                        setShowModal(true);
+                        setModalContent(<ViewComment comment={item} />);
+                        setModalTitle('Comentario');
+                      }}
+                    >
+                      Ver Comentario
+                    </ButtonLink>
+                  </ViewCommentBottonContainer>
+                </CommentContainer>
+                {/* {currentComments.map((item, idx) => (
                   <CommentContainer key={idx}>
                     <CommentHeader>
                       <CommentGroup>
                         <CommentType>Fecha:</CommentType>
-                        <CommentData>{item.fecha_diag}</CommentData>
+                        <CommentData>{item.fecha_hist}</CommentData>
                       </CommentGroup>
                       <CommentGroup>
                         <CommentType>Médico:</CommentType>
-                        <CommentData>{item.medico_diag}</CommentData>
+                        <CommentData>{item.medico_hist}</CommentData>
                       </CommentGroup>
                       <CommentGroup>
                         <CommentType>Especialidad:</CommentType>
-                        <CommentData>{item.rama_diag}</CommentData>
+                        <CommentData>{item.rama_hist}</CommentData>
                       </CommentGroup>
                     </CommentHeader>
                     <CommentBody>
                       <CommentGroup>
                         <CommentType>Comentario:</CommentType>
-                        <CommentData>{item.init_diag}</CommentData>
+                        <CommentData>{item.comentario_hist}</CommentData>
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
-                      <Link
-                        to="/diagnostic"
+                      <ButtonLink
+                        fontSize="14px"
                         onClick={() => {
-                          setDiagnosticId(item._id);
+                          setShowModal(true);
+                          setModalContent(<ViewComment comment={item} />);
+                          setModalTitle('Comentario');
                         }}
                       >
-                        <ButtonLink fontSize="14px">Ver Diagnóstico</ButtonLink>
-                      </Link>
+                        Ver Comentario
+                      </ButtonLink>
                     </ViewCommentBottonContainer>
                   </CommentContainer>
-                ))}
+                ))} */}
 
                 {/* Si el usuario no es "Guest" puede agregar
                 comentarios */}
@@ -157,8 +203,9 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                     onClick={() => {
                       setShowModal(true);
                       setModalContent(
-                        <AddDiagnosis
+                        <AddComment
                           dni={paciente.dni}
+                          diagnosticId={diagnosticId}
                           setShowModal={setShowModal}
                           name={user.name}
                         />
@@ -166,9 +213,10 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                       setModalTitle('Agregar Diagnóstico');
                     }}
                   >
-                    Nuevo Diagnóstico
+                    Nuevo Comentario
                   </AddDiagnosisButton>
                 )}
+
                 <DownloadButton
                   onClick={() => {
                     setShowModal(true);
@@ -186,14 +234,14 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                 content={modalContent}
               />
             ) : null}
-            <PaginationContainer>
+            {/* <PaginationContainer>
               <Pagination
-                diagnosticPerPage={diagnosticPerPage}
+                commentsPerPage={commentsPerPage}
                 currentPage={currentPage}
-                totalDiagnostics={paciente.hist_diagnosticos.length}
+                totalComments={paciente.hist_diagnosticos.historial.length}
                 paginate={paginate}
               />
-            </PaginationContainer>{' '}
+            </PaginationContainer> */}
           </>
         ) : (
           <InfoTitle>Ups, parece que no hay nadie con ese DNI.</InfoTitle>
@@ -204,7 +252,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
   );
 };
 
-export default InfoPaciente;
+export default DiagnosticoPaciente;
 
 const PageContainer = styled.div`
   display: flex;
@@ -325,7 +373,8 @@ const CommentData = styled.span`
 const ViewCommentBottonContainer = styled.div`
   display: flex;
   margin: auto;
-  margin-right: 0;
+  /* margin-right: 0;
+  margin-left: 0.2em;*/
   width: 150px;
 `;
 

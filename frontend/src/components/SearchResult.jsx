@@ -119,7 +119,7 @@ const TableBody = styled.tbody`
 `;
 
 const Th = styled.th`
-  /* width: 200px; */
+  width: 15vw;
   padding: 8px;
   background-color: white;
   font-weight: bold;
@@ -132,7 +132,7 @@ const Th = styled.th`
 `;
 
 const Td = styled.td`
-  width: 200px;
+  width: 15vw;
   padding: 8px;
   background-color: white;
   text-align: center;

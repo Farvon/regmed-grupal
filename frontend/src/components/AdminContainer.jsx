@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 import useAlert from '../hooks/useAlert';
 import { getUsers, enableUser } from '../services/users';
 import { getLogByDni } from '../services/logs';
 import Log from './Log';
+import MyPdfViewer from './MyPdfViewer';
 
 //Página del usuario Admin donde se habilitan los nuevos usuarios.
 const AdminContainer = () => {
@@ -31,6 +34,32 @@ const AdminContainer = () => {
   const handleFilterSearch = (dni) => {
     getLogByDni(dni).then((res) => {
       setLogs(res);
+    });
+  };
+
+  const pdfRef = useRef();
+
+  const Download = () => {
+    const quotes = pdfRef.current;
+    html2canvas(quotes).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4', true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.max(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 10;
+      pdf.addImage(
+        imgData,
+        'PNG',
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save('Logs.pdf');
     });
   };
 
@@ -121,8 +150,9 @@ const AdminContainer = () => {
               <FilterButton onClick={() => handleFilterSearch(filterDni)}>
                 Buscar
               </FilterButton>
+              <FilterButton onClick={() => Download()}>Descargar</FilterButton>
             </FiltroLogContainer>
-            <div>
+            <div ref={pdfRef}>
               {logs &&
                 logs.map((item, index) => {
                   return <Log item={item} key={index} />;

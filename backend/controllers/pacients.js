@@ -132,52 +132,52 @@ pacientsRouter.put(
   userExtractor,
   (request, response) => {
     const { dni } = request.params;
-    const comment = request.body;
+    const { comment, diagnosticId } = request.body;
 
-    const newComment = {
-      fecha_hist: comment.fecha_hist,
-      medico_hist: comment.medico_hist,
-      rama_hist: comment.rama_hist,
-      comentario_hist: comment.comentario_hist,
-    };
+    Pacient.findOne({ dni })
+      .then((paciente) => {
+        if (!paciente) {
+          // Manejar el caso en el que no se encuentre el paciente
+          throw new Error('Paciente no encontrado');
+        }
 
-    /*
-    
-    //---- MODIFICADO
-    this.findOneAndUpdate(
-  { 
-    _id: new mongoose.Types.ObjectId(orderID), 
-    "hist_diagnosis._id": new mongoose.Types.ObjectId(pacient.hist_diagnosis_id)
-  },
-  {
-    $set: { "hist_diagnosis.$.historial.$[v]": newComment }
-  },
-  {
-    arrayFilters: [{ "v._id": newComment._id }],
-    upsert: true,
-    new: true
+        // Encontrar el diagnóstico específico dentro del array hist_diagnosticos
+        const diagnostico = paciente.hist_diagnosticos.find(
+          (diag) => diag._id.toString() === diagnosticId
+        ); // Reemplaza con el ID del diagnóstico correspondiente
+
+        if (!diagnostico) {
+          // Manejar el caso en el que no se encuentre el diagnóstico
+          throw new Error('Diagnóstico no encontrado');
+        }
+
+        // Crear el nuevo comentario
+        const newComment = {
+          fecha_hist: comment.fecha_hist,
+          medico_hist: comment.medico_hist,
+          rama_hist: comment.rama_hist,
+          comentario_hist: comment.comentario_hist,
+        };
+
+        // Agregar el nuevo comentario al array historial del diagnóstico
+        diagnostico.historial.push(newComment);
+
+        // Guardar los cambios realizados en el paciente
+        return paciente.save();
+      })
+      .then((pacienteGuardado) => {
+        // Aquí puedes manejar la respuesta después de guardar exitosamente los cambios
+        console.log('Comentario agregado correctamente');
+        console.log(pacienteGuardado);
+      })
+      .catch((error) => {
+        // Manejar los errores ocurridos durante el proceso
+        console.error('Error al agregar el comentario:', error.message);
+      });
   }
+);
 
-
-
-  //---- ORIGINAL
-  this.findOneAndUpdate(
-  { 
-    _id: new mongoose.Types.ObjectId(orderID), 
-    "services._id": new mongoose.Types.ObjectId(videoDetail.service_id)
-  },
-  {
-    $set: { "services.$.videos.$[v].status": videoDetail.status }
-  },
-  {
-    arrayFilters: [{ "v.lv_guid_id": videoDetail.lv_guid_id }],
-    upsert: true,
-    new: true
-  }
-)
-) */
-
-    Pacient.findOneAndUpdate(
+/*Pacient.findOneAndUpdate(
       { dni },
       { $push: { historial: newComment } },
       { new: true }
@@ -190,7 +190,7 @@ pacientsRouter.put(
         response.status(400).end();
       });
   }
-);
+);*/
 
 //Edita info del paciente segun DNI
 pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {

@@ -83,6 +83,7 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
           </select>
         </FormInfo>
         <FormInfo>
+          <span>Diagnóstico:</span>
           <SelectDiagnosis
             value={medicalDiagnosis}
             onChange={(e) => {
@@ -99,14 +100,16 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
           </SelectDiagnosis>
         </FormInfo>
       </FormContainer>
-      <ModalComment
-        cols="100%"
-        rows="10"
-        value={medicalComment}
-        onChange={(e) => {
-          setMedicalComment(e.target.value);
-        }}
-      ></ModalComment>
+      <FormContainer>
+        <ModalComment
+          cols="100%"
+          rows="10"
+          value={medicalComment}
+          onChange={(e) => {
+            setMedicalComment(e.target.value);
+          }}
+        ></ModalComment>
+      </FormContainer>
       <AddCommentButton
         disabled={!medicalName || !medicalBranch || !medicalComment}
         onClick={() => {
@@ -125,10 +128,12 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 16px;
+  width: 60vw;
 `;
 
 const FormInfo = styled.div`
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 
@@ -145,14 +150,13 @@ const MedicName = styled.span`
 `;
 
 const SelectDiagnosis = styled.select`
-  width: 300px;
+  width: 200px;
 `;
 
 const ModalComment = styled.textarea`
   resize: none;
-  width: 70vw;
+  width: 100%;
   padding: 4px;
-  margin: 0px 16px;
 `;
 
 const AddCommentButton = styled.button`
