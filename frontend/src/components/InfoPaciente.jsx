@@ -13,7 +13,7 @@ import Qr from './Qr';
 import PDF from './PDF';
 
 //Recibe el DNI buscado
-const InfoPaciente = ({ dni, setDni, user }) => {
+const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
   const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -139,7 +139,12 @@ const InfoPaciente = ({ dni, setDni, user }) => {
                     </CommentBody>
                     <ViewCommentBottonContainer>
                       <Link to="/diagnostic">
-                        <ButtonLink fontSize="14px">Ver Diagnóstico</ButtonLink>
+                        <ButtonLink
+                          fontSize="14px"
+                          onClick={() => setDiagnosticId(item._id)}
+                        >
+                          Ver Diagnóstico
+                        </ButtonLink>
                       </Link>
                     </ViewCommentBottonContainer>
                   </CommentContainer>
@@ -183,9 +188,9 @@ const InfoPaciente = ({ dni, setDni, user }) => {
             ) : null}
             <PaginationContainer>
               <Pagination
-                diagnosticPerPage={diagnosticPerPage}
+                itemsPerPage={diagnosticPerPage}
                 currentPage={currentPage}
-                totalDiagnostics={paciente.hist_diagnosticos.length}
+                totalItems={paciente.hist_diagnosticos.length}
                 paginate={paginate}
               />
             </PaginationContainer>{' '}

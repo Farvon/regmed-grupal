@@ -17,9 +17,10 @@ const AddComment = ({ dni, name, setShowModal, diagnosticId }) => {
       medico_hist: medicalName,
       rama_hist: medicalBranch,
       comentario_hist: medicalComment,
+      diagnosticId: diagnosticId,
     };
 
-    putPacientComment(dni, newCommet, diagnosticId)
+    putPacientComment(dni, newCommet)
       .then(() => {
         alertSuccess('Comentario guardado correctamente');
         setMedicalName('');

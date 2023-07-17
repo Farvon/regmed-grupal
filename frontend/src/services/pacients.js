@@ -38,7 +38,7 @@ const putPacientDiagnosis = (dni, diagnosis) => {
 };
 
 //Agrega Comentario un paciente
-const putPacientComment = (dni, comment, diagnosticId) => {
+const putPacientComment = (dni, comment) => {
   const config = {
     headers: {
       Authorization: token,
@@ -48,7 +48,6 @@ const putPacientComment = (dni, comment, diagnosticId) => {
   const request = axios.put(
     `${baseUrl}/add-new-comment/${dni}`,
     comment,
-    diagnosticId,
     config
   );
 

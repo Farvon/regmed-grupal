@@ -14,7 +14,7 @@ import ViewComment from './ViewComment';
 import AddComment from './AddComment';
 
 //Recibe el DNI buscado
-const DiagnosticoPaciente = ({ dni, setDni, user }) => {
+const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
   const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,33 +22,34 @@ const DiagnosticoPaciente = ({ dni, setDni, user }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
-  const [comments, setComments] = useState();
+  const [diagnoticById, setDiagnoticById] = useState();
 
   //Busca el paciente en la base de datos
   useEffect(() => {
     const queryDni = searchParams.get('dni');
     const dniToSearch = queryDni ? queryDni : dni;
-    console.log(dniToSearch);
     setDni(dniToSearch);
     getPacientByDni(dniToSearch).then((paciente) => getComments(paciente));
   }, [dni, showModal]);
 
   const getComments = (paciente) => {
-    console.log(paciente);
     setPaciente(paciente);
-    const indexOfLastComment = currentPage * commentsPerPage;
-    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
 
-    const comments =
-      paciente && paciente.length !== 0 && paciente.hist_diagnosticos
-        ? paciente.hist_diagnosticos[0].historial.slice(
-            indexOfFirstComment,
-            indexOfLastComment
-          )
-        : [];
+    // Busco el diagnotico por id
+    const diagnotic = paciente.hist_diagnosticos.find(
+      (diag) => diag._id === diagnosticId
+    );
 
-    setComments(comments);
+    setDiagnoticById(diagnotic);
   };
+
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+
+  const currentComments =
+    paciente && paciente.length !== 0 && paciente.hist_diagnosticos
+      ? diagnoticById.historial.slice(indexOfFirstComment, indexOfLastComment)
+      : [];
 
   // Callback to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -122,47 +123,10 @@ const DiagnosticoPaciente = ({ dni, setDni, user }) => {
                 <PersonalInfoTitle>Comentarios</PersonalInfoTitle>
               </PersonalInfoHeader>
               <CommentBodyContainer>
-                {/*                 <CommentContainer>
-                  {console.log(comments)}
-                  <CommentHeader>
-                    <CommentGroup>
-                      <CommentType>Fecha:</CommentType>
-                      <CommentData>Fecha</CommentData>
-                    </CommentGroup>
-                    <CommentGroup>
-                      <CommentType>Médico:</CommentType>
-                      <CommentData>Medico del comentario</CommentData>
-                    </CommentGroup>
-                    <CommentGroup>
-                      <CommentType>Especialidad:</CommentType>
-                      <CommentData>Rama del comentario</CommentData>
-                    </CommentGroup>
-                  </CommentHeader>
-                  <CommentBody>
-                    <CommentGroup>
-                      <CommentType>Comentario:</CommentType>
-                      <CommentData>Comentario del comentario</CommentData>
-                    </CommentGroup>
-                  </CommentBody>
-                  <ViewCommentBottonContainer>
-                    <ButtonLink
-                      fontSize="14px"
-                      onClick={() => {
-                        setShowModal(true);
-                        setModalContent(<ViewComment comment={item} />);
-                        setModalTitle('Comentario');
-                      }}
-                    >
-                      Ver Comentario
-                    </ButtonLink>
-                  </ViewCommentBottonContainer>
-                </CommentContainer> */}
-                {console.log(comments)}
-                {console.log(comments.length)}
-                {comments && comments.length === 0 ? (
+                {currentComments && currentComments.length === 0 ? (
                   <div>No hay comentarios aun</div>
                 ) : (
-                  comments.map((item, idx) => (
+                  currentComments.map((item, idx) => (
                     <CommentContainer key={idx}>
                       <CommentHeader>
                         <CommentGroup>
@@ -172,10 +136,6 @@ const DiagnosticoPaciente = ({ dni, setDni, user }) => {
                         <CommentGroup>
                           <CommentType>Médico:</CommentType>
                           <CommentData>{item.medico_hist}</CommentData>
-                        </CommentGroup>
-                        <CommentGroup>
-                          <CommentType>Especialidad:</CommentType>
-                          <CommentData>{item.rama_hist}</CommentData>
                         </CommentGroup>
                       </CommentHeader>
                       <CommentBody>
@@ -238,14 +198,14 @@ const DiagnosticoPaciente = ({ dni, setDni, user }) => {
                 content={modalContent}
               />
             ) : null}
-            {/* <PaginationContainer>
+            <PaginationContainer>
               <Pagination
-                commentsPerPage={commentsPerPage}
+                itemsPerPage={commentsPerPage}
                 currentPage={currentPage}
-                totalComments={paciente.hist_diagnosticos.historial.length}
+                totalItems={diagnoticById.historial.length}
                 paginate={paginate}
               />
-            </PaginationContainer> */}
+            </PaginationContainer>
           </>
         ) : (
           <InfoTitle>Ups, parece que no hay nadie con ese DNI.</InfoTitle>

@@ -14,6 +14,7 @@ import AddPaciente from '../components/AddPaciente';
 const AuthRouter = () => {
   const [user, setUser] = useState();
   const [dni, setDni] = useState();
+  const [diagnosticId, setDiagnosticId] = useState();
 
   useEffect(() => {
     const loggedUserJSON = localStorage.getItem('loggedRegMedUser');
@@ -61,7 +62,12 @@ const AuthRouter = () => {
           name="info"
           element={
             <>
-              <InfoPaciente dni={dni} setDni={setDni} user={user} />
+              <InfoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                setDiagnosticId={setDiagnosticId}
+              />
             </>
           }
           exact
@@ -71,7 +77,12 @@ const AuthRouter = () => {
           name="disgnostic"
           element={
             <>
-              <DiagnosticoPaciente dni={dni} setDni={setDni} user={user} />
+              <DiagnosticoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+              />
             </>
           }
           exact
