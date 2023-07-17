@@ -15,37 +15,40 @@ import AddComment from './AddComment';
 
 //Recibe el DNI buscado
 const DiagnosticoPaciente = ({ dni, setDni, user }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
-  const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(3);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
-
-  const getComments = () => {
-    const indexOfLastComment = currentPage * commentsPerPage;
-    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-
-    setComments(
-      paciente &&
-        paciente.length !== 0 &&
-        paciente.hist_diagnosticos.historial.slice(
-          indexOfFirstComment,
-          indexOfLastComment
-        )
-    );
-  };
+  const [comments, setComments] = useState();
 
   //Busca el paciente en la base de datos
   useEffect(() => {
     const queryDni = searchParams.get('dni');
-    queryDni && setDni(queryDni);
-    getPacientByDni(queryDni ? queryDni : dni).then((paciente) =>
-      setPaciente(paciente).then(getComments())
-    );
+    const dniToSearch = queryDni ? queryDni : dni;
+    console.log(dniToSearch);
+    setDni(dniToSearch);
+    getPacientByDni(dniToSearch).then((paciente) => getComments(paciente));
   }, [dni, showModal]);
+
+  const getComments = (paciente) => {
+    console.log(paciente);
+    setPaciente(paciente);
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+
+    const comments =
+      paciente && paciente.length !== 0 && paciente.hist_diagnosticos
+        ? paciente.hist_diagnosticos[0].historial.slice(
+            indexOfFirstComment,
+            indexOfLastComment
+          )
+        : [];
+
+    setComments(comments);
+  };
 
   // Callback to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -154,42 +157,48 @@ const DiagnosticoPaciente = ({ dni, setDni, user }) => {
                     </ButtonLink>
                   </ViewCommentBottonContainer>
                 </CommentContainer> */}
-                {comments.map((item, idx) => (
-                  <CommentContainer key={idx}>
-                    <CommentHeader>
-                      <CommentGroup>
-                        <CommentType>Fecha:</CommentType>
-                        <CommentData>{item.fecha_hist}</CommentData>
-                      </CommentGroup>
-                      <CommentGroup>
-                        <CommentType>Médico:</CommentType>
-                        <CommentData>{item.medico_hist}</CommentData>
-                      </CommentGroup>
-                      <CommentGroup>
-                        <CommentType>Especialidad:</CommentType>
-                        <CommentData>{item.rama_hist}</CommentData>
-                      </CommentGroup>
-                    </CommentHeader>
-                    <CommentBody>
-                      <CommentGroup>
-                        <CommentType>Comentario:</CommentType>
-                        <CommentData>{item.comentario_hist}</CommentData>
-                      </CommentGroup>
-                    </CommentBody>
-                    <ViewCommentBottonContainer>
-                      <ButtonLink
-                        fontSize="14px"
-                        onClick={() => {
-                          setShowModal(true);
-                          setModalContent(<ViewComment comment={item} />);
-                          setModalTitle('Comentario');
-                        }}
-                      >
-                        Ver Comentario
-                      </ButtonLink>
-                    </ViewCommentBottonContainer>
-                  </CommentContainer>
-                ))}
+                {console.log(comments)}
+                {console.log(comments.length)}
+                {comments && comments.length === 0 ? (
+                  <div>No hay comentarios aun</div>
+                ) : (
+                  comments.map((item, idx) => (
+                    <CommentContainer key={idx}>
+                      <CommentHeader>
+                        <CommentGroup>
+                          <CommentType>Fecha:</CommentType>
+                          <CommentData>{item.fecha_hist}</CommentData>
+                        </CommentGroup>
+                        <CommentGroup>
+                          <CommentType>Médico:</CommentType>
+                          <CommentData>{item.medico_hist}</CommentData>
+                        </CommentGroup>
+                        <CommentGroup>
+                          <CommentType>Especialidad:</CommentType>
+                          <CommentData>{item.rama_hist}</CommentData>
+                        </CommentGroup>
+                      </CommentHeader>
+                      <CommentBody>
+                        <CommentGroup>
+                          <CommentType>Comentario:</CommentType>
+                          <CommentData>{item.comentario_hist}</CommentData>
+                        </CommentGroup>
+                      </CommentBody>
+                      <ViewCommentBottonContainer>
+                        <ButtonLink
+                          fontSize="14px"
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalContent(<ViewComment comment={item} />);
+                            setModalTitle('Comentario');
+                          }}
+                        >
+                          Ver Comentario
+                        </ButtonLink>
+                      </ViewCommentBottonContainer>
+                    </CommentContainer>
+                  ))
+                )}
 
                 {/* Si el usuario no es "Guest" puede agregar
                 comentarios */}

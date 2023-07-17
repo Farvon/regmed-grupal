@@ -13,11 +13,11 @@ import Qr from './Qr';
 import PDF from './PDF';
 
 //Recibe el DNI buscado
-const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const InfoPaciente = ({ dni, setDni, user }) => {
+  const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [diagnosticPerPage, setDiagnosticPerPage] = useState(2);
+  const [diagnosticPerPage] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
