@@ -14,47 +14,41 @@ import ViewComment from './ViewComment';
 import AddComment from './AddComment';
 
 //Recibe el DNI buscado
-const DiagnosticoPaciente = ({
-  dni,
-  setDni,
-  user,
-  diagnosticId,
-  setDiagnosticId,
-}) => {
+const DiagnosticoPaciente = ({ dni, setDni, user }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
+  const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(3);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
 
+  const getComments = () => {
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+
+    setComments(
+      paciente &&
+        paciente.length !== 0 &&
+        paciente.hist_diagnosticos.historial.slice(
+          indexOfFirstComment,
+          indexOfLastComment
+        )
+    );
+  };
+
   //Busca el paciente en la base de datos
   useEffect(() => {
     const queryDni = searchParams.get('dni');
     queryDni && setDni(queryDni);
     getPacientByDni(queryDni ? queryDni : dni).then((paciente) =>
-      setPaciente(paciente)
+      setPaciente(paciente).then(getComments())
     );
-    setDiagnosticId(diagnosticId);
-
-    // const indices = Object.keys(paciente.hist_diagnosticos);
-    // console.log(indices);
   }, [dni, showModal]);
 
-  // Get current comments
-  // const indexOfLastComment = currentPage * commentsPerPage;
-  // const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-  // const currentComments =
-  //   paciente &&
-  //   paciente.length !== 0 &&
-  //   paciente.hist_diagnosticos.historial.slice(
-  //     indexOfFirstComment,
-  //     indexOfLastComment
-  //   );
-
-  // // Callback to change page
-  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Callback to change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <PageContainer>
@@ -120,16 +114,17 @@ const DiagnosticoPaciente = ({
               </PersonalInfoBody>
             </PersonalInfoContainer>
 
-            <PersonalInfoContainer className="comments">
+            <PersonalInfoContainer>
               <PersonalInfoHeader>
                 <PersonalInfoTitle>Comentarios</PersonalInfoTitle>
               </PersonalInfoHeader>
               <CommentBodyContainer>
-                <CommentContainer>
+                {/*                 <CommentContainer>
+                  {console.log(comments)}
                   <CommentHeader>
                     <CommentGroup>
                       <CommentType>Fecha:</CommentType>
-                      <CommentData>Fecha del comentario</CommentData>
+                      <CommentData>Fecha</CommentData>
                     </CommentGroup>
                     <CommentGroup>
                       <CommentType>Médico:</CommentType>
@@ -158,8 +153,8 @@ const DiagnosticoPaciente = ({
                       Ver Comentario
                     </ButtonLink>
                   </ViewCommentBottonContainer>
-                </CommentContainer>
-                {/* {currentComments.map((item, idx) => (
+                </CommentContainer> */}
+                {comments.map((item, idx) => (
                   <CommentContainer key={idx}>
                     <CommentHeader>
                       <CommentGroup>
@@ -194,7 +189,7 @@ const DiagnosticoPaciente = ({
                       </ButtonLink>
                     </ViewCommentBottonContainer>
                   </CommentContainer>
-                ))} */}
+                ))}
 
                 {/* Si el usuario no es "Guest" puede agregar
                 comentarios */}
@@ -303,7 +298,7 @@ const PersonaInfoSeparadorLeft = styled.div`
 const PersonaInfoSeparadorRight = styled.div`
   display: flex;
   width: 30%;
-  align-item: center;
+  align-items: center;
 `;
 
 const PersonalInfoGroup = styled.div`

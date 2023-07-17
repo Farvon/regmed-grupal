@@ -138,12 +138,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
-                      <Link
-                        to="/diagnostic"
-                        onClick={() => {
-                          setDiagnosticId(item._id);
-                        }}
-                      >
+                      <Link to="/diagnostic">
                         <ButtonLink fontSize="14px">Ver Diagnóstico</ButtonLink>
                       </Link>
                     </ViewCommentBottonContainer>
@@ -255,7 +250,7 @@ const PersonaInfoSeparadorLeft = styled.div`
 const PersonaInfoSeparadorRight = styled.div`
   display: flex;
   width: 30%;
-  align-item: center;
+  align-items: center;
 `;
 
 const PersonalInfoGroup = styled.div`
