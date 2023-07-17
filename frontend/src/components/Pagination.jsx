@@ -1,15 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Pagination = ({
-  diagnosticPerPage,
-  currentPage,
-  totalDiagnostics,
-  paginate,
-}) => {
+const Pagination = ({ itemsPerPage, currentPage, totalItems, paginate }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalDiagnostics / diagnosticPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 

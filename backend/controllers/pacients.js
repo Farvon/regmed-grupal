@@ -132,7 +132,13 @@ pacientsRouter.put(
   userExtractor,
   (request, response) => {
     const { dni } = request.params;
-    const { comment, diagnosticId } = request.body;
+    const {
+      diagnosticId,
+      fecha_hist,
+      medico_hist,
+      rama_hist,
+      comentario_hist,
+    } = request.body;
 
     Pacient.findOne({ dni })
       .then((paciente) => {
@@ -153,10 +159,10 @@ pacientsRouter.put(
 
         // Crear el nuevo comentario
         const newComment = {
-          fecha_hist: comment.fecha_hist,
-          medico_hist: comment.medico_hist,
-          rama_hist: comment.rama_hist,
-          comentario_hist: comment.comentario_hist,
+          fecha_hist: fecha_hist,
+          medico_hist: medico_hist,
+          rama_hist: rama_hist,
+          comentario_hist: comentario_hist,
         };
 
         // Agregar el nuevo comentario al array historial del diagnóstico
@@ -166,9 +172,8 @@ pacientsRouter.put(
         return paciente.save();
       })
       .then((pacienteGuardado) => {
-        // Aquí puedes manejar la respuesta después de guardar exitosamente los cambios
-        console.log('Comentario agregado correctamente');
-        console.log(pacienteGuardado);
+        // Devolvemos el paciente actualizado
+        response.json(pacienteGuardado);
       })
       .catch((error) => {
         // Manejar los errores ocurridos durante el proceso
@@ -176,21 +181,6 @@ pacientsRouter.put(
       });
   }
 );
-
-/*Pacient.findOneAndUpdate(
-      { dni },
-      { $push: { historial: newComment } },
-      { new: true }
-    )
-      .then((result) => {
-        response.json(result);
-      })
-      .catch((err) => {
-        console.log(err);
-        response.status(400).end();
-      });
-  }
-);*/
 
 //Edita info del paciente segun DNI
 pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {

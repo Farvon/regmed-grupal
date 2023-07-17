@@ -66,7 +66,6 @@ const AuthRouter = () => {
                 dni={dni}
                 setDni={setDni}
                 user={user}
-                diagnosticId={diagnosticId}
                 setDiagnosticId={setDiagnosticId}
               />
             </>
@@ -83,7 +82,6 @@ const AuthRouter = () => {
                 setDni={setDni}
                 user={user}
                 diagnosticId={diagnosticId}
-                setDiagnosticId={setDiagnosticId}
               />
             </>
           }

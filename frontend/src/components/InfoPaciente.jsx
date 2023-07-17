@@ -13,11 +13,11 @@ import Qr from './Qr';
 import PDF from './PDF';
 
 //Recibe el DNI buscado
-const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
+  const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [diagnosticPerPage, setDiagnosticPerPage] = useState(2);
+  const [diagnosticPerPage] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
@@ -138,13 +138,13 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
-                      <Link
-                        to="/diagnostic"
-                        onClick={() => {
-                          setDiagnosticId(item._id);
-                        }}
-                      >
-                        <ButtonLink fontSize="14px">Ver Diagnóstico</ButtonLink>
+                      <Link to="/diagnostic">
+                        <ButtonLink
+                          fontSize="14px"
+                          onClick={() => setDiagnosticId(item._id)}
+                        >
+                          Ver Diagnóstico
+                        </ButtonLink>
                       </Link>
                     </ViewCommentBottonContainer>
                   </CommentContainer>
@@ -188,9 +188,9 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId, diagnosticId }) => {
             ) : null}
             <PaginationContainer>
               <Pagination
-                diagnosticPerPage={diagnosticPerPage}
+                itemsPerPage={diagnosticPerPage}
                 currentPage={currentPage}
-                totalDiagnostics={paciente.hist_diagnosticos.length}
+                totalItems={paciente.hist_diagnosticos.length}
                 paginate={paginate}
               />
             </PaginationContainer>{' '}
@@ -255,7 +255,7 @@ const PersonaInfoSeparadorLeft = styled.div`
 const PersonaInfoSeparadorRight = styled.div`
   display: flex;
   width: 30%;
-  align-item: center;
+  align-items: center;
 `;
 
 const PersonalInfoGroup = styled.div`
