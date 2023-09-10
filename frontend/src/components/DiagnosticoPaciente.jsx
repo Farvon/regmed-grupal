@@ -120,8 +120,9 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
 
             <PersonalInfoContainer>
               <PersonalInfoHeader>
-                <PersonalInfoTitle>Comentarios</PersonalInfoTitle>
+                <PersonalInfoTitle>Comentarios Inicial</PersonalInfoTitle>
               </PersonalInfoHeader>
+
               <CommentBodyContainer>
                 {currentComments && currentComments.length === 0 ? (
                   <div>No hay comentarios aun</div>
