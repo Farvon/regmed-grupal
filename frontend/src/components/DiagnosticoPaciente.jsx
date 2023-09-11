@@ -120,7 +120,7 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
 
             <PersonalInfoContainer>
               <PersonalInfoHeader>
-                <PersonalInfoTitle>Comentarios Inicial</PersonalInfoTitle>
+                <PersonalInfoTitle>{diagnoticById.comentario_diag}</PersonalInfoTitle>
               </PersonalInfoHeader>
 
               <CommentBodyContainer>
@@ -161,26 +161,55 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                   ))
                 )}
 
-                {/* Si el usuario no es "Guest" puede agregar
-                comentarios */}
-                {user && user.username !== 'guest' && (
-                  <AddDiagnosisButton
-                    onClick={() => {
-                      setShowModal(true);
-                      setModalContent(
-                        <AddComment
-                          dni={paciente.dni}
-                          diagnosticId={diagnosticId}
-                          setShowModal={setShowModal}
-                          name={user.name}
-                        />
-                      );
-                      setModalTitle('Agregar Diagnóstico');
-                    }}
-                  >
-                    Nuevo Comentario
-                  </AddDiagnosisButton>
-                )}
+                <ButtonGroup>
+
+                    {/* Si el usuario no es "Guest" puede agregar
+                    comentarios */}
+                  
+                      {user && user.username !== 'guest' && (
+                        <AddDiagnosisButton
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalContent(
+                              <AddComment
+                                dni={paciente.dni}
+                                diagnosticId={diagnosticId}
+                                setShowModal={setShowModal}
+                                name={user.name}
+                              />
+                            );
+                            setModalTitle('Agregar Diagnóstico');
+                          }}
+                        >
+                          Nuevo Comentario
+                        </AddDiagnosisButton>
+                      )}
+  
+                          {/* Si el usuario no es "Guest" puede agregar
+                    cerrar el diagnostico */}
+                    {user && user.username !== 'guest' && (
+                      <CloseDiagnosisButton
+                        onClick={() => {
+                          setShowModal(true);
+                          setModalContent(
+                            <AddComment
+                              dni={paciente.dni}
+                              diagnosticId={diagnosticId}
+                              setShowModal={setShowModal}
+                              name={user.name}
+                            />
+                          );
+                          setModalTitle('Agregar Diagnóstico');
+                        }}
+                      >
+                        Cerrar Diagnóstigo
+                      </CloseDiagnosisButton>
+                    )}
+
+                </ButtonGroup>
+                
+                
+
 
                 <DownloadButton
                   onClick={() => {
@@ -343,15 +372,23 @@ const ViewCommentBottonContainer = styled.div`
   width: 150px;
 `;
 
+const ButtonGroup = styled.div`
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  background-color: white;
+  padding: 8px;
+`;
+
+
 const AddDiagnosisButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  margin: 16px auto;
+  margin: 0 10px;
   color: white;
   padding: 12px 24px 12px 24px;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 8px;
   background: #3498db;
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
@@ -369,6 +406,35 @@ const AddDiagnosisButton = styled.button`
     background-image: linear-gradient(to bottom, #3498db, #2980b9);
   }
 `;
+
+const CloseDiagnosisButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  color: white;
+  padding: 12px 24px 12px 24px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #f5412a;
+  background-image: linear-gradient(to bottom, #f5412a, #fa5f4b);
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+
+  :hover {
+    background: #fa5f4b;
+    background-image: linear-gradient(to bottom, #fa5f4b, #f5412a);
+  }
+
+  :active {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+`;
+
+
+
 
 const DownloadButton = styled.button`
   display: flex;
