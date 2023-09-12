@@ -9,6 +9,7 @@ import InfoPaciente from '../components/InfoPaciente';
 import DiagnosticoPaciente from '../components/DiagnosticoPaciente';
 import AddPaciente from '../components/AddPaciente';
 import InfoPacienteMobil from '../components/InfoPacienteMobil';
+import DiagnosticoPacienteMobil from '../components/DiagnosticoPacienteMobil';
 
 //Componente para usuarios ya logueados
 
@@ -104,6 +105,21 @@ const AuthRouter = () => {
           exact
         />
         <Route
+          path="/diagnosticMobil"
+          name="disgnosticMobil"
+          element={
+            <>
+              <DiagnosticoPacienteMobil
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
           path="/add-pacient"
           name="add-pacient"
           element={
@@ -120,7 +136,6 @@ const AuthRouter = () => {
           exact
         />
       </Routes>
-      
     </LayoutAuth>
   );
 };

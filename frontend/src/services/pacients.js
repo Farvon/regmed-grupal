@@ -1,6 +1,6 @@
 import axios from 'axios';
 //const baseUrl = 'http://localhost:3001/api/pacients';
-const baseUrl = 'http://192.168.1.27:3001/api/pacients';
+const baseUrl = 'http://192.168.1.20:3001/api/pacients';
 
 const user = JSON.parse(localStorage.getItem('loggedRegMedUser'));
 const token = user && user.token && `Bearer ${user.token}`;
@@ -91,11 +91,14 @@ const closeDiagnosisPacient = (dni, newState) => {
     },
   };
 
-  const request = axios.put(`${baseUrl}/update-state-diagnosis/${dni}`, newState, config);
+  const request = axios.put(
+    `${baseUrl}/update-state-diagnosis/${dni}`,
+    newState,
+    config
+  );
 
   return request.then((response) => response.data);
 };
-
 
 export {
   getAllPacients,

@@ -8,7 +8,7 @@ const Qr = ({ paciente }) => {
     <Container>
       <QRCodeCanvas
         //value={`http://localhost:5173/info?dni=${paciente.dni}`}
-        value={`http://192.168.1.27:5173/mobil?dni=${paciente.dni}`}
+        value={`http://192.168.1.20:5173/mobil?dni=${paciente.dni}`}
         size={128}
         bgColor={'#ffffff'}
         fgColor={'#000000'}
