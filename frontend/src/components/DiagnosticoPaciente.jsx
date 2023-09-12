@@ -15,7 +15,7 @@ import AddComment from './AddComment';
 import CloseDiagnosis from './CloseDiagnosis';
 
 //Recibe el DNI buscado
-const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
+const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
   const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +24,6 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
   const [diagnoticById, setDiagnoticById] = useState();
-  
 
   //Busca el paciente en la base de datos
   useEffect(() => {
@@ -129,7 +128,7 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
               </PersonalInfoHeader>
               <PersonalInfoHeader>
                 <InitialComentUserName>{user.name}</InitialComentUserName>
-              </PersonalInfoHeader> 
+              </PersonalInfoHeader>
 
               <CommentBodyContainer>
                 {currentComments && currentComments.length === 0 ? (
@@ -177,35 +176,38 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
                 )}
 
                 <ButtonGroup>
-
-                    {/* Si el usuario no es "Guest" puede agregar
+                  {/* Si el usuario no es "Guest" puede agregar
                     comentarios */}
-                  
-                      {user && user.username !== 'guest' && (          
-       
-                          <AddDiagnosisButton disabled={!diagnoticById.estado_diag}
-                          onClick={() => {
-                            setShowModal(true);
-                            setModalContent(
-                              <AddComment
-                                dni={paciente.dni}
-                                diagnosticId={diagnosticId}
-                                setShowModal={setShowModal}
-                                name={user.name}
-                              />
-                            );
-                            setModalTitle('Nuevo Comentario');
-                          }}
-                          >
-                          Nuevo Comentario
-                        </AddDiagnosisButton>
 
-                      )}
-  
-                          {/* Si el usuario no es "Guest" puede agregar
+                  {user && user.username !== 'guest' && (
+                    <AddDiagnosisButton
+                      disabled={!diagnoticById.estado_diag}
+                      onClick={() => {
+                        setShowModal(true);
+                        setModalContent(
+                          <AddComment
+                            dni={paciente.dni}
+                            diagnosticId={diagnosticId}
+                            setShowModal={setShowModal}
+                            name={user.name}
+                          />
+                        );
+                        setModalTitle('Nuevo Comentario');
+                      }}
+                    >
+                      {diagnoticById.estado_diag
+                        ? 'Nuevo Comentario'
+                        : 'Diagnóstico Cerrado'}
+                    </AddDiagnosisButton>
+                  )}
+
+                  {/* Si el usuario no es "Guest" puede agregar
                     cerrar el diagnostico */}
-                    {user && user.username !== 'guest' && (
-                      <CloseDiagnosisButton  disabled={!diagnoticById.estado_diag}
+                  {user &&
+                    user.username !== 'guest' &&
+                    diagnoticById.estado_diag && (
+                      <CloseDiagnosisButton
+                        disabled={!diagnoticById.estado_diag}
                         onClick={() => {
                           setShowModal(true);
                           setModalContent(
@@ -219,15 +221,10 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
                           setModalTitle('Cerrar Diagnóstico');
                         }}
                       >
-                        Cerrar Diagnóstigo
+                        Cerrar Diagnóstico
                       </CloseDiagnosisButton>
                     )}
-
                 </ButtonGroup>
-                
-                
-
-
                 <DownloadButton
                   onClick={() => {
                     setShowModal(true);
@@ -305,7 +302,6 @@ const InitialComentUserName = styled.span`
   font-style: italic;
   font-size: 20px;
 `;
-
 
 const PersonalInfoBody = styled.div`
   display: flex;
@@ -400,13 +396,12 @@ const ViewCommentBottonContainer = styled.div`
 `;
 
 const ButtonGroup = styled.div`
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   background-color: white;
   padding: 8px;
 `;
-
 
 const AddDiagnosisButton = styled.button`
   display: flex;
@@ -438,7 +433,6 @@ const AddDiagnosisButton = styled.button`
     font-size: 18px;
     opacity: 0.8;
   }
-
 `;
 
 const CloseDiagnosisButton = styled.button`
@@ -471,7 +465,6 @@ const CloseDiagnosisButton = styled.button`
     font-size: 18px;
     opacity: 0.8;
   }
-
 `;
 
 const DownloadButton = styled.button`

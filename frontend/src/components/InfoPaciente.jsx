@@ -117,33 +117,55 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
               </PersonalInfoHeader>
               <CommentBodyContainer>
                 {currentDiagnostic.map((item, idx) => (
-                  <CommentContainer key={idx} estado={item.estado_diag} >
+                  <CommentContainer key={idx} estado={item.estado_diag}>
                     <CommentHeader>
                       <CommentGroup>
-                        <CommentType estado={item.estado_diag}>Fecha:</CommentType>
-                        <CommentData>{item.fecha_diag}</CommentData>
+                        <CommentType estado={item.estado_diag}>
+                          Fecha:
+                        </CommentType>
+                        <CommentData estado={item.estado_diag}>
+                          {item.fecha_diag}
+                        </CommentData>
                       </CommentGroup>
                       <CommentGroup>
-                        <CommentType estado={item.estado_diag}>Médico:</CommentType>
-                        <CommentData>{item.medico_diag}</CommentData>
+                        <CommentType estado={item.estado_diag}>
+                          Médico:
+                        </CommentType>
+                        <CommentData estado={item.estado_diag}>
+                          {item.medico_diag}
+                        </CommentData>
                       </CommentGroup>
                       <CommentGroup>
-                        <CommentType estado={item.estado_diag}>Especialidad:</CommentType>
-                        <CommentData>{item.rama_diag}</CommentData>
+                        <CommentType estado={item.estado_diag}>
+                          Especialidad:
+                        </CommentType>
+                        <CommentData estado={item.estado_diag}>
+                          {item.rama_diag}
+                        </CommentData>
                       </CommentGroup>
                       <CommentGroup>
-                        <CommentType estado={item.estado_diag}>Estado del Diagnóstico:</CommentType>
+                        <CommentType estado={item.estado_diag}>
+                          Estado del Diagnóstico:
+                        </CommentType>
                         {item.estado_diag ? (
-                        <CommentData>Abierto</CommentData>
-                        ):(
-                          <CommentData>Cerrado</CommentData>
+                          <CommentData estado={item.estado_diag}>
+                            Abierto
+                          </CommentData>
+                        ) : (
+                          <CommentData estado={item.estado_diag}>
+                            Cerrado
+                          </CommentData>
                         )}
                       </CommentGroup>
                     </CommentHeader>
                     <CommentBody>
                       <CommentGroup>
-                        <CommentType estado={item.estado_diag}>Comentario:</CommentType>
-                        <CommentData>{item.init_diag}</CommentData>
+                        <CommentType estado={item.estado_diag}>
+                          Comentario:
+                        </CommentType>
+                        <CommentData estado={item.estado_diag}>
+                          {item.init_diag}
+                        </CommentData>
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
@@ -292,9 +314,15 @@ const CommentContainer = styled.div`
   padding: 8px;
   margin: 4px;
 
-  background: ${({ estado }) => (estado ? '' : '#B5B2B2')};
-  
+  background: linear-gradient(
+    180deg,
+    rgba(61, 173, 197, 1) 0%,
+    rgba(61, 173, 197, 1) 31%,
+    rgba(163, 181, 185, 0.35898109243697474) 33%,
+    rgba(237, 237, 238, 0.014749262536873142) 100%
+  );
 
+  background: ${({ estado }) => !estado && '#EBEBEB'};
 `;
 
 const CommentBodyContainer = styled.div`
@@ -307,7 +335,6 @@ const CommentBodyContainer = styled.div`
 const CommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  
 `;
 
 const CommentBody = styled.div`
@@ -319,18 +346,18 @@ const CommentBody = styled.div`
 
 const CommentGroup = styled.div`
   display: flex;
-  
 `;
 
 const CommentType = styled.label`
   display: flex;
   font-size: 16px;
-  color: ${({ estado }) => (estado ? 'grey' : 'black')};
+  color: ${({ estado }) => (estado ? 'black' : 'gray')};
 `;
 
 const CommentData = styled.span`
   margin-left: 6px;
   font-size: 16px;
+  color: ${({ estado }) => (estado ? 'black' : 'gray')};
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
