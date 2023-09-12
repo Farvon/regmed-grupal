@@ -15,7 +15,7 @@ import AddComment from './AddComment';
 import CloseDiagnosis from './CloseDiagnosis';
 
 //Recibe el DNI buscado
-const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
+const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId}) => {
   const [searchParams] = useSearchParams();
   const [paciente, setPaciente] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +24,7 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
   const [modalContent, setModalContent] = useState();
   const [modalTitle, setModalTitle] = useState();
   const [diagnoticById, setDiagnoticById] = useState();
+  
 
   //Busca el paciente en la base de datos
   useEffect(() => {
@@ -121,8 +122,14 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
 
             <PersonalInfoContainer>
               <PersonalInfoHeader>
-                <PersonalInfoTitle>{diagnoticById.comentario_diag}</PersonalInfoTitle>
+                <PersonalInfoTitle>Comentario Inicial</PersonalInfoTitle>
               </PersonalInfoHeader>
+              <PersonalInfoHeader>
+                <InitialComent>{diagnoticById.comentario_diag}</InitialComent>
+              </PersonalInfoHeader>
+              <PersonalInfoHeader>
+                <InitialComentUserName>{user.name}</InitialComentUserName>
+              </PersonalInfoHeader> 
 
               <CommentBodyContainer>
                 {currentComments && currentComments.length === 0 ? (
@@ -146,9 +153,16 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                           <CommentData>{item.comentario_hist}</CommentData>
                         </CommentGroup>
                       </CommentBody>
+                      <CommentBody>
+                        <CommentGroup>
+                          <CommentType>estado:</CommentType>
+                          <CommentData>{item.estado_diag}</CommentData>
+                        </CommentGroup>
+                      </CommentBody>
                       <ViewCommentBottonContainer>
                         <ButtonLink
                           fontSize="14px"
+                          estado={item.estado_diag}
                           onClick={() => {
                             setShowModal(true);
                             setModalContent(<ViewComment comment={item} />);
@@ -167,8 +181,9 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                     {/* Si el usuario no es "Guest" puede agregar
                     comentarios */}
                   
-                      {user && user.username !== 'guest' && (
-                        <AddDiagnosisButton
+                      {user && user.username !== 'guest' && (          
+       
+                          <AddDiagnosisButton disabled={!diagnoticById.estado_diag}
                           onClick={() => {
                             setShowModal(true);
                             setModalContent(
@@ -179,17 +194,18 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                                 name={user.name}
                               />
                             );
-                            setModalTitle('Agregar Comentario');
+                            setModalTitle('Nuevo Comentario');
                           }}
-                        >
+                          >
                           Nuevo Comentario
                         </AddDiagnosisButton>
+
                       )}
   
                           {/* Si el usuario no es "Guest" puede agregar
                     cerrar el diagnostico */}
                     {user && user.username !== 'guest' && (
-                      <CloseDiagnosisButton
+                      <CloseDiagnosisButton  disabled={!diagnoticById.estado_diag}
                         onClick={() => {
                           setShowModal(true);
                           setModalContent(
@@ -273,13 +289,23 @@ const PersonalInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: white;
-  padding: 8px;
+  margin: 0px 0px 00px 10px;
+  padding: 4px;
 `;
 
 const PersonalInfoTitle = styled.span`
   font-weight: bold;
   font-size: 24px;
 `;
+const InitialComent = styled.span`
+  font-size: 20px;
+`;
+
+const InitialComentUserName = styled.span`
+  font-style: italic;
+  font-size: 20px;
+`;
+
 
 const PersonalInfoBody = styled.div`
   display: flex;
@@ -406,6 +432,13 @@ const AddDiagnosisButton = styled.button`
     background: #3498db;
     background-image: linear-gradient(to bottom, #3498db, #2980b9);
   }
+
+  :disabled {
+    background: grey;
+    font-size: 18px;
+    opacity: 0.8;
+  }
+
 `;
 
 const CloseDiagnosisButton = styled.button`
@@ -432,10 +465,14 @@ const CloseDiagnosisButton = styled.button`
     background: #f5412a;
     background-image: linear-gradient(to bottom, #f5412a, #fa5f4b);
   }
+
+  :disabled {
+    background: grey;
+    font-size: 18px;
+    opacity: 0.8;
+  }
+
 `;
-
-
-
 
 const DownloadButton = styled.button`
   display: flex;

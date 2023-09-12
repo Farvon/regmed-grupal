@@ -8,6 +8,7 @@ import ModalTemplate from './ModalTemplate';
 import EditInfo from './EditInfo';
 import AddDiagnosis from './AddDiagnosis';
 import ButtonLink from './ButtonLink';
+import ButtonLinkPaciente from './ButtonLinkPaciente';
 import SideBar from './SideBar';
 import Qr from './Qr';
 import PDF from './PDF';
@@ -116,35 +117,44 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
               </PersonalInfoHeader>
               <CommentBodyContainer>
                 {currentDiagnostic.map((item, idx) => (
-                  <CommentContainer key={idx}>
+                  <CommentContainer key={idx} estado={item.estado_diag} >
                     <CommentHeader>
                       <CommentGroup>
-                        <CommentType>Fecha:</CommentType>
+                        <CommentType estado={item.estado_diag}>Fecha:</CommentType>
                         <CommentData>{item.fecha_diag}</CommentData>
                       </CommentGroup>
                       <CommentGroup>
-                        <CommentType>Médico:</CommentType>
+                        <CommentType estado={item.estado_diag}>Médico:</CommentType>
                         <CommentData>{item.medico_diag}</CommentData>
                       </CommentGroup>
                       <CommentGroup>
-                        <CommentType>Especialidad:</CommentType>
+                        <CommentType estado={item.estado_diag}>Especialidad:</CommentType>
                         <CommentData>{item.rama_diag}</CommentData>
+                      </CommentGroup>
+                      <CommentGroup>
+                        <CommentType estado={item.estado_diag}>Estado del Diagnóstico:</CommentType>
+                        {item.estado_diag ? (
+                        <CommentData>Abierto</CommentData>
+                        ):(
+                          <CommentData>Cerrado</CommentData>
+                        )}
                       </CommentGroup>
                     </CommentHeader>
                     <CommentBody>
                       <CommentGroup>
-                        <CommentType>Comentario:</CommentType>
+                        <CommentType estado={item.estado_diag}>Comentario:</CommentType>
                         <CommentData>{item.init_diag}</CommentData>
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
                       <Link to="/diagnostic">
-                        <ButtonLink
+                        <ButtonLinkPaciente
                           fontSize="14px"
+                          estado={item.estado_diag}
                           onClick={() => setDiagnosticId(item._id)}
                         >
                           Ver Diagnóstico
-                        </ButtonLink>
+                        </ButtonLinkPaciente>
                       </Link>
                     </ViewCommentBottonContainer>
                   </CommentContainer>
@@ -281,6 +291,10 @@ const CommentContainer = styled.div`
   box-shadow: 0 1px 1px black;
   padding: 8px;
   margin: 4px;
+
+  background: ${({ estado }) => (estado ? '' : '#B5B2B2')};
+  
+
 `;
 
 const CommentBodyContainer = styled.div`
@@ -293,6 +307,7 @@ const CommentBodyContainer = styled.div`
 const CommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  
 `;
 
 const CommentBody = styled.div`
@@ -304,12 +319,13 @@ const CommentBody = styled.div`
 
 const CommentGroup = styled.div`
   display: flex;
+  
 `;
 
 const CommentType = styled.label`
   display: flex;
   font-size: 16px;
-  color: gray;
+  color: ${({ estado }) => (estado ? 'grey' : 'black')};
 `;
 
 const CommentData = styled.span`
