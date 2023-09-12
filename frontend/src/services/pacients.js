@@ -81,6 +81,21 @@ const editPacientInfo = (dni, newInfo) => {
   return request.then((response) => response.data);
 };
 
+//Actualiza el estado del diagnóstico
+const closeDiagnosisPacient = (dni, newState) => {
+  const config = {
+    //Enviamos por header el token
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const request = axios.put(`${baseUrl}/update-state-diagnosis/${dni}`, newState, config);
+
+  return request.then((response) => response.data);
+};
+
+
 export {
   getAllPacients,
   getPacientByDni,
@@ -89,4 +104,5 @@ export {
   postNewPacient,
   editPacientInfo,
   getPacientLogByDni,
+  closeDiagnosisPacient,
 };

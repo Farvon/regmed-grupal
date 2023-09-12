@@ -12,6 +12,7 @@ import Qr from './Qr';
 import PDF from './PDF';
 import ViewComment from './ViewComment';
 import AddComment from './AddComment';
+import CloseDiagnosis from './CloseDiagnosis';
 
 //Recibe el DNI buscado
 const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
@@ -178,7 +179,7 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                                 name={user.name}
                               />
                             );
-                            setModalTitle('Agregar Diagnóstico');
+                            setModalTitle('Agregar Comentario');
                           }}
                         >
                           Nuevo Comentario
@@ -192,14 +193,14 @@ const DiagnosticoPaciente = ({ dni, setDni, user, diagnosticId }) => {
                         onClick={() => {
                           setShowModal(true);
                           setModalContent(
-                            <AddComment
+                            <CloseDiagnosis
                               dni={paciente.dni}
                               diagnosticId={diagnosticId}
                               setShowModal={setShowModal}
                               name={user.name}
                             />
                           );
-                          setModalTitle('Agregar Diagnóstico');
+                          setModalTitle('Cerrar Diagnóstico');
                         }}
                       >
                         Cerrar Diagnóstigo
@@ -423,13 +424,13 @@ const CloseDiagnosisButton = styled.button`
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 
   :hover {
-    background: #fa5f4b;
-    background-image: linear-gradient(to bottom, #fa5f4b, #f5412a);
+    background: #eb6434;
+    background-image: linear-gradient(to bottom, #fa5f4b, #eb6434);
   }
 
   :active {
-    background: #3498db;
-    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    background: #f5412a;
+    background-image: linear-gradient(to bottom, #f5412a, #fa5f4b);
   }
 `;
 
