@@ -209,4 +209,26 @@ pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {
     });
 });
 
+
+
+
+
+
+
+//Actualiza el estado del diagnostico del paciente
+pacientsRouter.put('/update-state-diagnosis/:dni', userExtractor, (request, response) => {
+  const { dni } = request.params;
+    const {
+      diagnosticId,
+      estado_diag,
+      motivo_cierre,
+    } = request.body;
+
+    const updateState = {
+      estado_diag: estado_diag,
+      motivo_cierre: motivo_cierre,
+    };
+
+});
+
 module.exports = pacientsRouter;
