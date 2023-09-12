@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import useAlert from '../hooks/useAlert';
 import { closeDiagnosisPacient } from '../services/pacients';
+import { putPacientLog } from '../services/logs';
 
 const CloseDiagnosis = ({ dni, name, setShowModal, diagnosticId }) => {
   const [medicalName, setMedicalName] = useState(name);
@@ -18,12 +19,29 @@ const CloseDiagnosis = ({ dni, name, setShowModal, diagnosticId }) => {
       diagnosticId: diagnosticId,
     };
 
+    const newLog = {
+      fecha: new Date().toDateString(),
+      dni: dni,
+      medico: medicalName,
+      accion: 'Cierre de Diagnóstico',
+      contenido: 'Motivo de cierre: ' + motivo_cierre,
+    };
+
     closeDiagnosisPacient(dni, newState)
       .then(() => {
         alertSuccess('Diagnóstico cerrado guardado correctamente');
         setMedicalName('');
         setMotivoCierre('');
         setShowModal(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        alertError('Ha ocurrido un error. Intente nuevamente');
+      });
+
+    putPacientLog(newLog)
+      .then(() => {
+        console.log('Log guardado correctamente');
       })
       .catch((err) => {
         console.error(err);
@@ -118,6 +136,7 @@ const CloseDiagnosisButton = styled.button`
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 
   :disabled {
+    font-size: 18px;
     opacity: 0.2;
   }
 

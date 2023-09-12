@@ -224,10 +224,39 @@ pacientsRouter.put('/update-state-diagnosis/:dni', userExtractor, (request, resp
       motivo_cierre,
     } = request.body;
 
-    const updateState = {
-      estado_diag: estado_diag,
-      motivo_cierre: motivo_cierre,
-    };
+    Pacient.findOne({ dni })
+      .then((paciente) => {
+        if (!paciente) {
+          // Manejar el caso en el que no se encuentre el paciente
+          throw new Error('Paciente no encontrado');
+        }
+
+        // Encontrar el diagnóstico específico dentro del array hist_diagnosticos
+        const diagnostico = paciente.hist_diagnosticos.find(
+          (diag) => diag._id.toString() === diagnosticId
+        ); // Reemplaza con el ID del diagnóstico correspondiente
+
+
+        if (!diagnostico) {
+          // Manejar el caso en el que no se encuentre el diagnóstico
+          throw new Error('Diagnóstico no encontrado');
+        }
+
+        // Actualizando el estado del diagnóstico
+        diagnostico.estado_diag = estado_diag;
+        diagnostico.motivo_cierre = motivo_cierre;
+
+        // Guardar los cambios realizados en el paciente
+        return paciente.save();
+      })
+      .then((diagnosticoActualido) => {
+        // Devolvemos el paciente actualizado
+        response.json(diagnosticoActualido);
+      })
+      .catch((error) => {
+        // Manejar los errores ocurridos durante el proceso
+        console.error('Error al agregar el comentario:', error.message);
+      });
 
 });
 

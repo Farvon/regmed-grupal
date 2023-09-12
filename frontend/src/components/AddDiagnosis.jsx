@@ -46,7 +46,7 @@ const AddDiagnosis = ({ dni, name, setShowModal }) => {
         alertError('Ha ocurrido un error. Intente nuevamente');
       });
 
-    putPacientLog(dni, newLog)
+    putPacientLog(newLog)
       .then(() => {
         console.log('Log guardado correctamente');
       })
