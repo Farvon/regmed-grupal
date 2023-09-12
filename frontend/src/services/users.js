@@ -1,5 +1,6 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:3001/api/users';
+//const baseUrl = 'http://localhost:3001/api/users';
+const baseUrl = 'http://192.168.1.27:3001/api/users';
 
 //Registra nuevo usuario
 export const registerNewUser = async (newUser) => {

@@ -8,6 +8,7 @@ import LayoutAuth from '../layout/LayoutAuth';
 import InfoPaciente from '../components/InfoPaciente';
 import DiagnosticoPaciente from '../components/DiagnosticoPaciente';
 import AddPaciente from '../components/AddPaciente';
+import InfoPacienteMobil from '../components/InfoPacienteMobil';
 
 //Componente para usuarios ya logueados
 
@@ -32,7 +33,7 @@ const AuthRouter = () => {
           name="menu"
           element={
             <>
-              {/* Su el usuario es Admin nos deriva a su respectiva página
+              {/* Si el usuario es Admin nos deriva a su respectiva página
             sino nos deriva al WelcomePage */}
               {user && user.username === 'admin' ? (
                 <AdminContainer />
@@ -63,6 +64,21 @@ const AuthRouter = () => {
           element={
             <>
               <InfoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                setDiagnosticId={setDiagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
+          path="/mobil"
+          name="mobil"
+          element={
+            <>
+              <InfoPacienteMobil
                 dni={dni}
                 setDni={setDni}
                 user={user}
@@ -104,6 +120,7 @@ const AuthRouter = () => {
           exact
         />
       </Routes>
+      
     </LayoutAuth>
   );
 };
