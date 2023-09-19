@@ -1,24 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 
 import useAlert from '../hooks/useAlert';
 import { getUsers, enableUser } from '../services/users';
 import { getLogByDni } from '../services/logs';
-import Log from './Log';
-import MyPdfViewer from './MyPdfViewer';
-
 //Página del usuario Admin donde se habilitan los nuevos usuarios.
 const AdminContainer = () => {
   const [users, setUsers] = useState();
   const { alertSuccess, alertError } = useAlert();
-  const [showHabilitar, setShowHabilitar] = useState(true); /*  */
-  const [showLogs, setShowLogs] = useState(false); /*  */
+  const [showHabilitar, setShowHabilitar] = useState(true);
+  const [showLogs, setShowLogs] = useState(false);
   const [filterDni, setFilterDni] = useState('');
-  const [minDate, setMinDate] = useState('');
-  const [maxDate, setMaxDate] = useState('');
-
   const [logs, setLogs] = useState();
 
   useEffect(() => {
@@ -33,33 +25,7 @@ const AdminContainer = () => {
 
   const handleFilterSearch = (dni) => {
     getLogByDni(dni).then((res) => {
-      setLogs(res);
-    });
-  };
-
-  const pdfRef = useRef();
-
-  const Download = () => {
-    const quotes = pdfRef.current;
-    html2canvas(quotes).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4', true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.max(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 10;
-      pdf.addImage(
-        imgData,
-        'PNG',
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
-      pdf.save('Logs.pdf');
+      setLogs(res), console.log(res);
     });
   };
 
@@ -74,14 +40,12 @@ const AdminContainer = () => {
         <HeaderButton
           onClick={() => (setShowHabilitar(false), setShowLogs(true))}
         >
-          {/* Logs: http://localhost:3001/api/logs */}
           Ver Logs
         </HeaderButton>
       </AdminHeader>
       <AdminBody>
         {showHabilitar && (
           <>
-            {/* If. Si showHabilitar está en true: */}
             <HabilitaContainer>
               <h1>Habilitar Nuevos Usuarios</h1>
             </HabilitaContainer>
@@ -125,37 +89,27 @@ const AdminContainer = () => {
                   placeholder="DNI"
                 ></input>
               </Filtros>
-
-              {/* <Filtros>
+              <Filtros>
+                <label>Buscar por Médico</label>
+                <input placeholder="nombre"></input>
+              </Filtros>
+              <Filtros>
                 <label>Buscar por fecha</label>
                 <div>
                   Desde
-                  <input
-                    type="date"
-                    value={minDate}
-                    onChange={(e) => {
-                      setMinDate(e.target.value);
-                    }}
-                  ></input>
+                  <input type="date"></input>
                   Hasta
-                  <input
-                    type="date"
-                    value={maxDate}
-                    onChange={(e) => {
-                      setMaxDate(e.target.value);
-                    }}
-                  ></input>
+                  <input type="date"></input>
                 </div>
-              </Filtros> */}
+              </Filtros>
               <FilterButton onClick={() => handleFilterSearch(filterDni)}>
                 Buscar
               </FilterButton>
-              <FilterButton onClick={() => Download()}>Descargar</FilterButton>
             </FiltroLogContainer>
-            <div ref={pdfRef}>
+            <div>
               {logs &&
                 logs.map((item, index) => {
-                  return <Log item={item} key={index} />;
+                  return <div key={index}>{item.contenido}</div>;
                 })}
             </div>
           </>
@@ -176,7 +130,8 @@ const PageContainer = styled.div`
 const AdminHeader = styled.div`
   display: flex;
   flex-direction: row;
-
+  width: 100%;
+  margin: 0%;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 `;
 
@@ -186,7 +141,6 @@ const HeaderButton = styled.button`
   align-items: center;
   width: 140px;
   margin: 10px 4px;
-  margin-left: 18px;
   color: white;
   padding: 8px 14px 8px 14px;
   font-size: 14px;
@@ -211,8 +165,8 @@ const HeaderButton = styled.button`
 const FiltroLogContainer = styled.div`
   display: flex;
   flex-direction: row;
-
-  padding: 10px 0px;
+  width: 100%;
+  padding: 10px;
   background-color: rgba(237, 237, 237, 0.4);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
@@ -224,7 +178,6 @@ const Filtros = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  margin-left: 18px;
 `;
 
 const FilterButton = styled.button`
@@ -257,14 +210,14 @@ const FilterButton = styled.button`
 const AdminBody = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 64px);
 `;
 
 const HabilitaContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(237, 237, 237, 0.4);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 

@@ -132,26 +132,52 @@ pacientsRouter.put(
   userExtractor,
   (request, response) => {
     const { dni } = request.params;
-    const comment = request.body;
+    const {
+      diagnosticId,
+      fecha_hist,
+      medico_hist,
+      rama_hist,
+      comentario_hist,
+    } = request.body;
 
-    const newComment = {
-      fecha_hist: comment.fecha_hist,
-      medico_hist: comment.medico_hist,
-      rama_hist: comment.rama_hist,
-      comentario_hist: comment.comentario_hist,
-    };
+    Pacient.findOne({ dni })
+      .then((paciente) => {
+        if (!paciente) {
+          // Manejar el caso en el que no se encuentre el paciente
+          throw new Error('Paciente no encontrado');
+        }
 
-    Pacient.findOneAndUpdate(
-      { dni },
-      { $push: { historial: newComment } },
-      { new: true }
-    )
-      .then((result) => {
-        response.json(result);
+        // Encontrar el diagnóstico específico dentro del array hist_diagnosticos
+        const diagnostico = paciente.hist_diagnosticos.find(
+          (diag) => diag._id.toString() === diagnosticId
+        ); // Reemplaza con el ID del diagnóstico correspondiente
+
+        if (!diagnostico) {
+          // Manejar el caso en el que no se encuentre el diagnóstico
+          throw new Error('Diagnóstico no encontrado');
+        }
+
+        // Crear el nuevo comentario
+        const newComment = {
+          fecha_hist: fecha_hist,
+          medico_hist: medico_hist,
+          rama_hist: rama_hist,
+          comentario_hist: comentario_hist,
+        };
+
+        // Agregar el nuevo comentario al array historial del diagnóstico
+        diagnostico.historial.push(newComment);
+
+        // Guardar los cambios realizados en el paciente
+        return paciente.save();
       })
-      .catch((err) => {
-        console.log(err);
-        response.status(400).end();
+      .then((pacienteGuardado) => {
+        // Devolvemos el paciente actualizado
+        response.json(pacienteGuardado);
+      })
+      .catch((error) => {
+        // Manejar los errores ocurridos durante el proceso
+        console.error('Error al agregar el comentario:', error.message);
       });
   }
 );
@@ -181,6 +207,57 @@ pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {
       console.log(err);
       response.status(400).end();
     });
+});
+
+
+
+
+
+
+
+//Actualiza el estado del diagnostico del paciente
+pacientsRouter.put('/update-state-diagnosis/:dni', userExtractor, (request, response) => {
+  const { dni } = request.params;
+    const {
+      diagnosticId,
+      estado_diag,
+      motivo_cierre,
+    } = request.body;
+
+    Pacient.findOne({ dni })
+      .then((paciente) => {
+        if (!paciente) {
+          // Manejar el caso en el que no se encuentre el paciente
+          throw new Error('Paciente no encontrado');
+        }
+
+        // Encontrar el diagnóstico específico dentro del array hist_diagnosticos
+        const diagnostico = paciente.hist_diagnosticos.find(
+          (diag) => diag._id.toString() === diagnosticId
+        ); // Reemplaza con el ID del diagnóstico correspondiente
+
+
+        if (!diagnostico) {
+          // Manejar el caso en el que no se encuentre el diagnóstico
+          throw new Error('Diagnóstico no encontrado');
+        }
+
+        // Actualizando el estado del diagnóstico
+        diagnostico.estado_diag = estado_diag;
+        diagnostico.motivo_cierre = motivo_cierre;
+
+        // Guardar los cambios realizados en el paciente
+        return paciente.save();
+      })
+      .then((diagnosticoActualido) => {
+        // Devolvemos el paciente actualizado
+        response.json(diagnosticoActualido);
+      })
+      .catch((error) => {
+        // Manejar los errores ocurridos durante el proceso
+        console.error('Error al agregar el comentario:', error.message);
+      });
+
 });
 
 module.exports = pacientsRouter;

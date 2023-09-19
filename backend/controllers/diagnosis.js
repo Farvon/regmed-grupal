@@ -1,7 +1,7 @@
 const diagnosisRouter = require('express').Router();
 const Diagnosis = require('../models/Diagnosis');
 
-//veo todos los pacientes
+//veo todos los Diagnósitos
 diagnosisRouter.get('/', (request, response) => {
   Diagnosis.find({}).then((diagnosis) => {
     response.json(diagnosis);

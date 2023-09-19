@@ -6,13 +6,17 @@ import AdminContainer from '../components/AdminContainer';
 import SearchResult from '../components/SearchResult';
 import LayoutAuth from '../layout/LayoutAuth';
 import InfoPaciente from '../components/InfoPaciente';
+import DiagnosticoPaciente from '../components/DiagnosticoPaciente';
 import AddPaciente from '../components/AddPaciente';
+import InfoPacienteMobil from '../components/InfoPacienteMobil';
+import DiagnosticoPacienteMobil from '../components/DiagnosticoPacienteMobil';
 
 //Componente para usuarios ya logueados
 
 const AuthRouter = () => {
   const [user, setUser] = useState();
   const [dni, setDni] = useState();
+  const [diagnosticId, setDiagnosticId] = useState();
 
   useEffect(() => {
     const loggedUserJSON = localStorage.getItem('loggedRegMedUser');
@@ -30,7 +34,7 @@ const AuthRouter = () => {
           name="menu"
           element={
             <>
-              {/* Su el usuario es Admin nos deriva a su respectiva página
+              {/* Si el usuario es Admin nos deriva a su respectiva página
             sino nos deriva al WelcomePage */}
               {user && user.username === 'admin' ? (
                 <AdminContainer />
@@ -60,7 +64,57 @@ const AuthRouter = () => {
           name="info"
           element={
             <>
-              <InfoPaciente dni={dni} setDni={setDni} user={user} />
+              <InfoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                setDiagnosticId={setDiagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
+          path="/mobil"
+          name="mobil"
+          element={
+            <>
+              <InfoPacienteMobil
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                setDiagnosticId={setDiagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
+          path="/diagnostic"
+          name="disgnostic"
+          element={
+            <>
+              <DiagnosticoPaciente
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+              />
+            </>
+          }
+          exact
+        />
+        <Route
+          path="/diagnosticMobil"
+          name="disgnosticMobil"
+          element={
+            <>
+              <DiagnosticoPacienteMobil
+                dni={dni}
+                setDni={setDni}
+                user={user}
+                diagnosticId={diagnosticId}
+              />
             </>
           }
           exact
@@ -70,7 +124,7 @@ const AuthRouter = () => {
           name="add-pacient"
           element={
             <>
-              <AddPaciente />
+              <AddPaciente user={user} />
             </>
           }
           exact

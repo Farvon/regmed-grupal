@@ -12,22 +12,13 @@ const historialSchema = new Schema({
 
 // Creamos el esquema de los diagnósticos
 const diagnosticoSchema = new Schema({
-  //automatico
   fecha_diag: String,
-  //automatico
   medico_diag: String,
-  //yo
   rama_diag: String,
-
   init_diag: String,
-
-  //yo
   comentario_diag: String,
-  //automatico (por defecto abierto)
   estado_diag: Boolean,
-  //automatico (por defecto vacio)
   motivo_cierre: String,
-  //comentarios yo
   historial: [historialSchema],
 });
 
