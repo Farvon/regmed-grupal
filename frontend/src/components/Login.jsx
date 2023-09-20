@@ -66,16 +66,16 @@ const Login = ({ setUser }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <LoginButton>Login</LoginButton>
-        </LoginForm>
-        <LoginButton onClick={(e) => handleLogin(e, 'guest')}>
+          <LoginButton onClick={(e) => handleLogin(e, 'guest')}>
           Ingresar como Paciente
         </LoginButton>
-        <div>
+        </LoginForm>
+      <Footer>
           <span>Todavia no estas registrado? </span>
           <ButtonLink fontSize="16px">
             <StyledLink to="sign-up">Sign up</StyledLink>
           </ButtonLink>
-        </div>
+      </Footer>
       </FormContainer>
     </LoginContainer>
   );
@@ -90,28 +90,27 @@ const LoginContainer = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #3dadc5;
+  background-image: url(../../bg-login.jpg);
+  background-size:cover;
 `;
 
 const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  min-height: 300px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 16px;
+max-width: auto;
+background: #F8F9FD;
+background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+border-radius: 40px;
+padding: 25px 35px;
+border: 5px solid rgb(255, 255, 255);
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+margin: 20px;
 `;
 
 const LogoContainer = styled(Link)`
-  display: flex;
-  align-items: center;
-  width: 50%;
-  height: 15vh;
-  min-height: 80px;
+display: flex;
+align-items: center;
+width: 100%;
+height: 15vh;
+min-height: 80px;
 `;
 
 const LoginForm = styled.form`
@@ -120,50 +119,62 @@ const LoginForm = styled.form`
   justify-content: center;
   align-items: center;
   width: 20vw;
-  height: 200px;
+  height: auto;
 `;
 
 const LoginInput = styled.input`
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 2px solid lightgray;
-  border-radius: 10px;
+width: 80%;
+background: white;
+border: none;
+padding: 15px 15px;
+border-radius: 20px;
+margin-top: 15px;
+box-shadow: #cff0ff 0px 10px 10px -5px;
+border-inline: 2px solid transparent;
+::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+::placeholder {
+  color: rgb(170, 170, 170);
+}
 `;
 
 const LoginButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  color: white;
-  padding: 12px 24px 12px 24px;
-  font-size: 18px;
-  border-radius: 8px;
-  background: #3498db;
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  border: none;
-  transition: all 0.3s ease;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+display: block;
+width: 90%;
+font-weight: bold;
+background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+color: white;
+padding-block: 15px;
+margin-top: 30px;
+border-radius: 20px;
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+border: none;
+transition: all 0.2s ease-in-out;
+:disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
 
-  :disabled {
-    opacity: 0.2;
-    pointer-events: none;
-  }
+:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
 
-  :hover {
-    background: #3cb0fd;
-    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  }
-
-  :active {
-    background: #3498db;
-    background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  }
+:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
 `;
 
 const StyledLink = styled(Link)`
   all: unset;
+`;
+
+const Footer = styled.footer`
+font-family: 'Syne';
+font-size:16px;
+position:relative;
+top:1.5em;
+left:2.5em;
 `;

@@ -13,8 +13,8 @@ const Home = () => {
       />
       <SiteDescriptionContainer>
         <DescriptionTitle>
-          <h1>Tu registro de
-          <span>Historias Clínicas</span></h1>
+          <h1>REGISTRO DE 
+          <span>HISTORIAS CLÍNCAS</span></h1>
         </DescriptionTitle>
         <DescriptionText>
           Nuestra aplicación médica ofrece acceso fácil y seguro a toda la información de atención de pacientes en un solo lugar. 
@@ -61,9 +61,10 @@ const SiteDescriptionContainer = styled.div`
 `;
 
 const DescriptionTitle = styled.h1`
-font-size: 1em;
-font-family: "cooper-bold";
-line-height: 1.2;
+font-size: 0.9em;
+font-family: 'Syne';
+font-weight:bold;
+line-height: 77px;
 color:#4b4d5b;
 span:first-child {
 margin-left: 14px;
@@ -72,12 +73,13 @@ color: #2c86c2;
 h1 {
   position: relative;
   text-decoration: none;
+  top:1em;
 }
 
 h1::before {
   content: '';
   position: absolute;
-  width: 77%;
+  width: 96%;
   height: 4px;
   border-radius: 4px;
   background-color:#3498db;
@@ -96,8 +98,8 @@ h1:hover::before {
 `;
 
 const DescriptionText = styled.span`
-  font-size: 19px;
-  font-family: "cooper-bold";
+  font-size: 0.9em;
+  font-family: "Syne";
   line-height: 2.1;
   color: #9d9d9d;
   width:30vw;

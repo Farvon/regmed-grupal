@@ -15,13 +15,13 @@ const HeaderHome = () => {
       </LogoContainer>
       <NavBarContainer>
         <a href="http://todosn.com/documentacion.php" target="_blank">
-          DOCUMENTACION
-        </a>
-        <a href="http://todosn.com/about.php" target="_blank">
-          SOBRE NOSOTROS
+          NOSOTROS
         </a>
         <a href="http://todosn.com/about.php" target="_blank">
           TRABAJOS
+        </a>
+        <a href="http://todosn.com/about.php" target="_blank">
+          DOCUMENTACION
         </a>
       </NavBarContainer>
       <LoginContainer>
@@ -58,8 +58,9 @@ const Logo = styled.div`
 `;
 
 const SpanLogo = styled.span`
-  font-family: "cooper-bold";
-  font-size: 28px;
+  font-family: "Syne";
+
+  font-size: 35px;
   font-weight:800;
   margin-left: 10px;
   color:#4b4d5b;
@@ -73,12 +74,12 @@ const NavBarContainer = styled.div`
   margin-right:9em;
 
   a {
-    font-family: "cooper-medium";
+    font-family: "Syne";
     font-size:14px;
     all: unset;
     cursor: pointer;
     font-weight: 600;
-    margin: 0 1em;
+    margin: 0 0.5em;
     line-height:42px;
   }
 
