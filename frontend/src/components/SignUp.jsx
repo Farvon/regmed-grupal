@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import useAlert from '../hooks/useAlert';
 import { registerNewUser } from '../services/users';
 import { ILogo } from '../assets/icons/logo';
+import Home from './Home';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -41,8 +43,11 @@ const SignUp = () => {
 
   return (
     <NewUserContainer>
+      <BlurBackground>
+        <Home />
+      </BlurBackground>
       <FormContainer>
-        <LogoContainer>
+        <LogoContainer to="/">
           <ILogo />
         </LogoContainer>
         <LoginForm onSubmit={(e) => handleNewUser(e)}>
@@ -90,7 +95,12 @@ const NewUserContainer = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #3dadc5;
+`;
+
+const BlurBackground = styled.div`
+  position: absolute;
+  z-index: -1;
+  filter: blur(2px);
 `;
 
 const FormContainer = styled.div`
@@ -104,11 +114,12 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  border: 1px solid #3498db;
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled(Link)`
   display: flex;
   align-items: center;
   width: 50%;

@@ -6,6 +6,7 @@ import useAlert from '../hooks/useAlert';
 import { login } from '../services/login';
 import ButtonLink from './ButtonLink';
 import { ILogo } from '../assets/icons/logo';
+import Home from './Home';
 
 const Login = ({ setUser }) => {
   const [username, setUsername] = useState('');
@@ -45,22 +46,15 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    
     <LoginContainer>
-      <BackgroundImgRegistro
-        src="../../registrofondo.jpg"
-        alt="RegMed Background"
-      />
-      <BackgroundImgDoctor
-        src="../../doctor.jpeg"
-        alt="RegMed Background"
-      />
+      <BlurBackground>
+        <Home />
+      </BlurBackground>
       <FormContainer>
         <LogoContainer to="/">
           <ILogo />
         </LogoContainer>
 
-        
         <LoginForm onSubmit={(e) => handleLogin(e, 'user')}>
           <LoginInput
             type="text"
@@ -103,26 +97,11 @@ const LoginContainer = styled.div`
   align-items: center;
 `;
 
-const BackgroundImgRegistro = styled.img`
+const BlurBackground = styled.div`
   position: absolute;
-  top: 10px;
-  left: 10px;
   z-index: -1;
-  width: 50%;
-  min-width: 400px;
   filter: blur(2px);
-  `;
-
-
-const BackgroundImgDoctor = styled.img`
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  width: 50%;
-  min-width: 400px;
-  filter: blur(3px);
-  `;
+`;
 
 const FormContainer = styled.div`
   display: flex;
@@ -132,7 +111,7 @@ const FormContainer = styled.div`
   height: 50vh;
   min-height: 300px;
   background-color: #fff;
-  border: 10px solid lightgray;
+  border: 1px solid #3498db;
   border-radius: 50px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 16px;
