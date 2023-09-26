@@ -9,7 +9,6 @@ import EditInfo from './EditInfo';
 import AddDiagnosis from './AddDiagnosis';
 import ButtonLink from './ButtonLink';
 import ButtonLinkPaciente from './ButtonLinkPaciente';
-import SideBar from './SideBar';
 import Qr from './Qr';
 import PDF from './PDF';
 
@@ -48,7 +47,6 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
 
   return (
     <PageContainer>
-      <SideBar setDni={setDni} user={user} />
       <InfoContainer>
         {/* Si el paciente existe, muestra su información */}
         {paciente && paciente.length !== 0 ? (
@@ -129,23 +127,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                       </CommentGroup>
                       <CommentGroup>
                         <CommentType estado={item.estado_diag}>
-                          Médico:
-                        </CommentType>
-                        <CommentData estado={item.estado_diag}>
-                          {item.medico_diag}
-                        </CommentData>
-                      </CommentGroup>
-                      <CommentGroup>
-                        <CommentType estado={item.estado_diag}>
-                          Especialidad:
-                        </CommentType>
-                        <CommentData estado={item.estado_diag}>
-                          {item.rama_diag}
-                        </CommentData>
-                      </CommentGroup>
-                      <CommentGroup>
-                        <CommentType estado={item.estado_diag}>
-                          Estado del Diagnóstico:
+                          Estado:
                         </CommentType>
                         {item.estado_diag ? (
                           <CommentData estado={item.estado_diag}>
@@ -161,7 +143,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                     <CommentBody>
                       <CommentGroup>
                         <CommentType estado={item.estado_diag}>
-                          Comentario:
+                          Diagnóstico:
                         </CommentType>
                         <CommentData estado={item.estado_diag}>
                           {item.init_diag}
@@ -169,7 +151,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                       </CommentGroup>
                     </CommentBody>
                     <ViewCommentBottonContainer>
-                      <Link to="/diagnostic">
+                      <Link to="/diagnosticMobil">
                         <ButtonLinkPaciente
                           fontSize="14px"
                           estado={item.estado_diag}
@@ -243,9 +225,8 @@ const PageContainer = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  width: calc(100vw - 300px);
-  height: calc(100vh - 64px);
   background: #f4f6f5;
+  width: 100vw;
 `;
 
 const PersonalInfoContainer = styled.div`
@@ -356,7 +337,7 @@ const CommentType = styled.label`
 
 const CommentData = styled.span`
   margin-left: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   color: ${({ estado }) => (estado ? 'black' : 'gray')};
 
   display: -webkit-box;

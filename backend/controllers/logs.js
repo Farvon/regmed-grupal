@@ -26,7 +26,7 @@ logsRouter.get('/:dni', (request, response, next) => {
 });
 
 //Agrego un Log
-logsRouter.post('/', async (request, response) => {
+logsRouter.put('/', async (request, response) => {
   const log = request.body;
 
   //Creo una nueva instancia del modelo de Diagnostico con la info

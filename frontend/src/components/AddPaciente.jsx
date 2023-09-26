@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import useAlert from '../hooks/useAlert';
 
 import { postNewPacient } from '../services/pacients';
+import { putPacientLog } from '../services/logs';
 
-const AddPaciente = () => {
+const AddPaciente = ({ user }) => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [dni, setDni] = useState('');
@@ -53,6 +54,23 @@ const AddPaciente = () => {
       .then(() => {
         alertSuccess('Paciente creado correctamente');
         handleClear();
+      })
+      .catch((err) => {
+        console.error(err);
+        alertError('Ha ocurrido un error. Intente nuevamente');
+      });
+
+    const newLog = {
+      fecha: new Date().toDateString(),
+      dni: dni,
+      medico: user.name,
+      accion: 'Se ingresa Paciente',
+      contenido: 'Se carga paciente en sistema',
+    };
+
+    putPacientLog(newLog)
+      .then(() => {
+        console.log('Log guardado correctamente');
       })
       .catch((err) => {
         console.error(err);

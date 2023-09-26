@@ -15,13 +15,13 @@ const HeaderHome = () => {
       </LogoContainer>
       <NavBarContainer>
         <a href="http://todosn.com/documentacion.php" target="_blank">
-          Documentación
+          DOCUMENTACION
         </a>
         <a href="http://todosn.com/about.php" target="_blank">
-          Sobre nosotros
+          SOBRE NOSOTROS
         </a>
         <a href="http://todosn.com/about.php" target="_blank">
-          Trabajos
+          TRABAJOS
         </a>
       </NavBarContainer>
       <LoginContainer>
@@ -36,10 +36,11 @@ const HeaderHome = () => {
 export default HeaderHome;
 
 const HeaderContainer = styled.header`
+  
   width: 100vw;
   height: 96px;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   padding: 32px;
   box-sizing: border-box;
@@ -53,27 +54,32 @@ const LogoContainer = styled.div`
 
 const Logo = styled.div`
   width: 70px;
-  margin-left: 8px;
+  
 `;
 
 const SpanLogo = styled.span`
   font-family: "cooper-bold";
-  font-size: 30px;
-  margin-left: 20px;
+  font-size: 28px;
+  font-weight:800;
+  margin-left: 10px;
   color:#4b4d5b;
 `;
 
 const NavBarContainer = styled.div`
+
   display: flex;
-  justify-content: center;
-  color:#767a83;
-  
+  justify-content:center;
+  color:#4f4f4f;
+  margin-right:9em;
+
   a {
     font-family: "cooper-medium";
+    font-size:14px;
     all: unset;
     cursor: pointer;
-    font-weight: 500;
-    margin: 0 8px;
+    font-weight: 600;
+    margin: 0 1em;
+    line-height:42px;
   }
 
   a:hover {

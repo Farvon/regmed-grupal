@@ -1,6 +1,7 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:3001/api/pacients';
-const baseUrlLogs = 'http://localhost:3001/api/logs';
+//const baseUrl = 'http://localhost:3001/api/pacients';
+const baseUrl = 'http://192.168.1.27:3001/api/pacients'; //joa
+//const baseUrl = 'http://192.168.1.20:3001/api/pacients'; //facu
 
 const user = JSON.parse(localStorage.getItem('loggedRegMedUser'));
 const token = user && user.token && `Bearer ${user.token}`;
@@ -55,19 +56,6 @@ const putPacientComment = (dni, comment) => {
   return request.then((response) => response.data);
 };
 
-//Agrega Log a paciente
-const putPacientLog = (dni, log) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-
-  const request = axios.put(`${baseUrlLogs}/`, log, config);
-
-  return request.then((response) => response.data);
-};
-
 //Crea nuevo Paciente
 const postNewPacient = (newPacient) => {
   const config = {
@@ -95,6 +83,24 @@ const editPacientInfo = (dni, newInfo) => {
   return request.then((response) => response.data);
 };
 
+//Actualiza el estado del diagnóstico
+const closeDiagnosisPacient = (dni, newState) => {
+  const config = {
+    //Enviamos por header el token
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const request = axios.put(
+    `${baseUrl}/update-state-diagnosis/${dni}`,
+    newState,
+    config
+  );
+
+  return request.then((response) => response.data);
+};
+
 export {
   getAllPacients,
   getPacientByDni,
@@ -102,6 +108,6 @@ export {
   putPacientDiagnosis,
   postNewPacient,
   editPacientInfo,
-  putPacientLog,
   getPacientLogByDni,
+  closeDiagnosisPacient,
 };

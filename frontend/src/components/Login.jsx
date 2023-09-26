@@ -6,6 +6,7 @@ import useAlert from '../hooks/useAlert';
 import { login } from '../services/login';
 import ButtonLink from './ButtonLink';
 import { ILogo } from '../assets/icons/logo';
+import Home from './Home';
 
 const Login = ({ setUser }) => {
   const [username, setUsername] = useState('');
@@ -46,10 +47,14 @@ const Login = ({ setUser }) => {
 
   return (
     <LoginContainer>
+      <BlurBackground>
+        <Home />
+      </BlurBackground>
       <FormContainer>
         <LogoContainer to="/">
           <ILogo />
         </LogoContainer>
+
         <LoginForm onSubmit={(e) => handleLogin(e, 'user')}>
           <LoginInput
             type="text"
@@ -90,7 +95,12 @@ const LoginContainer = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #3dadc5;
+`;
+
+const BlurBackground = styled.div`
+  position: absolute;
+  z-index: -1;
+  filter: blur(2px);
 `;
 
 const FormContainer = styled.div`
@@ -101,7 +111,8 @@ const FormContainer = styled.div`
   height: 50vh;
   min-height: 300px;
   background-color: #fff;
-  border-radius: 20px;
+  border: 1px solid #3498db;
+  border-radius: 50px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 16px;
 `;
