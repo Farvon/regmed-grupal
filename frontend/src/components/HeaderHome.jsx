@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import { ILogo } from '../assets/icons/logo';
 
 const HeaderHome = () => {
@@ -63,6 +62,7 @@ const SpanLogo = styled.span`
   font-weight:800;
   margin-left: 10px;
   color:#4b4d5b;
+  
 `;
 
 const NavBarContainer = styled.div`
