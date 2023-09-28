@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import LogoutIcon from '@mui/icons-material/Logout';
+=======
+
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+<<<<<<< HEAD
 import { ILogo } from '../assets/icons/logo';
 const settings = ['Logout'];
 
 
+=======
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { ILogo } from '../assets/icons/logo';
+const settings = ['Logout'];
+
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 const HeaderComponent = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -44,8 +55,13 @@ const HeaderComponent = () => {
             {/* Avatar */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+<<<<<<< HEAD
                 <Avatar  alt="Menu">
                   <LogoutIcon color="primary" />
+=======
+                <Avatar alt="Menu">
+                  <AccountCircleIcon />
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
                 </Avatar>
               </IconButton>
             </Tooltip>
@@ -87,23 +103,35 @@ const AppBar = styled.div`
 `;
 
 const Container = styled.div`
+<<<<<<< HEAD
   
   width: 2560px;
   background-color: #3dadc5;
   padding 0 40px;
   
+=======
+  width: 2560px;
+  background-color: #3dadc5;
+  padding 0 40px;
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 `;
 
 const Anchor = styled.a`
   text-decoration: none;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 `;
 
 const Box = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
+<<<<<<< HEAD
   height:4.7em;
+=======
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 `;
 
 const Toolbar = styled.div`
@@ -121,9 +149,16 @@ const ILogoContainer = styled.div`
 
 const Span = styled.span`
   font-family: 'Roboto', sans-serif;
+<<<<<<< HEAD
   font-weight: 500;
   color: white;
   font-size:2em;
   
 `;
 
+=======
+  letter-spacing: 5px;
+  font-weight: 500;
+  color: white;
+`;
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
