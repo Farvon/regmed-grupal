@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import Signos from './Signos';
-=======
-
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 import Box from '@mui/material/Box';
 
 //Componente para la barra lateral
@@ -23,10 +19,6 @@ const SideBar = ({ setDni, user }) => {
         sx={{
           width: '100%',
           height: '100%',
-<<<<<<< HEAD
-=======
-          backgroundColor: '#010F25',
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
         }}
       >
         <InputBuscador
@@ -46,15 +38,11 @@ const SideBar = ({ setDni, user }) => {
             </StyledButton>
           </StyledLink>
         )}
-<<<<<<< HEAD
       
       </Box>
       <Animacion>
       <Signos/>
       </Animacion>
-=======
-      </Box>
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
     </SideContainer>
   );
 };
@@ -65,20 +53,13 @@ const SideContainer = styled.div`
   display: flex;
   width: 300px;
   height: calc(100vh - 64px);
-<<<<<<< HEAD
   background-image: url(./side-bar.jpeg);
 
-=======
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 `;
 
 const InputBuscador = styled.input`
   display: flex;
-<<<<<<< HEAD
   margin: 30% auto 5% auto;
-=======
-  margin: 10% auto 5% auto;
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
   padding: 0px 12px;
   width: 80%;
   height: 40px;
@@ -114,12 +95,9 @@ const StyledButton = styled.button`
     background-color: #3dadc5;
   }
 `;
-<<<<<<< HEAD
 
 const Animacion = styled.div`
 position:absolute;
 top:26em;
 left:7em;
 `;
-=======
->>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
