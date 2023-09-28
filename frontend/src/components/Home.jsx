@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderHome from './HeaderHome';
+<<<<<<< HEAD
 import Signos from './Signos';
+=======
+import Animation from './Animation';
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 
 const Home = () => {
   return (
@@ -23,7 +27,15 @@ const Home = () => {
         </DescriptionText>
       </SiteDescriptionContainer>
       <Footer>
+<<<<<<< HEAD
         <Signos/><Signos/>
+=======
+<<<<<<< HEAD
+        <Signos />
+=======
+        <Animation />
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
+>>>>>>> main
       </Footer>
     </HomeContainer>
   );
@@ -37,9 +49,12 @@ const HomeContainer = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
+<<<<<<< HEAD
   background-image: url(./bg-home.jpg);
   background-size:cover;
   z-index:100;
+=======
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
 `;
 
 const BackgroundImg = styled.img`
@@ -100,7 +115,11 @@ const DescriptionTitle = styled.h1`
 
 const DescriptionText = styled.span`
   font-size: 19px;
+<<<<<<< HEAD
   font-family:'cooper-bold';
+=======
+  font-family: 'cooper-bold';
+>>>>>>> 7ce146c124fd31e5a5ec471494f59c934cfa2608
   line-height: 2.1;
   color: #9d9d9d;
   width: 30vw;
