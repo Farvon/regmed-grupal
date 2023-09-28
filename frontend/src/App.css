@@ -18,9 +18,7 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-image: url(../public/bg-1.jpg);
-  background-size: cover;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,17 +33,17 @@ body {
 
 .loading svg polyline#back {
   fill: none;
-  stroke: #ff4d5033;
-  stroke-width: 6px;
+  stroke: #059db159;
+
 }
 
 .loading svg polyline#front {
   fill: none;
-  stroke: #ff4d4f;
+  stroke:#009f9a;
   stroke-dasharray: 48, 144;
   stroke-dashoffset: 192;
   animation: dash_682 1.4s linear infinite;
-  stroke-width: 6px;
+  
 }
 
 @keyframes dash_682 {
@@ -58,3 +56,55 @@ body {
   }
 }
 
+.card-welcome {
+  border: 3px solid #009f9a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 30px 20px;
+  color: #009f9a;
+  border-radius: 45px;
+}
+
+.App-logo {
+  pointer-events: none;
+  margin-top: 1em;
+}
+
+.App-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #009f9a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: 3px solid #27aaa6;
+  border-radius: 5em;
+  margin-top: 20px;
+  transition: 0.2s;
+}
+
+.App-button:hover {
+  color: #009f9a;
+  background-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 50s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

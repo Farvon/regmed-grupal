@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import Signos from './Signos';
 import Box from '@mui/material/Box';
 
 //Componente para la barra lateral
@@ -19,7 +19,6 @@ const SideBar = ({ setDni, user }) => {
         sx={{
           width: '100%',
           height: '100%',
-          backgroundColor: '#010F25',
         }}
       >
         <InputBuscador
@@ -39,7 +38,11 @@ const SideBar = ({ setDni, user }) => {
             </StyledButton>
           </StyledLink>
         )}
+      
       </Box>
+      <Animacion>
+      <Signos/>
+      </Animacion>
     </SideContainer>
   );
 };
@@ -50,11 +53,13 @@ const SideContainer = styled.div`
   display: flex;
   width: 300px;
   height: calc(100vh - 64px);
+  background-image: url(./side-bar.jpeg);
+
 `;
 
 const InputBuscador = styled.input`
   display: flex;
-  margin: 10% auto 5% auto;
+  margin: 30% auto 5% auto;
   padding: 0px 12px;
   width: 80%;
   height: 40px;
@@ -89,4 +94,10 @@ const StyledButton = styled.button`
     color: black;
     background-color: #3dadc5;
   }
+`;
+
+const Animacion = styled.div`
+position:absolute;
+top:26em;
+left:7em;
 `;

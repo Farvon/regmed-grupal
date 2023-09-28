@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ILogo } from '../assets/icons/logo';
+
 const settings = ['Logout'];
+
 
 const HeaderComponent = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -44,8 +45,8 @@ const HeaderComponent = () => {
             {/* Avatar */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Menu">
-                  <AccountCircleIcon />
+                <Avatar  alt="Menu">
+                  <LogoutIcon color="primary" />
                 </Avatar>
               </IconButton>
             </Tooltip>
@@ -87,9 +88,12 @@ const AppBar = styled.div`
 `;
 
 const Container = styled.div`
+  
   width: 2560px;
   background-color: #3dadc5;
   padding 0 40px;
+  border-bottom: 5px solid black;
+  
 `;
 
 const Anchor = styled.a`
@@ -100,6 +104,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
+  height:4.7em;
 `;
 
 const Toolbar = styled.div`
@@ -117,7 +122,9 @@ const ILogoContainer = styled.div`
 
 const Span = styled.span`
   font-family: 'Roboto', sans-serif;
-  letter-spacing: 5px;
   font-weight: 500;
   color: white;
+  font-size:2em;
+  
 `;
+

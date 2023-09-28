@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderHome from './HeaderHome';
-import Animation from './Animation';
+import Signos from './Signos';
 
 const Home = () => {
   return (
@@ -23,7 +23,7 @@ const Home = () => {
         </DescriptionText>
       </SiteDescriptionContainer>
       <Footer>
-        <Animation />
+        <Signos/><Signos/>
       </Footer>
     </HomeContainer>
   );
@@ -37,6 +37,9 @@ const HomeContainer = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
+  background-image: url(./bg-home.jpg);
+  background-size:cover;
+  z-index:100;
 `;
 
 const BackgroundImg = styled.img`
@@ -77,7 +80,7 @@ const DescriptionTitle = styled.h1`
   h1::before {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 78%;
     height: 4px;
     border-radius: 4px;
     background-color: #3498db;
@@ -97,7 +100,7 @@ const DescriptionTitle = styled.h1`
 
 const DescriptionText = styled.span`
   font-size: 19px;
-  font-family: 'cooper-bold';
+  font-family:'cooper-bold';
   line-height: 2.1;
   color: #9d9d9d;
   width: 30vw;
