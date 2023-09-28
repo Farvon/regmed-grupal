@@ -23,7 +23,7 @@ const Home = () => {
         </DescriptionText>
       </SiteDescriptionContainer>
       <Footer>
-        <Signos />
+        <Signos/><Signos/>
       </Footer>
     </HomeContainer>
   );
@@ -80,7 +80,7 @@ const DescriptionTitle = styled.h1`
   h1::before {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 78%;
     height: 4px;
     border-radius: 4px;
     background-color: #3498db;

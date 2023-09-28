@@ -1,20 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ILogo } from '../assets/icons/logo';
+import CardWelcome from './CardWelcome';
+import { Card } from '@mui/material';
 
 
 const Welcome = () => {
   return (
     <Contenedor>
       <InfoContainer>
-        <InfoTitle>BIENVENIDOS</InfoTitle>
-        <InfoBody>
-          Utiliza el buscador para encontrar a un paciente por su DNI
-        </InfoBody>
-        <BackgroundLogo>
-          <ILogo />
-          <Span>RegMed</Span>
-        </BackgroundLogo>
+        <ContainerCard>
+        <CardWelcome/>
+        </ContainerCard>
       </InfoContainer>
       </Contenedor>
   );
@@ -39,6 +36,13 @@ const InfoContainer = styled.div`
   background-size:cover;
   
 `;
+
+const ContainerCard = styled.div`
+position:relative;
+top:5em;
+`;
+
+
 
 const InfoTitle = styled.h2`
   width: 100%;

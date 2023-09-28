@@ -7,6 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ILogo } from '../assets/icons/logo';
+
 const settings = ['Logout'];
 
 
@@ -37,6 +38,16 @@ const HeaderComponent = () => {
                 <ILogo />
               </ILogoContainer>
               <Span>REGMED</Span>
+          
+                <a href="http://todosn.com/documentacion.php" target="_blank">
+                  DOCUMENTACION
+                </a>
+                <a href="http://todosn.com/about.php" target="_blank">
+                  SOBRE NOSOTROS
+                </a>
+                <a href="http://todosn.com/about.php" target="_blank">
+                  TRABAJOS
+                </a>
             </Box>
           </Anchor>
 
@@ -91,6 +102,7 @@ const Container = styled.div`
   width: 2560px;
   background-color: #3dadc5;
   padding 0 40px;
+  border-bottom: 5px solid black;
   
 `;
 
