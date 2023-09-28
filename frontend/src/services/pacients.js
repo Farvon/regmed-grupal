@@ -1,8 +1,8 @@
 import axios from 'axios';
-//const baseUrl = 'http://localhost:3001/api/pacients';
+const baseUrl = 'http://localhost:3001/api/pacients';
 //const baseUrl = 'http://192.168.1.27:3001/api/pacients'; //joa
 //const baseUrl = 'http://192.168.1.20:3001/api/pacients'; //facu
-const baseUrl = 'http://192.168.0.106:3001/api/pacients';// facug
+//const baseUrl = 'http://192.168.0.106:3001/api/pacients';// facug
 
 const user = JSON.parse(localStorage.getItem('loggedRegMedUser'));
 const token = user && user.token && `Bearer ${user.token}`;

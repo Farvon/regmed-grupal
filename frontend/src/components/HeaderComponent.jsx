@@ -10,7 +10,6 @@ import { ILogo } from '../assets/icons/logo';
 
 const settings = ['Logout'];
 
-
 const HeaderComponent = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -45,7 +44,7 @@ const HeaderComponent = () => {
             {/* Avatar */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar  alt="Menu">
+                <Avatar alt="Menu">
                   <LogoutIcon color="primary" />
                 </Avatar>
               </IconButton>
@@ -104,7 +103,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
-  height:4.7em;
+  height: 4.7em;
 `;
 
 const Toolbar = styled.div`
@@ -115,7 +114,7 @@ const Toolbar = styled.div`
 
 const ILogoContainer = styled.div`
   display: flex;
-  width: 32px;
+  width: 4em;
   margin-right: 10px;
   opacity: 0.7;
 `;
@@ -124,7 +123,5 @@ const Span = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: white;
-  font-size:2em;
-  
+  font-size: 2em;
 `;
-
