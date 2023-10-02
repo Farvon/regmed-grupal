@@ -104,7 +104,7 @@ const BlurBackground = styled.div`
 `;
 
 const FormContainer = styled.div`
-max-width: 350px;
+width: 21.8em;
 background: #F8F9FD;
 background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
 border-radius: 40px;
