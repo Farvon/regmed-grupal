@@ -104,80 +104,82 @@ const BlurBackground = styled.div`
 `;
 
 const FormContainer = styled.div`
-  display: flex;
-  min-width: 250px;
-  flex-direction: column;
-  height: 60%;
-  min-height: 400px;
-  background-color: #fff;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #3498db;
-
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 20%;
+  height:55%;
+  background: #F8F9FD;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px;
 `;
 
 const LogoContainer = styled(Link)`
-  display: flex;
-  align-items: center;
-  width: 50%;
-  height: 15vh;
-  min-height: 100px;
-  margin-bottom: 50px;
+display: flex;
+justify-content:center;
+align-items: center;
+width: auto;
+height: 15vh;
+min-height: 80px;
+margin-bottom: 8em;
 `;
 
 const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 20vw;
-  height: 50%;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  padding-top: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin:auto;
+width:auto;
+height: 200px;
 `;
 
 const LoginInput = styled.input`
-  font-size: 16px;
-  padding: 8px;
-  margin: 8px;
-  border: 2px solid lightgray;
-  border-radius: 10px;
-  width: 80%;
-  min-width: 150px;
+width: 80%;
+background: white;
+border: none;
+padding: 15px 20px;
+border-radius: 20px;
+margin:1em;
+box-shadow: #cff0ff 0px 10px 10px -5px;
+border-inline: 2px solid transparent;
+
+::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+
+::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+:focus {
+  outline: none;
+  border-inline: 2px solid #12B1D1;
+}
 `;
 
 const LoginButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 13vw;
+display: block;
+width: 95%;
+font-weight: bold;
+background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+color: white;
+padding: 15px;
+margin: 30px 20px;
+border-radius: 20px;
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+border: none;
+transition: all 0.2s ease-in-out;
+}
 
-  margin: 16px auto;
-  color: white;
-  padding: 12px 24px 12px 24px;
-  font-size: 0.8em;
-  border-radius: 8px;
-  background: #3498db;
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  border: none;
-  transition: all 0.3s ease;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+:hover {
+transform: scale(1.03);
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
 
-  :disabled {
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
-  :hover {
-    background: #3cb0fd;
-    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  }
-
-  :active {
-    background: #3498db;
-    background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  }
+:active {
+transform: scale(0.95);
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
 `;
