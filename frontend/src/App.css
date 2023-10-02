@@ -101,6 +101,15 @@ body {
   50% {
     transform: scale(1.2);
   }
+<<<<<<< HEAD
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+=======
 
 }
 
+>>>>>>> 4d801a61b965d99db75893c54ec44df625b328a2
