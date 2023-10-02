@@ -8,8 +8,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import BtnOut from './ButtonLogOut';
 import { ILogo } from '../assets/icons/logo';
-
 const settings = ['Logout'];
+
 
 const HeaderComponent = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -35,7 +35,7 @@ const HeaderComponent = () => {
           <Anchor href="/">
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <ILogoContainer>
-                <ILogo />
+                <ILogo/>
               </ILogoContainer>
               <Span>REGMED</Span>
             </Box>
@@ -45,7 +45,7 @@ const HeaderComponent = () => {
             {/* Avatar */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Menu">
+                <Avatar  alt="Menu">
                   <LogoutIcon color="primary" />
                 </Avatar>
               </IconButton>
@@ -88,11 +88,12 @@ const AppBar = styled.div`
 `;
 
 const Container = styled.div`
-  
+  border-bottom: solid 5px black;
   width: 2560px;
   background-color: #3dadc5;
   padding 10px 40px;
   border-bottom: 5px solid black;
+
   
 `;
 
@@ -104,7 +105,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
-  height: 4.7em;
+  height:4.7em;
 `;
 
 const Toolbar = styled.div`
@@ -122,7 +123,8 @@ const ILogoContainer = styled.div`
 
 const Span = styled.span`
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight:bold;
   color: white;
   font-size: 3em;
 `;
+
