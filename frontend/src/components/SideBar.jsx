@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Signos from './Signos';
 import Box from '@mui/material/Box';
 
 //Componente para la barra lateral
@@ -40,9 +39,6 @@ const SideBar = ({ setDni, user }) => {
         )}
       
       </Box>
-      <Animacion>
-      <Signos/>
-      </Animacion>
     </SideContainer>
   );
 };
@@ -97,8 +93,3 @@ const StyledButton = styled.button`
   }
 `;
 
-const Animacion = styled.div`
-position:absolute;
-top:26em;
-left:7em;
-`;
