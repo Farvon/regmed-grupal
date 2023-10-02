@@ -104,6 +104,7 @@ const BlurBackground = styled.div`
 `;
 
 const FormContainer = styled.div`
+<<<<<<< HEAD
 max-width: 350px;
 background: #F8F9FD;
 background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
@@ -112,16 +113,36 @@ padding: 25px 35px;
 border: 5px solid rgb(255, 255, 255);
 box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 margin: 20px;
+=======
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  min-height: 300px;
+  background-color: #fff;
+  border: 1px solid #3498db;
+  border-radius: 50px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 16px;
+>>>>>>> 4d801a61b965d99db75893c54ec44df625b328a2
 `;
 
 const LogoContainer = styled(Link)`
   display: flex;
+<<<<<<< HEAD
   justify-content:center;
   align-items: center;
   width: auto;
   height: 15vh;
   min-height: 80px;
   margin: 1em 0;
+=======
+  align-items: center;
+  width: 50%;
+  height: 15vh;
+  min-height: 80px;
+>>>>>>> 4d801a61b965d99db75893c54ec44df625b328a2
 `;
 
 const LoginForm = styled.form`
@@ -129,12 +150,17 @@ const LoginForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   margin:auto;
   width:auto;
+=======
+  width: 20vw;
+>>>>>>> 4d801a61b965d99db75893c54ec44df625b328a2
   height: 200px;
 `;
 
 const LoginInput = styled.input`
+<<<<<<< HEAD
 width: 80%;
 background: white;
 border: none;
@@ -182,6 +208,46 @@ box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
 transform: scale(0.95);
 box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
 }
+=======
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+`;
+
+const LoginButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: white;
+  padding: 12px 24px 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+
+  :disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  :hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  }
+
+  :active {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+>>>>>>> 4d801a61b965d99db75893c54ec44df625b328a2
 `;
 
 const StyledLink = styled(Link)`
