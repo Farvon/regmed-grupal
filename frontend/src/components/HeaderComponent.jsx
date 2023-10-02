@@ -7,7 +7,6 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ILogo } from '../assets/icons/logo';
-
 const settings = ['Logout'];
 
 
@@ -35,7 +34,7 @@ const HeaderComponent = () => {
           <Anchor href="/">
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <ILogoContainer>
-                <ILogo />
+                <ILogo/>
               </ILogoContainer>
               <Span>REGMED</Span>
             </Box>
@@ -88,11 +87,10 @@ const AppBar = styled.div`
 `;
 
 const Container = styled.div`
-  
+  border-bottom: solid 5px black;
   width: 2560px;
   background-color: #3dadc5;
-  padding 0 40px;
-  border-bottom: 5px solid black;
+  padding 5px 20px;
   
 `;
 
@@ -115,16 +113,16 @@ const Toolbar = styled.div`
 
 const ILogoContainer = styled.div`
   display: flex;
-  width: 32px;
+  width: 4em;
   margin-right: 10px;
   opacity: 0.7;
 `;
 
 const Span = styled.span`
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight:bold;
   color: white;
-  font-size:2em;
+  font-size:3em;
   
 `;
 
