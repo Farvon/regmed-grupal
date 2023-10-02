@@ -79,6 +79,7 @@ const AddPaciente = ({ user }) => {
   };
 
   return (
+    
     <AddPacientContainer>
       <AddPacienteTitle>Ingresa los datos del nuevo paciente</AddPacienteTitle>
       <FormContainer onSubmit={(e) => handleNewPacient(e)}>
@@ -146,7 +147,7 @@ const AddPaciente = ({ user }) => {
 
           <PersonalInfoGroup>
             <PersonalInfoTypeA>Alergias</PersonalInfoTypeA>
-            <TagsInput
+            <ModalInput
               value={alergias}
               onChange={(e) => setAlergias(e)}
               placeHolder="..."
@@ -165,40 +166,64 @@ const AddPaciente = ({ user }) => {
 export default AddPaciente;
 
 const AddPacientContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: calc(100vh - 64px);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: calc(100vh - 64px);
 `;
 
 const AddPacienteTitle = styled.h2`
-  width: 100%;
-  text-align: center;
-  margin-top: 16px;
-  margin-bottom: 16px;
+display:block;
+text-align: center;
+font-weight: 900;
+font-size: 30px;
+color: rgb(16, 137, 211);
+
 `;
 
 const FormContainer = styled.form`
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
+display: flex;
+justify-content:center;
+width: 350px;
+background: #F8F9FD;
+background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+border-radius: 40px;
+padding: 25px 40px;
+border: 5px solid rgb(255, 255, 255);
+box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+
 `;
 
 const ModalInput = styled.input`
-  font-size: 16px;
-  width: 210px;
-  padding: 8px;
-  margin: 8px;
-  border: 2px solid lightgray;
-  border-radius: 10px;
+width: 90%;
+background: white;
+border: none;
+padding: 15px 20px;
+border-radius: 20px;
+margin-top: 15px;
+margin-left:10px;
+box-shadow: #cff0ff 0px 10px 10px -5px;
+border-inline: 2px solid transparent;
+
+::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+
+::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+:focus {
+  outline: none;
+  border-inline: 2px solid #12B1D1;
+}
 `;
 
 const PersonalInfoBody = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
   padding: 8px;
 `;
 
@@ -212,7 +237,6 @@ const PersonalInfoType = styled.label`
   align-items: center;
   width: 40%;
   font-size: 16px;
-
   color: gray;
 `;
 
@@ -231,8 +255,9 @@ const AddButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  margin: 16px auto 0;
+  width: 70%;
+  margin-top: 2em;
+  margin-left:4.2em;
   color: white;
   padding: 12px 24px 12px 24px;
   font-size: 18px;
