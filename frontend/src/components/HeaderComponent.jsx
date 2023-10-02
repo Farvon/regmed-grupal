@@ -6,6 +6,7 @@ import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import BtnOut from './ButtonLogOut';
 import { ILogo } from '../assets/icons/logo';
 
 const settings = ['Logout'];
@@ -90,7 +91,7 @@ const Container = styled.div`
   
   width: 2560px;
   background-color: #3dadc5;
-  padding 0 40px;
+  padding 10px 40px;
   border-bottom: 5px solid black;
   
 `;
@@ -114,7 +115,7 @@ const Toolbar = styled.div`
 
 const ILogoContainer = styled.div`
   display: flex;
-  width: 4em;
+  width: 3.5em;
   margin-right: 10px;
   opacity: 0.7;
 `;
@@ -123,5 +124,5 @@ const Span = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: white;
-  font-size: 2em;
+  font-size: 3em;
 `;
