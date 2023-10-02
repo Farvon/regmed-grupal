@@ -53,7 +53,8 @@ const SideContainer = styled.div`
   display: flex;
   width: 300px;
   height: calc(100vh - 64px);
-  background-image: url(./side-bar.jpeg);
+  background-image: url(./side-bar.jpg);
+  background-size:cover;
 
 `;
 
