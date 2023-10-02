@@ -1,28 +1,14 @@
 import React from 'react';
 
 const CardWelcome = () => {
-  return (
-    <div class="card-welcome">
-      <div class="header">Bienvenidos</div>
-      <div class="App-div">
-        Utiliza el buscador para encontrar a un paciente por su DNI
-      </div>
-      <svg
-        class="App-logo my-svg"
-        version="1.0"
-        xmlns="http://www.w3.org/2000/svg"
-        width="266.000000pt"
-        height="250.000000pt"
-        viewBox="0 0 340.000000 324.000000"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <g
-          transform="translate(0.000000,324.000000) scale(0.100000,-0.100000)"
-          fill="#009f9a"
-          stroke="none"
-        >
-          <path
-            d="M1343 2990 c-111 -23 -221 -108 -270 -209 l-28 -56 -3 -262 -3 -263
+    return (
+        <div class="card-welcome">
+        <div class="header">Bienvenidos</div>
+          <h1 class="subtitle">Utiliza el buscador para encontrar a un paciente por su DNI</h1>
+          <svg class="App-logo my-svg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="266.000000pt" height="250.000000pt" viewBox="0 0 340.000000 324.000000" preserveAspectRatio="xMidYMid meet">
+        
+          <g transform="translate(0.000000,324.000000) scale(0.100000,-0.100000)" fill="#009f9a" stroke="none">
+            <path d="M1343 2990 c-111 -23 -221 -108 -270 -209 l-28 -56 -3 -262 -3 -263
         -224 0 c-232 0 -301 -8 -369 -42 -65 -33 -141 -112 -172 -181 l-29 -62 0 -315
         c0 -282 2 -320 18 -363 10 -26 23 -45 28 -42 5 4 6 -1 3 -10 -5 -12 13 -35 58
         -79 96 -94 139 -108 356 -114 l172 -4 0 90 0 90 -162 4 c-205 5 -231 15 -278
@@ -43,12 +29,12 @@ const CardWelcome = () => {
         -19 37 -20 59 -20 382 0 363 7 434 49 516 49 96 111 118 363 127 101 4 206 10
         233 15 88 15 162 49 218 100 63 58 98 118 129 225 22 78 23 92 23 480 l0 400
         -30 58 c-38 76 -126 158 -202 188 -55 22 -72 23 -338 25 -154 2 -299 -1 -322
-        -6z"
-          />
-        </g>
-      </svg>
-    </div>
-  );
-};
+        -6z" />
+          </g>
+        </svg>
+          
+        </div>
+    );
+ };
 
-export default CardWelcome;
+ export default CardWelcome;
