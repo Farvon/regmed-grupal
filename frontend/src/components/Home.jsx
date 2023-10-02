@@ -23,7 +23,7 @@ const Home = () => {
         </DescriptionText>
       </SiteDescriptionContainer>
       <Footer>
-        <Signos/><Signos/>
+        <Signos/>
       </Footer>
     </HomeContainer>
   );
@@ -109,6 +109,6 @@ const DescriptionText = styled.span`
 
 const Footer = styled.div`
   display: flex;
-  margin-top: -7em;
-  margin-left: 20em;
+  justify-content:start;
+  
 `;
