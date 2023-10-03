@@ -5,7 +5,7 @@ const CardWelcome = () => {
         <div class="card-welcome">
         <div class="header">Bienvenidos</div>
           <h1 class="subtitle">Utiliza el buscador para encontrar a un paciente por su DNI</h1>
-          <svg class="App-logo my-svg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="266.000000pt" height="250.000000pt" viewBox="0 0 340.000000 324.000000" preserveAspectRatio="xMidYMid meet">
+          <svg class="App-logo my-svg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="166.000000pt" height="150.000000pt" viewBox="0 0 340.000000 324.000000" preserveAspectRatio="xMidYMid meet">
         
           <g transform="translate(0.000000,324.000000) scale(0.100000,-0.100000)" fill="#009f9a" stroke="none">
             <path d="M1343 2990 c-111 -23 -221 -108 -270 -209 l-28 -56 -3 -262 -3 -263
