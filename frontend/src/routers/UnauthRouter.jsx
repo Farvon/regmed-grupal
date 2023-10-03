@@ -25,6 +25,7 @@ const UnauthRouter = ({ setUser }) => {
         element={<Login setUser={setUser} />}
         exact
       />
+<<<<<<< HEAD
       <Route path='/aboutus' name="nosotros" element ={<AboutUs/>}  exact/>
       
       <Route path='/documentacion' name="documentacion" element ={<Documentacion/>}  exact/>
@@ -34,6 +35,9 @@ const UnauthRouter = ({ setUser }) => {
       
     </Routes>
 
+=======
+    </Routes>
+>>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
   );
 };
 

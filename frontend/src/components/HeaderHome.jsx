@@ -13,8 +13,6 @@ const HeaderHome = () => {
         <SpanLogo>REGMED</SpanLogo>
       </LogoContainer>
       <NavBarContainer>
-        
-         
         <Link to={'/documentacion'}>Documentacion</Link>
         <a href="http://todosn.com/about.php" target="_blank">
           SOBRE NOSOTROS
