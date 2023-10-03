@@ -168,7 +168,7 @@ export default AddPaciente;
 const AddPacientContainer = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: flex-startcenter;
 align-items: center;
 width: 100vw;
 height: calc(100vh - 64px);
@@ -177,7 +177,7 @@ background-size:cover;
 `;
 
 const AddPacienteTitle = styled.h2`
-display:block;
+
 text-align: center;
 font-weight: 900;
 font-size: 30px;

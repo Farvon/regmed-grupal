@@ -79,18 +79,16 @@ const PageContainer = styled.div`
 const InfoContainer = styled.div`
   width: calc(100vw - 300px);
   height: calc(100vh - 64px);
-<<<<<<< HEAD
   background-image url(./bg-home.jpg);
   background-size:cover;
-=======
-  background: #f4f6f5;
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
 `;
 
 const InfoTitle = styled.h2`
-  width: 100%;
-  text-align: center;
-  margin: 36px 0px 0px 0px;
+text-align: center;
+font-weight: 900;
+font-size: 30px;
+color: rgb(16, 137, 211);
+
 `;
 
 const ResultadoContainer = styled.div`
@@ -98,27 +96,19 @@ const ResultadoContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100px;
-<<<<<<< HEAD
   
-=======
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
 `;
 
 const TableContainer = styled.table`
   display: flex;
-<<<<<<< HEAD
-  height: 100px;
+  height: 150px;
+  width:80%;
   margin: 50px;
-=======
-  height: 80px;
-  margin: 16px;
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-collapse: collapse;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-<<<<<<< HEAD
   background: #F8F9FD;
     background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
     border-radius: 40px;
@@ -127,47 +117,39 @@ const TableContainer = styled.table`
     box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 
   
-=======
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
 `;
 
 const TableHead = styled.thead`
   display: flex;
   margin: 0;
-  padding: 0;
+  
 `;
 
 const TableBody = styled.tbody`
   display: flex;
   margin: 0;
-  padding: 0;
+  padding: 24px 0px;
 `;
 
 const Th = styled.th`
+  font-size:1.5em;
   width: 15vw;
-  margin:5px;
+  margin:3px;
   border-bottom: 2px solid black;
   padding: 8px;
-  padding-top:26px;
+  padding-top:2em;
   font-weight: bold;
   
 `;
 
 const Td = styled.td`
+  font-family:"cooper-medium";
+  font-size:1.5em;
   width: 15vw;
-  padding: 8px;
-<<<<<<< HEAD
+  padding: 0.2em;
+  padding-bottom:1em;
   text-align: center;
   
-=======
-  background-color: white;
-  text-align: center;
-  border-right: 1px solid lightgray;
-
-  :last-child {
-    border-right: none;
-  }
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
 `;
 
 const BackgroundLogo = styled.div`
@@ -188,3 +170,4 @@ const Span = styled.span`
   font-size: 3em;
   opacity: 0.5;
 `;
+

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import About from '../components/About';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import Home from '../components/Home';
+import Documentacion from '../components/Documentacion'
+
 
 //Este componente posee la página de inicio para usuarios no logeados
 //El login y el registro para nuevos usuarios.
@@ -25,19 +28,12 @@ const UnauthRouter = ({ setUser }) => {
         element={<Login setUser={setUser} />}
         exact
       />
-<<<<<<< HEAD
-      <Route path='/aboutus' name="nosotros" element ={<AboutUs/>}  exact/>
-      
-      <Route path='/documentacion' name="documentacion" element ={<Documentacion/>}  exact/>
+       <Route path="/documentacion" name="documentacion" element={<Documentacion />} exact /> 
 
-      <Route path='/documentacion' name="Trabajos" element ={<Trabajos/>}  exact/>
+       <Route path="/about" name="about" element={<About />} exact />
 
-      
     </Routes>
 
-=======
-    </Routes>
->>>>>>> f765f7175951ab60a11dd1ffd39fe8601eb3f98a
   );
 };
 

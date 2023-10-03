@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ILogo } from '../assets/icons/logo';
 
+
 const HeaderHome = () => {
   return (
     <HeaderContainer>
@@ -13,13 +14,8 @@ const HeaderHome = () => {
         <SpanLogo>REGMED</SpanLogo>
       </LogoContainer>
       <NavBarContainer>
+        <Link to={'/about'}>About</Link>
         <Link to={'/documentacion'}>Documentacion</Link>
-        <a href="http://todosn.com/about.php" target="_blank">
-          SOBRE NOSOTROS
-        </a>
-        <a href="http://todosn.com/about.php" target="_blank">
-          TRABAJOS
-        </a>
       </NavBarContainer>
       <LoginContainer>
         <Link to="/login">
