@@ -79,7 +79,6 @@ const AddPaciente = ({ user }) => {
   };
 
   return (
-    
     <AddPacientContainer>
       <AddPacienteTitle>Ingresa los datos del nuevo paciente</AddPacienteTitle>
       <FormContainer onSubmit={(e) => handleNewPacient(e)}>
@@ -147,11 +146,14 @@ const AddPaciente = ({ user }) => {
 
           <PersonalInfoGroup>
             <PersonalInfoTypeA>Alergias</PersonalInfoTypeA>
-            <ModalInput
-              value={alergias}
-              onChange={(e) => setAlergias(e)}
-              placeHolder="..."
-            />
+            <AlergiasContainer>
+              <TagsInput
+                value={alergias}
+                onChange={setAlergias}
+                name="alergias"
+                placeHolder="..."
+              />
+            </AlergiasContainer>
           </PersonalInfoGroup>
 
           <AddButton disabled={!nombre || !apellido || !dni}>
@@ -177,50 +179,76 @@ background-size:cover;
 `;
 
 const AddPacienteTitle = styled.h2`
-
-text-align: center;
-font-weight: 900;
-font-size: 30px;
-color: rgb(16, 137, 211);
-
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
 `;
 
 const FormContainer = styled.form`
-display: flex;
-justify-content:center;
-width: 350px;
-background: #F8F9FD;
-background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
-border-radius: 40px;
-padding: 15px 40px;
-border: 5px solid rgb(255, 255, 255);
-box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
-
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  background: #f8f9fd;
+  background: linear-gradient(
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgb(244, 247, 251) 100%
+  );
+  border-radius: 40px;
+  padding: 15px 40px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 `;
 
 const ModalInput = styled.input`
-width: 90%;
-background: white;
-border: none;
-padding: 10px 20px;
-border-radius: 20px;
-margin-top: 15px;
-margin-left:10px;
-box-shadow: #cff0ff 0px 10px 10px -5px;
-border-inline: 2px solid transparent;
+  width: 90%;
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+  box-shadow: #cff0ff 0px 10px 10px -5px;
+  border-inline: 2px solid transparent;
 
-::-moz-placeholder {
-  color: rgb(170, 170, 170);
-}
+  ::-moz-placeholder {
+    color: rgb(170, 170, 170);
+  }
 
-::placeholder {
-  color: rgb(170, 170, 170);
-}
+  ::placeholder {
+    color: rgb(170, 170, 170);
+  }
 
-:focus {
-  outline: none;
-  border-inline: 2px solid #12B1D1;
-}
+  :focus {
+    outline: none;
+    border-inline: 2px solid #12b1d1;
+  }
+`;
+
+const AlergiasContainer = styled.article`
+  width: 90%;
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+  box-shadow: #cff0ff 0px 10px 10px -5px;
+  border-inline: 2px solid transparent;
+
+  ::-moz-placeholder {
+    color: rgb(170, 170, 170);
+  }
+
+  ::placeholder {
+    color: rgb(170, 170, 170);
+  }
+
+  :focus {
+    outline: none;
+    border-inline: 2px solid #12b1d1;
+  }
 `;
 
 const PersonalInfoBody = styled.div`
@@ -259,7 +287,7 @@ const AddButton = styled.button`
   align-items: center;
   width: 70%;
   margin-top: 2em;
-  margin-left:4.2em;
+  margin-left: 4.2em;
   color: white;
   padding: 12px 24px 12px 24px;
   font-size: 18px;
