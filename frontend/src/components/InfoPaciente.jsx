@@ -105,6 +105,13 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                       {paciente.fact_sang}
                     </PersonalInfoData>
                   </PersonalInfoGroup>
+                  <PersonalInfoGroup>
+                    <PersonalInfoType>Alergias</PersonalInfoType>
+                    <PersonalInfoData>
+                      {paciente.alergias.join(' ')}
+                    </PersonalInfoData>
+                  </PersonalInfoGroup>
+                  <PersonalInfoGroup></PersonalInfoGroup>
                 </PersonaInfoSeparadorLeft>
                 <PersonaInfoSeparadorRight>
                   <Qr paciente={paciente} />
