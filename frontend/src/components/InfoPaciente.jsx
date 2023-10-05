@@ -108,7 +108,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                   <PersonalInfoGroup>
                     <PersonalInfoType>Alergias</PersonalInfoType>
                     <PersonalInfoData>
-                      {paciente.alergias.join(' ')}
+                      {paciente.alergias.join(' - ')}
                     </PersonalInfoData>
                   </PersonalInfoGroup>
                   <PersonalInfoGroup></PersonalInfoGroup>
@@ -263,12 +263,21 @@ const PersonalInfoContainer = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   margin: 16px;
+  background: #f8f9fd;
+  background: linear-gradient(
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgb(244, 247, 251) 100%
+  );
+  border-radius: 40px;
+  padding: 15px 40px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 `;
 
 const PersonalInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: white;
   padding: 8px;
 `;
 
@@ -281,7 +290,6 @@ const PersonalInfoBody = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: white;
   padding: 8px;
 `;
 
@@ -335,7 +343,6 @@ const CommentContainer = styled.div`
 const CommentBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
   padding: 8px;
 `;
 
