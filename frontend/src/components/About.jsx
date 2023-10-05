@@ -17,12 +17,12 @@ const About =() => {
         <CardAbout nombre={'Facundo Chiavon'} rol={'CEO'} imagen={'facu-ch.jpg'}/>
         <CardAbout nombre={'Facundo Gardella'} rol={'Founder'} imagen={'fg.jpg'}/>
         <CardAbout nombre={'Gabriela Bustos'} rol={'Backend'} imagen={'gb.jpg'}/>
-        <CardAbout nombre={'Joaquin Peralta'} rol={'Documentación'} imagen={'jp.jpg'}/>
+        <CardAbout nombre={'Joaquin Peralta'} rol={'Documentación'} imagen={'jp-e.png'}/>
         <CardAbout nombre={'Joaquin Roa'} rol={'Frontend / Backend'}imagen={'jr.jpg'}/>
         <CardAbout nombre={'Luciana Manetta'} rol={'Frontend'} imagen={'lm.jpg'}/>
         <CardAbout nombre={'Milagros Ceccoli'} rol={'Documentación'} imagen={'mc.jpg'}/>
         <CardAbout nombre={'Valentin Urbine'} rol={'Frontend'} imagen={'vu.jpg'}/>
-        <CardAbout nombre={'Veronica Vera'} rol={'Documentacion'} imagen={'vv.jpg'}/>
+        <CardAbout nombre={'Veronica Vera'} rol={'Documentacion'} imagen={'vv.png'}/>
         </CardsContainer>
         <Signos/>
         </AboutContainer>
