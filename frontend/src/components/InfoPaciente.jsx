@@ -111,6 +111,9 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                 </PersonaInfoSeparadorRight>
               </PersonalInfoBody>
             </PersonalInfoContainer>
+
+            {/*---------------Inicio de diagnostco ----------------------------------- */}
+
             <PersonalInfoContainer>
               <PersonalInfoHeader>
                 <PersonalInfoTitle>Diagnósticos</PersonalInfoTitle>
@@ -313,6 +316,7 @@ const CommentContainer = styled.div`
   box-shadow: 0 1px 1px black;
   padding: 8px;
   margin: 4px;
+  border: 3px solid red;
 
   background: linear-gradient(
     180deg,

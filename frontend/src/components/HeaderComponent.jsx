@@ -126,4 +126,3 @@ const Span = styled.span`
   color: white;
   font-size: 3em;
 `;
-

@@ -14,7 +14,7 @@ const HeaderHome = () => {
         <SpanLogo>REGMED</SpanLogo>
       </LogoContainer>
       <NavBarContainer>
-        <Link to={'/about'}>About</Link>
+        <Link to={'/about'}>Sobre Nosotros</Link>
         <Link to={'/documentacion'}>Documentacion</Link>
       </NavBarContainer>
       <LoginContainer>
