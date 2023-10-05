@@ -192,13 +192,32 @@ const ModalInput = styled.input`
   margin: 8px;
   border: 2px solid lightgray;
   border-radius: 10px;
+
 `;
 
 const PersonalInfoBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 8px;
+width: 90%;
+background: white;
+border: none;
+padding: 10px 20px;
+border-radius: 20px;
+margin-top: 15px;
+margin-left: 10px;
+box-shadow: #cff0ff 0px 10px 10px -5px;
+border-inline: 2px solid transparent;
+
+::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+
+::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+:focus {
+  outline: none;
+  border-inline: 2px solid #12b1d1;
+}
 `;
 
 const PersonalInfoGroup = styled.div`
@@ -211,7 +230,6 @@ const PersonalInfoType = styled.label`
   align-items: center;
   width: 40%;
   font-size: 16px;
-
   color: gray;
 `;
 

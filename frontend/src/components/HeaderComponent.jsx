@@ -45,7 +45,7 @@ const HeaderComponent = () => {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar  alt="Menu">
-                  <LogoutIcon color="primary" />
+                  <LogoutIcon color="primary"/>
                 </Avatar>
               </IconButton>
             </Tooltip>
