@@ -327,21 +327,25 @@ const PersonalInfoData = styled.span`
 `;
 
 const CommentContainer = styled.div`
-  border: solid 1px lightgray;
   box-shadow: 0 1px 1px black;
   padding: 8px;
   margin: 4px;
-  border: 3px solid red;
+  border: 1px solid rgb(0 49 83);
+  border-radius: 7px;
 
+  background: #e1f2ee;
   background: linear-gradient(
-    180deg,
-    rgba(61, 173, 197, 1) 0%,
-    rgba(61, 173, 197, 1) 31%,
-    rgba(163, 181, 185, 0.35898109243697474) 33%,
-    rgba(237, 237, 238, 0.014749262536873142) 100%
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgb(179, 242, 223) 100%
+  );
+  border-radius: 40px;
+  padding: 15px 40px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
   );
 
-  background: ${({ estado }) => !estado && '#EBEBEB'};
+  background: ${({ estado }) => !estado && '#e0d1cc'};
 `;
 
 const CommentBodyContainer = styled.div`
