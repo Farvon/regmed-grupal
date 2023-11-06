@@ -197,6 +197,7 @@ pacientsRouter.put('/edit-info/:dni', userExtractor, (request, response) => {
     num_socio: info.num_socio,
     grup_sang: info.grup_sang,
     fact_sang: info.fact_sang,
+    alergias: info.alergias,
   };
 
   Pacient.findOneAndUpdate({ dni }, newInfo, { new: true })
