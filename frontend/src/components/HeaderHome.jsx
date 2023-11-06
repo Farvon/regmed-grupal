@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ILogo } from '../assets/icons/logo';
 
-
 const HeaderHome = () => {
   return (
     <HeaderContainer>
@@ -29,11 +28,10 @@ const HeaderHome = () => {
 export default HeaderHome;
 
 const HeaderContainer = styled.header`
-  
   width: 100vw;
   height: 96px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   padding: 32px;
   box-sizing: border-box;
@@ -47,24 +45,23 @@ const HeaderContainer = styled.header`
 
 const LogoContainer = styled.div`
   display: flex;
-  align-items: center;  
+  align-items: center;
 `;
 
 const Logo = styled.div`
   width: 70px;
-  
+
   @media (max-width: 768px) {
     width: 25%;
   }
 `;
 
 const SpanLogo = styled.span`
-  font-family: "cooper-bold";
+  font-family: 'cooper-bold';
   font-size: 28px;
-  font-weight:800;
+  font-weight: 800;
   margin-left: 10px;
-  color:#4b4d5b;
-  
+  color: #4b4d5b;
 
   @media (max-width: 768px) {
     font-size: 150%;
@@ -73,20 +70,22 @@ const SpanLogo = styled.span`
 `;
 
 const NavBarContainer = styled.div`
-
   display: flex;
-  justify-content:center;
-  color:#4f4f4f;
-  margin-right:9em;
+  flex.wrap: wrap;
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  color: #4f4f4f;
+  margin-right: 9em;
 
   a {
-    font-family: "cooper-medium";
-    font-size:14px;
+    width: 100%;
+    font-family: 'cooper-medium';
     all: unset;
     cursor: pointer;
     font-weight: 600;
     margin: 0 1em;
-    line-height:42px;
+    line-height: 42px;
   }
 
   a:hover {

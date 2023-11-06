@@ -23,7 +23,7 @@ const Home = () => {
         </DescriptionText>
       </SiteDescriptionContainer>
       <Footer>
-        <Signos/>
+        <Signos />
       </Footer>
     </HomeContainer>
   );
@@ -32,14 +32,14 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.div`
-  font-size: 20px;
+  font-size: 1.2em;
   font-weight: bold;
   width: 100vw;
   height: 100vh;
   position: relative;
   background-image: url(./bg-home.jpg);
-  background-size:cover;
-  z-index:100;
+  background-size: cover;
+  z-index: 100;
 
   @media (max-width: 768px) {
     font-size: 16px;
@@ -52,7 +52,7 @@ const BackgroundImg = styled.img`
   right: 0;
   z-index: -1;
   width: 50%;
-  min-width: 400px;
+  min-width: 600px;
 
   @media (max-width: 768px) {
     display: none;
@@ -78,6 +78,7 @@ const SiteDescriptionContainer = styled.div`
 
 const DescriptionTitle = styled.h1`
   font-size: 1em;
+  margin-top: 20vh;
   font-family: 'cooper-bold';
   line-height: 1.2;
   color: #4b4d5b;
@@ -119,8 +120,8 @@ const DescriptionTitle = styled.h1`
 `;
 
 const DescriptionText = styled.span`
-  font-size: 19px;
-  font-family:'cooper-bold';
+  font-size: 0.8em;
+  font-family: 'cooper-bold';
   line-height: 2.1;
   color: #9d9d9d;
   width: 30vw;
@@ -135,8 +136,8 @@ const DescriptionText = styled.span`
 
 const Footer = styled.div`
   display: flex;
-  justify-content:start;
-  
+  justify-content: start;
+
   @media (max-width: 768px) {
     margin-top: 2%;
   }
