@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useAlert from '../hooks/useAlert';
+import { TagsInput } from 'react-tag-input-component';
 
 import { editPacientInfo } from '../services/pacients';
 import { putPacientLog } from '../services/logs';
@@ -16,11 +17,13 @@ const EditInfo = ({ paciente, user }) => {
     num_socio: paciente.num_socio,
     grup_sang: paciente.grup_sang,
     fact_sang: paciente.fact_sang,
+    alergias: paciente.alergias,
   });
 
   const { alertSuccess, alertError } = useAlert();
 
   const handleEditInfo = (event) => {
+    console.log(pacienteEdited)
     event.preventDefault();
     editPacientInfo(pacienteEdited.dni, pacienteEdited)
       .then(() => {
@@ -54,7 +57,9 @@ const EditInfo = ({ paciente, user }) => {
         ', ' +
         pacienteEdited.grup_sang +
         ', ' +
-        pacienteEdited.fact_sang,
+        pacienteEdited.fact_sang +
+        ', ' +
+        pacienteEdited.alergias,
     };
 
     putPacientLog(newLog)
@@ -66,6 +71,7 @@ const EditInfo = ({ paciente, user }) => {
         alertError('Ha ocurrido un error. Intente nuevamente');
       });
   };
+
 
   return (
     <>
@@ -170,6 +176,18 @@ const EditInfo = ({ paciente, user }) => {
                 }));
               }}
             />
+          </PersonalInfoGroup>
+          <PersonalInfoGroup>
+            <PersonalInfoType>Alergias</PersonalInfoType>
+            <TagsInput
+                value={pacienteEdited.alergias}
+                onChange={(e) => {
+                  setPacienteEdited((prevState) => ({
+                    ...prevState,
+                    alergias: e,
+                  }));
+                }}
+              />
           </PersonalInfoGroup>
           <EditButton>Editar</EditButton>
         </PersonalInfoBody>
