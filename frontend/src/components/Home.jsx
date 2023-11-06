@@ -40,6 +40,10 @@ const HomeContainer = styled.div`
   background-image: url(./bg-home.jpg);
   background-size:cover;
   z-index:100;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const BackgroundImg = styled.img`
@@ -49,6 +53,10 @@ const BackgroundImg = styled.img`
   z-index: -1;
   width: 50%;
   min-width: 400px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SiteDescriptionContainer = styled.div`
@@ -61,6 +69,11 @@ const SiteDescriptionContainer = styled.div`
   justify-content: center;
   box-sizing: border-box;
   padding: 0 64px 164px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    margin: 0 auto;
+  }
 `;
 
 const DescriptionTitle = styled.h1`
@@ -96,6 +109,13 @@ const DescriptionTitle = styled.h1`
     transform-origin: left;
     transform: scaleX(1);
   }
+
+  @media (max-width: 768px) {
+    font-size: 150%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 const DescriptionText = styled.span`
@@ -105,10 +125,19 @@ const DescriptionText = styled.span`
   color: #9d9d9d;
   width: 30vw;
   margin-top: 2em;
+
+  @media (max-width: 768px) {
+    font-size: 100%;
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 const Footer = styled.div`
   display: flex;
   justify-content:start;
   
+  @media (max-width: 768px) {
+    margin-top: 2%;
+  }
 `;

@@ -38,16 +38,24 @@ const HeaderContainer = styled.header`
   padding: 32px;
   box-sizing: border-box;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 5%;
+  }
 `;
 
 const LogoContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: center;  
 `;
 
 const Logo = styled.div`
   width: 70px;
   
+  @media (max-width: 768px) {
+    width: 25%;
+  }
 `;
 
 const SpanLogo = styled.span`
@@ -57,6 +65,11 @@ const SpanLogo = styled.span`
   margin-left: 10px;
   color:#4b4d5b;
   
+
+  @media (max-width: 768px) {
+    font-size: 150%;
+    margin-left: 1%;
+  }
 `;
 
 const NavBarContainer = styled.div`
@@ -78,6 +91,10 @@ const NavBarContainer = styled.div`
 
   a:hover {
     opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -111,5 +128,9 @@ const LoginButton = styled.button`
   :active {
     background: #3498db;
     background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 10%;
   }
 `;
