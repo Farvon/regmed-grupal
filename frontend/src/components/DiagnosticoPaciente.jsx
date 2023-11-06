@@ -346,6 +346,11 @@ const CommentContainer = styled.div`
   box-shadow: 0 1px 1px black;
   padding: 8px;
   margin: 4px;
+  background: linear-gradient(
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgb(233, 237, 245) 100%
+  );
 `;
 
 const CommentBodyContainer = styled.div`
