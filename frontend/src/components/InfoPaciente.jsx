@@ -121,7 +121,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
 
             {/*---------------Inicio de diagnostco ----------------------------------- */}
 
-            <PersonalInfoContainer>
+            <PersonalDiagnosticContainer>
               <PersonalInfoHeader>
                 <PersonalInfoTitle>Diagnósticos</PersonalInfoTitle>
               </PersonalInfoHeader>
@@ -194,6 +194,7 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
 
                 {/* Si el usuario no es "Guest" puede agregar
                 comentarios */}
+                <Botones>
                 {user && user.username !== 'guest' && (
                   <AddDiagnosisButton
                     onClick={() => {
@@ -219,8 +220,9 @@ const InfoPaciente = ({ dni, setDni, user, setDiagnosticId }) => {
                 >
                   Descargar
                 </DownloadButton>
+                </Botones>
               </CommentBodyContainer>
-            </PersonalInfoContainer>
+            </PersonalDiagnosticContainer>
             {showModal ? (
               <ModalTemplate
                 onCloseIconClick={() => setShowModal(false)}
@@ -278,6 +280,28 @@ const PersonalInfoContainer = styled.div`
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 `;
 
+const PersonalDiagnosticContainer = styled.div`
+  display: flex;
+  height: 55vh;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 16px;
+  background: #f8f9fd;
+  background: linear-gradient(
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgb(244, 247, 251) 100%
+  );
+  border-radius: 40px;
+  padding: 15px 40px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+`;
+
+
 const PersonalInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -332,6 +356,7 @@ const CommentContainer = styled.div`
   margin: 4px;
   border: 1px solid rgb(0 49 83);
   border-radius: 7px;
+  height: 22%;
 
   background: #e1f2ee;
   background: linear-gradient(
@@ -399,7 +424,6 @@ const AddDiagnosisButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 240px;
-  margin: 16px auto;
   color: white;
   padding: 12px 24px 12px 24px;
   font-size: 18px;
@@ -426,10 +450,9 @@ const DownloadButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 140px;
-  margin: 16px auto;
   color: white;
   padding: 12px 24px 12px 24px;
-  font-size: 14px;
+  font-size: 18px;
   border-radius: 8px;
   background: #3498db;
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
@@ -446,6 +469,15 @@ const DownloadButton = styled.button`
     background: #3498db;
     background-image: linear-gradient(to bottom, #3498db, #2980b9);
   }
+`;
+
+const Botones = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 `;
 
 const PaginationContainer = styled.div`

@@ -48,7 +48,7 @@ export default SideBar;
 const SideContainer = styled.div`
   display: flex;
   width: 300px;
-  height: calc(100vh - 64px);
+  height: calc(100vh);
   background-image: url(./side-bar.jpg);
   background-size:cover;
 
