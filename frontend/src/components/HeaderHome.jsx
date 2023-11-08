@@ -14,7 +14,7 @@ const HeaderHome = () => {
       </LogoContainer>
       <NavBarContainer>
         <Link to={'/about'}>Sobre Nosotros</Link>
-        <Link to={'/documentacion'}>Documentacion</Link>
+        <Link to={'/documentacion'} target='_blank'>Documentacion</Link>
       </NavBarContainer>
       <LoginContainer>
         <Link to="/login">
