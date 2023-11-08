@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
 const Documentacion = () => {
-    return (
-            <BodyContainer>
-                <DocumentContainer>
-                    <IframeDocument src="./src/docs/mu.pdf" ></IframeDocument>
-                </DocumentContainer>
-            </BodyContainer>
-      
-    )
-}
+  return (
+    <BodyContainer>
+      <DocumentContainer>
+        <IframeDocument src="/mu.pdf"></IframeDocument>
+      </DocumentContainer>
+    </BodyContainer>
+  );
+};
 
 export default Documentacion;
 
@@ -26,6 +25,6 @@ const DocumentContainer = styled.div`
 `;
 
 const IframeDocument = styled.iframe`
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 `;
